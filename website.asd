@@ -3,12 +3,11 @@
   :version "0.1.0"
   :build-operation program-op
   :entry-point "website/src/website:main"
-  :depends-on (#:alexandria
+  :depends-on (#:zacl
+               #:zaserve
+               #:alexandria
                #:cl-mustache
                #:3bmd
-               #:hunchentoot
-               #:clack
-               #:clack-handler-hunchentoot
                #:website/src/website)
   :in-order-to ((test-op (test-op #:website/test))))
 

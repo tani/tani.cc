@@ -20,10 +20,8 @@
             fiveam
             alexandria
             cl-mustache
-            hunchentoot
             _3bmd
-            clack
-            clack-handler-hunchentoot
+            zaserve
           ];
           ## Non-Lisp dependencies
           nativeLibs = with pkgs; [
@@ -33,7 +31,7 @@
           lispImpls = [
             #"abcl"
             "sbcl"
-            "ecl"
+            #"ecl"
             #"ccl"
             #"mkcl"
             #"clisp"
@@ -234,7 +232,7 @@
             shellHook = ''
               export CL_SOURCE_REGISTRY=$PWD
             '';
-            packages = [ pkgs.util-linux ] ++ builtins.map devPackages availableLispImpls;
+            packages = with pkgs; [ util-linux rlwrap ] ++ builtins.map devPackages availableLispImpls;
           };
           packages = builtins.listToAttrs
             (builtins.concatMap packages availableLispImpls);
