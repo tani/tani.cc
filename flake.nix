@@ -21,7 +21,7 @@
             alexandria
             cl-mustache
             _3bmd
-            zaserve
+            hunchentoot
           ];
           ## Non-Lisp dependencies
           nativeLibs = with pkgs; [

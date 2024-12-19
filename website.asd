@@ -3,8 +3,7 @@
   :version "0.1.0"
   :build-operation program-op
   :entry-point "website/src/website:main"
-  :depends-on (#:zacl
-               #:zaserve
+  :depends-on (#:hunchentoot
                #:alexandria
                #:cl-mustache
                #:3bmd
