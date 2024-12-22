@@ -3,7 +3,7 @@ name: Build and Publish to GitHub Pages
 on:
   push:
     branches:
-      - main  # 適宜ブランチ名を変更してください
+      - main
 
 jobs:
   build-and-publish:
@@ -12,24 +12,20 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # 1. Nix をインストールする (Determinate Systems のアクションを利用)
       - name: Install Nix
-        uses: DeterminateSystems/nix-install-action@v2
+        uses: DeterminateSystems/nix-installer-action@main
         with:
           nix_path: https://channels.nixos.org/nixpkgs-unstable
 
-      # 2. プロジェクトのビルド
       - name: Build site with SBCL
         run: nix run .#main-sbcl generate
 
-      # 3. GitHub Pages にアップロードするためのアーティファクト作成
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out  # ビルド成果物を out/ に格納している想定
+          path: out
 
   deploy:
-    # build-and-publish ジョブが完了してから実行されるようにする
     needs: build-and-publish
     runs-on: ubuntu-latest
     steps:
