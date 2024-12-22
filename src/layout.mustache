@@ -18,15 +18,15 @@
                  max-width: 720px;
              }
              header {
-                 div {
-                     h1 {
-                         font-size: 1.3em;
-                     }
+                 display: grid;
+                 grid-template-rows: auto auto;
+                 grid-template-columns: 1fr auto;
+                 h1 {
                      font-family: "Open Sans", sans-serif;
-                     display: grid;
-                     grid-template-columns: 100px 1fr;
+                     font-size: 1.3em;
                  }
                  label {
+                     font-family: "Open Sans", sans-serif;
                      cursor: pointer;
                      text-align: right;
                      font-size: 1.3em;
@@ -60,26 +60,30 @@
                      }
                  }
              }
+             footer {
+                 border-top: 1px #ccc solid;
+             }
          }
-
         </style>
     </head>
     <body>
         <header class="container">
-            <div>
-                <h1>@tani</h1>
-                <label>
-                    <i class="bi bi-three-dots-vertical"></i>
-                    <i class="bi bi-three-dots"></i>
-                    <input class="d-none" type="checkbox">
-                </label>
-            </div>
+            <h1>@tani</h1>
+            <label>
+                <i class="bi bi-three-dots-vertical"></i>
+                <i class="bi bi-three-dots"></i>
+                <input class="d-none" type="checkbox">
+            </label>
             <ul>
                 <li>
-                    <a href="https://scrapbox.io/tani-note/">Scrapbox</a>
+                    <a href="https://scrapbox.io/tani-note/">
+                        <i class="bi bi-journal"></i> Scrapbox
+                    </a>
                 </li>
                 <li>
-                    <a href="https://github.com/tani">GitHub</a>
+                    <a href="https://github.com/tani">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
                 </li>
             </ul>
         </header>
@@ -90,7 +94,14 @@
         </main>
         <footer class="container">
             <p>
-                &copy; TANIGUCHI Masaya 2024
+                &copy; 2024 TANIGUCHI Masaya
+            </p>
+            <p>
+                This website uses 
+                <a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a> 
+                and 
+                <a href="https://www.jsdelivr.com/" target="_blank" rel="noopener">jsDelivr</a>. 
+                Please refer to our Terms of Use and Privacy Policy for more information.
             </p>
         </footer>
         {{^production}}
