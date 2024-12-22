@@ -34,7 +34,7 @@
             #"abcl"
             "sbcl"
             "ecl"
-            "ccl"
+            #"ccl"
             #"mkcl"
             #"clisp"
             #"cmucl_binary"
