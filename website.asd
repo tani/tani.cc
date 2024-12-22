@@ -2,7 +2,7 @@
   :class :package-inferred-system
   :version "0.1.0"
   :build-operation program-op
-  ;; :entry-point "website/src/website:main"
+  :entry-point "website/src/website:main"
   :depends-on (#:hunchentoot
                #:sse-server
                #:chanl

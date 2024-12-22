@@ -1,6 +1,7 @@
 (defpackage #:website/src/website
   (:nicknames #:website)
-  (:use #:cl #:website/src/generator #:website/src/server))
+  (:use #:cl #:website/src/generator #:website/src/server)
+  (:export #:main))
 (in-package #:website/src/website)
 
 (defun main ()
