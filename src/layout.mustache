@@ -9,85 +9,77 @@
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" defer></script>
-        <script>
-         /* function pollReload() {
-          *     // '/reload-endpoint' へ Long Poll を投げる
-          *     fetch("/reload-endpoint")
-          *         .then(response => response.text())
-          *         .then(message => {
-          *             if (message === "reload") {
-          *                 // サーバ側で (reload) が呼ばれた！ => ページをリロード                         
-          *                 location.reload();
-          *             } else {
-          *                 // それ以外の場合は再度ポーリング
-          *                 pollReload();
-          *             }
-          *         })
-          *         .catch(err => {
-          *             console.error(err);
-          *             // なにかエラーがあったら数秒後に再ポーリング
-          *             setTimeout(pollReload, 5000);
-          *         });
-          * }
-          * 
-          * // ページ読込時に1回だけ呼び出す
-          * window.addEventListener("load", function() {
-          *     pollReload();
-          * }); */
-        </script>
-        
-        
         <style>
-         header, main, footer {
+         body {
              font-family: "EB Garamond", "Noto Serif JP", Georgia, serif;
-             color: #333;
-             &.container {
+             background: #fefbfa;
+             color: #353333;
+             .container {
                  max-width: 720px;
              }
-         }
-         header {
-             div {
-                 display: grid;
-                 grid-template-columns: 100px 1fr;
-                 h1 {
-                     font-size: 1.3em;
+             header {
+                 div {
+                     h1 {
+                         font-size: 1.3em;
+                     }
                      font-family: "Open Sans", sans-serif;
+                     display: grid;
+                     grid-template-columns: 100px 1fr;
                  }
                  label {
-                     font-size: 1.3em;
                      cursor: pointer;
                      text-align: right;
+                     font-size: 1.3em;
+                     i:nth-of-type(1) {
+                         display: none;
+                     }
+                 }
+                 ul {
+                     display: none;
+                 }
+                 &:has(input:checked) {
+                     label i {
+                         &:nth-of-type(1) {
+                             display: inline-block;
+                         }
+                         &:nth-of-type(2) {
+                             display: none;
+                         }
+                     }
+                     ul {
+                         display: block;
+                     }
+                 }
+             }
+             main {
+                 article {
+                     text-align: justify;
+                     h1, h2, h3, h4, h5 {
+                         text-align: center;
+                         margin-top: 2em;
+                     }
                  }
              }
          }
-         main {
-             article {
-                 text-align: justify;
-                 h1, h2, h3, h4, h5 {
-                     text-align: center;
-                     margin-top: 2em;
-                 }
-             }
-         }
+
         </style>
     </head>
     <body>
-        <header class="container" x-data="{ open: false }">
+        <header class="container">
             <div>
                 <h1>@tani</h1>
                 <label>
-                    <i x-show="open" class="bi bi-three-dots-vertical"></i>
-                    <i x-show="!open" class="bi bi-three-dots"></i>
-                    <input class="d-none" type="checkbox" @click="open = !open">
+                    <i class="bi bi-three-dots-vertical"></i>
+                    <i class="bi bi-three-dots"></i>
+                    <input class="d-none" type="checkbox">
                 </label>
             </div>
-            <ul x-show="open">
+            <ul>
                 <li>
-                    <a href="https://scrapbox.io/tani-note/">Scrapbox [<code>https://scrapbox.io/tani-note/</code>]</a>
+                    <a href="https://scrapbox.io/tani-note/">Scrapbox</a>
                 </li>
                 <li>
-                    <a href="https://github.com/tani">GitHub [<code>https://github.com/tani/</code>]</a>
+                    <a href="https://github.com/tani">GitHub</a>
                 </li>
             </ul>
         </header>
@@ -101,6 +93,7 @@
                 &copy; TANIGUCHI Masaya 2024
             </p>
         </footer>
+        {{^production}}
         <script>
          const sse = new EventSource("/sse");
          sse.addEventListener('open', () => {
@@ -118,6 +111,7 @@
          window.addEventListener('beforeunload', () => {
              sse.close();
          });
-         </script>
+        </script>
+        {{/production}}
     </body>
 </html>
