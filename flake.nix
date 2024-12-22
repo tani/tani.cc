@@ -19,9 +19,11 @@
           lispLibs = lisp: with lisp.pkgs; [
             fiveam
             alexandria
+            chanl
             cl-mustache
             _3bmd
             hunchentoot
+            sse-server
           ];
           ## Non-Lisp dependencies
           nativeLibs = with pkgs; [
@@ -31,8 +33,8 @@
           lispImpls = [
             #"abcl"
             "sbcl"
-            #"ecl"
-            #"ccl"
+            "ecl"
+            "ccl"
             #"mkcl"
             #"clisp"
             #"cmucl_binary"
