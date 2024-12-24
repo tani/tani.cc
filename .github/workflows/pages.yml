@@ -15,28 +15,12 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
  
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        
       - name: Build site with SBCL
         run: nix run .#main-sbcl generate
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.pages_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./public --project-name=tani-cc --commit-dirty=true
