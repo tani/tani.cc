@@ -24,7 +24,7 @@
          (title-string (extract-title html-string))
          (context `((:article . ,html-string)
                     (:title . ,title-string)
-                    (:production . *production*))))
+                    (:production . ,*production*))))
     (with-output-to-string (stream)
       (mustache:render layout-template context stream))))
 
