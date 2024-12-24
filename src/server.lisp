@@ -20,16 +20,15 @@
   (setf (hunchentoot:content-type*) "text/event-stream; charset=utf-8")
   (setf (hunchentoot:reply-external-format*) *utf-8*)
   (hunchentoot:no-cache)
-  (let* ((str (hunchentoot:send-headers))
-         (out (flexi-streams:make-flexi-stream str :external-format *utf-8*)))
-    (do ((msg (chanl:recv *channel*)
-              (chanl:recv *channel*)))
-        ((not (open-stream-p str)))
+  (loop
+    :with str := (hunchentoot:send-headers)
+    :with out := (flexi-streams:make-flexi-stream str :external-format *utf-8*)
+    :for msg := (chanl:recv *channel*) :do
       (alexandria:switch (msg :test #'string=)
         ("reload"
          (sse-server:send-event! out "message" msg)
          (finish-output out)
-         (return))))))
+         (return)))))
 
 (defun start ()
   (hunchentoot:start *main-app*))

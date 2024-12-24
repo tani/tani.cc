@@ -19,6 +19,7 @@ Masaya Taniguchi is a researcher in the Natural Language Understanding (NLU) tea
 
 ## Non-academic Work
 
+* [エンジニアの楽園 Vim-jp ラジオ](https://vim-jp-radio.com/) #23, #24 ゲスト出演, December 2024
 * "特集 Vimの基本大全 第3章 ファイル操作", Software Design, July 2022
 
 ## Teaching Experience
