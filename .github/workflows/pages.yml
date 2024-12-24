@@ -14,9 +14,7 @@ jobs:
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-        with:
-          nix_path: https://channels.nixos.org/nixpkgs-unstable
-
+ 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
