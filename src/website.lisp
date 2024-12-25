@@ -8,5 +8,5 @@
   (let ((command (car (uiop:command-line-arguments))))
     (alexandria:switch (command :test #'string=)
       ("serve" (serve))
-      ("generate" (let ((*production* t)) (generate)))
+      ("generate" (let ((*development* t)) (generate)))
       (t (format t "Usage: <executable> [serve|generate]~%")))))

@@ -1,12 +1,12 @@
 (defpackage #:website/src/generator
   (:nicknames #:generator)
   (:use #:cl)
-  (:export generate *production*))
+  (:export generate *development*))
 (in-package #:website/src/generator)
 
 (defvar *project-root* (asdf:system-source-directory "website"))
 
-(defvar *production* nil)
+(defvar *development* t)
 
 (defun convert-markdown-to-html (md-string)
   (with-output-to-string (stream)
@@ -24,9 +24,9 @@
          (title-string (extract-title html-string))
          (context `((:article . ,html-string)
                     (:title . ,title-string)
-                    (:production . ,*production*))))
+                    (:development . ,*development*))))
     (with-output-to-string (stream)
-      (mustache:render layout-template context stream))))
+       (mustache:render layout-template context stream))))
 
 (defun generate ()
   (let* ((*project-root* (truename #p"."))
