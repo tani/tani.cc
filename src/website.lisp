@@ -7,6 +7,6 @@
 (defun main ()
   (let ((command (car (uiop:command-line-arguments))))
     (alexandria:switch (command :test #'string=)
-      ("serve" (serve))
-      ("generate" (let ((*development* t)) (generate)))
+      ("serve" (server:serve))
+      ("generate" (let ((generator:*development* t)) (generator:generate)))
       (t (format t "Usage: <executable> [serve|generate]~%")))))
