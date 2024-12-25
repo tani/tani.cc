@@ -1,7 +1,7 @@
 (defpackage #:website/src/generator
   (:nicknames #:generator)
   (:use #:cl)
-  (:export generate))
+  (:export generate *production*))
 (in-package #:website/src/generator)
 
 (defvar *project-root* (asdf:system-source-directory "website"))
