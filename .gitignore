@@ -25,3 +25,4 @@
 coverage
 .direnv
 out
+.DS_Store
