@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= config.title %> - <%= page.title || config.subtitle %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <style>
+     body {
+         font-family: "Times New Roman", "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "HGS明朝E", "MS PMincho", "MS Mincho", serif;
+         :where(h1,h2,h3,h4,h5) > a {
+             text-decoration: none;
+             color: black;
+         }
+     }
+     header {
+         width: clamp(360px, 65%, 750px);
+         margin: 0 auto;
+         border-bottom: 1px dotted #aaa;
+         ul {
+             list-style: none;
+             display: flex;
+             padding: 0;
+             li {
+                 &::after {
+                     content: " ] ";
+                 }
+                 &::before {
+                     content: " [ ";
+                 }
+             }
+         }
+     }
+     footer {
+         width: clamp(360px, 65%, 750px);
+         margin: 0 auto;
+     }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/>"><%= config.title %></a></h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/archives">Archives</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <%- body %>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> <%= config.author %></p>
+    </footer>
+</body>
+</html>
+

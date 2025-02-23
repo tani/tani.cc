@@ -1,0 +1,26 @@
+<style>
+ article {
+     width: clamp(360px, 65%, 750px);
+     margin: 0 auto;
+     .article-header {
+         text-align: center;
+         margin: 50px auto;
+     }
+     .archive-list {
+         margin: 50px auto;
+     }
+ }
+</style>
+<article>
+    <div class="article-header">
+        <h2><a href="/archives/">Archives</a></h2>
+    </div>
+    <ul class="archive-list">
+        <% site.posts.forEach(function(post) { %>
+            <li>
+                <time><%= post.date.toISOString().slice(0, 10) %></time>
+                <a href="/<%= post.path %>"><%= post.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+</article>

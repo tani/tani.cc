@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="600" viewBox="-1.2 -1.2 2.4 2.4" xmlns="http://www.w3.org/2000/svg">
+  <script type="application/ecmascript">
+    <![CDATA[
+      // ベクトルの正規化と中点を求める関数
+      function normalize(v) {
+        const len = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+        return { x: v.x / len, y: v.y / len, z: v.z / len };
+      }
+      function midpoint(v1, v2) {
+        return normalize({
+          x: (v1.x + v2.x) / 2,
+          y: (v1.y + v2.y) / 2,
+          z: (v1.z + v2.z) / 2
+        });
+      }
+      
+      // icosahedron の初期頂点と面（インデックス）の定義
+      const t = (1 + Math.sqrt(5)) / 2;
+      let initialVertices = [
+        { x: -1,  y:  t,  z:  0 },
+        { x:  1,  y:  t,  z:  0 },
+        { x: -1,  y: -t,  z:  0 },
+        { x:  1,  y: -t,  z:  0 },
+        { x:  0,  y: -1,  z:  t },
+        { x:  0,  y:  1,  z:  t },
+        { x:  0,  y: -1,  z: -t },
+        { x:  0,  y:  1,  z: -t },
+        { x:  t,  y:  0,  z: -1 },
+        { x:  t,  y:  0,  z:  1 },
+        { x: -t,  y:  0,  z: -1 },
+        { x: -t,  y:  0,  z:  1 }
+      ].map(normalize);
+      
+      const initialFaces = [
+        [0, 11, 5],
+        [0, 5, 1],
+        [0, 1, 7],
+        [0, 7, 10],
+        [0, 10, 11],
+        [1, 5, 9],
+        [5, 11, 4],
+        [11, 10, 2],
+        [10, 7, 6],
+        [7, 1, 8],
+        [3, 9, 4],
+        [3, 4, 2],
+        [3, 2, 6],
+        [3, 6, 8],
+        [3, 8, 9],
+        [4, 9, 5],
+        [2, 4, 11],
+        [6, 2, 10],
+        [8, 6, 7],
+        [9, 8, 1]
+      ];
+      
+      // 三角形を分割する関数（subdivision level が高いほど詳細になります）
+      function subdivideTriangle(v1, v2, v3, depth) {
+        if (depth === 0) {
+          return [[v1, v2, v3]];
+        }
+        const v12 = midpoint(v1, v2);
+        const v23 = midpoint(v2, v3);
+        const v31 = midpoint(v3, v1);
+        let triangles = [];
+        triangles = triangles.concat(subdivideTriangle(v1, v12, v31, depth - 1));
+        triangles = triangles.concat(subdivideTriangle(v2, v23, v12, depth - 1));
+        triangles = triangles.concat(subdivideTriangle(v3, v31, v23, depth - 1));
+        triangles = triangles.concat(subdivideTriangle(v12, v23, v31, depth - 1));
+        return triangles;
+      }
+      
+      // すべての面に対して分割処理を実行
+      const subdivisionLevel = 2;  // 分割レベルを変更すると詳細度が増します
+      let triangles = [];
+      initialFaces.forEach(face => {
+        const v1 = initialVertices[face[0]];
+        const v2 = initialVertices[face[1]];
+        const v3 = initialVertices[face[2]];
+        const subdivided = subdivideTriangle(v1, v2, v3, subdivisionLevel);
+        triangles = triangles.concat(subdivided);
+      });
+      
+      // ここで半球のみを選択していたフィルタリング処理を削除
+      // (全体の球体をレンダリングする)
+      // triangles = triangles.filter(tri => tri.every(v => v.z >= 0));
+      
+      // 簡易の直交射影: 3Dから2Dへ（z成分は無視し、x, y をそのまま使う）
+      function project(v) {
+        return { x: v.x, y: v.y };
+      }
+      
+      // y軸回転のための変換関数
+      function rotateY(v, angle) {
+        return {
+          x: Math.cos(angle) * v.x + Math.sin(angle) * v.z,
+          y: v.y,
+          z: -Math.sin(angle) * v.x + Math.cos(angle) * v.z
+        };
+      }
+      
+      // すでにある SVG 要素（document.documentElement）を取得
+      const svg = document.documentElement;
+      const svgNS = "http://www.w3.org/2000/svg";
+      
+      // g 要素に scale(1,-1) の変換を与えて、SVG の y 軸を上向きにする
+      let g = document.createElementNS(svgNS, "g");
+      g.setAttribute("transform", "scale(1,-1)");
+      svg.appendChild(g);
+      
+      // 各三角形を polygon 要素として描画し、元の頂点情報とともに保存
+      let polygonData = [];
+      triangles.forEach(tri => {
+        let polygon = document.createElementNS(svgNS, "polygon");
+        polygon.setAttribute("stroke", "#333");
+        polygon.setAttribute("stroke-width", "0.0005");
+        polygon.setAttribute("fill", "none");
+        polygonData.push({ polygon: polygon, vertices: tri });
+        g.appendChild(polygon);
+      });
+      
+      // 各 polygon の points を、指定の角度で回転後の頂点から更新する関数
+      function updatePolygons(angle) {
+        polygonData.forEach(item => {
+          const pts = item.vertices.map(v => {
+            const rotated = rotateY(v, angle);
+            const projected = project(rotated);
+            return projected.x + "," + projected.y;
+          }).join(" ");
+          item.polygon.setAttribute("points", pts);
+        });
+      }
+      
+      // requestAnimationFrame を使ったアニメーションループ
+      let angle = 0;
+      function animate() {
+        angle += 0.005;  // 回転速度の調整が可能
+        updatePolygons(angle);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    ]]>
+  </script>
+</svg>
