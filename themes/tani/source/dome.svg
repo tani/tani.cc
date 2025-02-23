@@ -149,7 +149,7 @@
       // requestAnimationFrame を使ったアニメーションループ
       let angle = 0;
       function animate() {
-        angle += 0.005;  // 回転速度の調整が可能
+        angle += 0.0025;  // 回転速度の調整が可能
         updatePolygons(angle);
         requestAnimationFrame(animate);
       }
