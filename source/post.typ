@@ -1,5 +1,5 @@
 #let post(title: none, doc) = {
-  import "@preview/droplet:0.2.0": dropcap
+  import "@preview/droplet:0.3.1": dropcap
   let page-width = sys.inputs.at("x-page-width", default: 21cm)
   set page(width: page-width, height: auto, margin: 0pt)
   set text(18pt, font: "EB Garamond")

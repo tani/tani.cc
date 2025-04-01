@@ -1,4 +1,6 @@
-= Publications
+#import "./post.typ": post
+
+#show: post.with(title: [Publications])
 
 #let pub-data = toml("publications.toml").publication
 
@@ -16,10 +18,10 @@
   #for pub in pubs [
     - *#pub.title*.
       #pub.authors.join(", ").
-      _ #pub.venue _
       #let render(key, prefix: none, suffix: none) = {
         if pub.at(key, default: none) != none [, #prefix#pub.at(key)#suffix]
       }
+      #render("venue")
       #render("volume", prefix: "Vol.")
       #render("year")
       #render("pages")
