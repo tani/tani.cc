@@ -1,0 +1,395 @@
+[[publication]]
+category = "Journal Articles"
+title = "Interactive Grammar Extraction from a TreeBank"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "Journal of Intelligent Informatics and Smart Technology"
+volume = 8
+year = 2022
+note = "Peer-reviewed"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "First Heuristic Then Rational: Dynamic Use of Heuristics in Language Model Reasoning"
+authors = ["Yoichi Aoki", "Keito Kudo", "Tatsuki Kuribayashi", "Shusaku Sone", "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"]
+venue = "Proceedings of EMNLP (Empirical Methods in Natural Language Processing) 2024"
+pages = "14255–14271"
+date = "Nov 2024"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "J-UniMorph: Japanese Morphological Annotation through the Universal Feature Schema"
+authors = ["Kosuke Matsuzaki", "Masaya Taniguchi", "Kentaro Inui", "Keisuke Sakaguchi"]
+venue = "SIGMORPHON (Special Interest Group on Computational Morphology and Phonology) 2024"
+pages = "7–19"
+location = "Mexico City"
+date = "Jun 2024"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Substructural Logics Weaker than Commutative Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "TACL (Topology, Algebra and Categories in Logic) 2024"
+location = "Barcelona"
+date = "Jul 2024"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Left-branching Tree in CCG with D Combinator"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "LENLS (Logic and Engineering of Natural Language Semantics) 19"
+location = "Tokyo"
+date = "Nov 2022"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Decidable Parsing Algorithm for Categorial Grammar with Type-raising"
+authors = ["Masaya Taniguchi"]
+venue = "The Proof Theory Society Workshop"
+location = "Utrecht"
+date = "Nov 2022"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Losing a Head in Grammar Extraction"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "KSE (Knowledge and Systems Engineering Conference) 2022"
+location = "Nha Trang"
+date = "Oct 2022"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Interactive CCG Parsing with Incremental Trees"
+authors = ["Masaya Taniguchi", "Satoshi Tojo", "Koji Mineshima"]
+venue = "ESSLLI Workshop"
+location = "Galway"
+date = "Aug 2022"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Unprovability of Continuation-Passing Style Transformation in Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "ESSLLI Student Session"
+location = "Galway"
+date = "Aug 2022"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Incremental Derivations with Q Combinator in CCG"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "LENLS (Logic and Engineering of Natural Language Semantics) 18"
+location = "Online"
+date = "Nov 2021"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Interactive Grammar Extraction from a Treebank"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "KICSS (International Conference on Knowledge, Information and Creativity Support Systems) 2021"
+location = "Bangkok"
+date = "Nov 2021"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Generic Framework to Uncross Dependency"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "AROB (International Symposium on Artificial Life and Robotics) 2020"
+location = "Beppu"
+date = "Jan 2020"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Finding Grammar in Music by Evolutionary Linguistics"
+authors = ["Hiroki Sudo", "Masaya Taniguchi", "Satoshi Tojo"]
+venue = "KICSS (International Conference on Knowledge, Information and Creativity Support Systems) 2018"
+location = "Phatthaya"
+date = "Nov 2018"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "4-valued Logic for Agent Communication with Private / Public Information Passing"
+authors = ["Song Yang", "Masaya Taniguchi", "Satoshi Tojo"]
+venue = "ICAART (International Conference on Agents and Artificial Intelligence) 2019"
+location = "Prague"
+date = "Feb 2019"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Finiteness and Cofiniteness of Languages Recognized by Constant-Precision Floating-Point Transformer Decoders"
+authors = ["Nao Negishi", "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"]
+venue = "The 31st Annual Meeting of the Association for Natural Language Processing (NLP 2025)"
+date = "March 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Dynamic Search Strategy in Chain-of-Thought Reasoning by Language Models"
+authors = ["Yoichi Aoki", "Keion Kudo", "Shusaku Sone", "Itsuki Kuribayashi", "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"]
+venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+location = "Kobe"
+date = "Mar 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Feature Analysis of Generated Texts by LLMs Based on Detector Judgments"
+authors = ["Toko Miura", "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"]
+venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+location = "Kobe"
+date = "Mar 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "J-UniMorph: Systematization of Semantic Classification in Japanese Morphology"
+authors = ["Kosuke Matsuzaki", "Masaya Taniguchi", "Kentaro Inui", "Keisuke Sakaguchi"]
+venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+location = "Kobe"
+date = "Mar 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Internal Mechanisms of Autoregressive Language Models in Arithmetic Reasoning"
+authors = ["Yoichi Aoki", "Keion Kudo", "Itsuki Kuribayashi", "Masaya Taniguchi", "Shusaku Sone", "Keisuke Sakaguchi", "Kentaro Inui"]
+venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+location = "Kobe"
+date = "Mar 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Context-sensitive Extension of Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "MLG Workshop"
+location = "Miyagi"
+date = "Feb 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Computational Interpretation of Categorial Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Linguistics Fest"
+location = "Online"
+date = "Jan 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Programming Support with Proof Assistants: Bridging Linguistics and Engineering"
+authors = ["Masaya Taniguchi"]
+venue = "San'in Workshop"
+location = "Tottori"
+date = "Jan 2024"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Structural Connection between Directional Implications and Type-Raising"
+authors = ["Masaya Taniguchi"]
+venue = "Proof Theory and Computation"
+location = "Kyoto"
+date = "Dec 2023"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Rapid Introduction to Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "Young Researchers Logic Meeting"
+location = "Chiba"
+date = "Dec 2023"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Computational Complexity of Combinatory Categorical Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Math Logic Youth Conference"
+location = "Tokyo"
+date = "Dec 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Lambek Calculus and Regular Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "SLACS (Symbolic Logic and Computer Science) 2024"
+date = "Aug 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Lambek Calculus and Context-Free / Linear / Regular Grammars"
+authors = ["Masaya Taniguchi"]
+venue = "Computation, Language, and Logic Workshop"
+location = "Onjuku"
+date = "Sep 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Operad for Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "CSCAT (Computer Science and Category Theory)"
+date = "Mar 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Categorial Grammar and Free Compact 2-Categories"
+authors = ["Masaya Taniguchi"]
+venue = "CSCAT (Computer Science and Category Theory)"
+date = "Mar 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Substructural Logic Weaker than Product-free Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "Math Logic Youth Conference"
+date = "Oct 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Selling your Research: What We Did to Get People to Use Categorical Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Discovery Evening"
+location = "RIKEN, Saitama"
+date = "Feb 2024"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Mathematics in Natural Language"
+authors = ["Masaya Taniguchi"]
+venue = "Guest Lecture, Tohoku University"
+date = "Dec 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Decidability of Categorial Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Matsuzaki Lab Seminar, Tokyo University of Science"
+date = "Dec 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Lambek Calculus from the View of Mathematical Linguistics"
+authors = ["Masaya Taniguchi"]
+venue = "Hasegawa Lab Seminar, RIMS Kyoto University"
+date = "Dec 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Computability theory of Combinatory Categorial Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "The Young Researchers’ Meeting of Mathematical Logic"
+location = "Tokyo"
+date = "Sep 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Bridging the Gap: Combinatorial Categorical Grammars and Proof Theory"
+authors = ["Masaya Taniguchi"]
+venue = "Computational Logic Seminar, TU Wien"
+date = "Jul 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Proof Theoretic Linguistics"
+authors = ["Masaya Taniguchi"]
+venue = "Sendai Logic Group Seminar, Tohoku University"
+date = "May 2023"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "CG for Ungrammatical Sentences: Proving the Unprovability"
+authors = ["Masaya Taniguchi"]
+venue = "MiCS, Tohoku University"
+date = "Oct 2022"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Subjunctive Markers in Intensional Logic"
+authors = ["Masaya Taniguchi"]
+venue = "SLACS (Symbolic Logic and Computer Science) 2024"
+date = "Aug 2019"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Introduction to Montague Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Math Logic Youth Conference"
+date = "Nov 2018"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Mathematical Logic Approach for Incremental Parsing"
+authors = ["Masaya Taniguchi"]
+venue = "AIP Retreat"
+date = "Mar 2024"
+location = "Tokyo"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Mathematics in Context Sensitive Language"
+authors = ["Masaya Taniguchi"]
+venue = "AIP Math Retreat"
+date = "Feb 2024"
+location = "Kanagawa"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "Lambek Calculus for Context-sensitive Language"
+authors = ["Masaya Taniguchi"]
+venue = "Ookayama Mathematical Logic Seminar"
+date = "Feb 2024"
+location = "Tokyo"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "Interactive Grammar Extraction from a Treebank"
+authors = ["Masaya Taniguchi", "Satoshi Tojo"]
+venue = "KICSS (International Conference on Knowledge, Information and Creativity Support Systems) 2021"
+date = "Nov 2021"
+location = "Bangkok"
+
+[[publication]]
+category = "International Conferences (Peer-reviewed)"
+title = "4-valued Logic for Agent Communication with Private / Public Information Passing"
+authors = ["Song Yang", "Masaya Taniguchi", "Satoshi Tojo"]
+venue = "ICAART (International Conference on Agents and Artificial Intelligence) 2019"
+date = "Feb 2019"
+location = "Prague"
+
+[[publication]]
+category = "Preprints"
+title = "Think-to-Talk or Talk-to-Think? When LLMs Come Up with an Answer in Multi-Step Reasoning"
+authors = [
+  "Keito Kudo", "Yoichi Aoki", "Tatsuki Kuribayashi", "Shusaku Sone",
+  "Masaya Taniguchi", "Ana Brassard", "Keisuke Sakaguchi", "Kentaro Inui"
+]
+year = 2024
+url = "https://arxiv.org/abs/2412.01113"
+archive = "arXiv:2412.01113"
+field = "cs.CL"
+
+[[publication]]
+category = "Preprints"
+title = "FinchGPT: a Transformer based language model for birdsong analysis"
+authors = [
+  "Kosei Kobayashi", "Kosuke Matsuzaki", "Masaya Taniguchi", "Keisuke Sakaguchi",
+  "Kentaro Inui", "Kentaro Abe"
+]
+year = 2025
+url = "https://arxiv.org/abs/2502.00344"
+archive = "arXiv:2502.00344"
+field = "cs.CL"
+
+[[publication]]
+category = "Preprints"
+title = "First Heuristic Then Rational: Dynamic Use of Heuristics in Language Model Reasoning"
+authors = [
+  "Yoichi Aoki", "Keito Kudo", "Tatsuki Kuribayashi", "Shusaku Sone",
+  "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"
+]
+year = 2024
+url = "https://arxiv.org/abs/2406.16078"
+archive = "arXiv:2406.16078"
+field = "cs.CL"
+
+[[publication]]
+category = "Preprints"
+title = "J-UniMorph: Japanese Morphological Annotation through the Universal Feature Schema"
+authors = [
+  "Kosuke Matsuzaki", "Masaya Taniguchi", "Kentaro Inui", "Keisuke Sakaguchi"
+]
+year = 2024
+url = "https://arxiv.org/abs/2402.14411"
+archive = "arXiv:2402.14411"
+field = "cs.CL"
