@@ -17,7 +17,13 @@
   == #cat
   #for pub in pubs [
     - *#pub.title*.
-      #pub.authors.join(", ").
+      #pub.authors.map(author => 
+          if author == "Masaya Taniguchi" {
+            underline(author)
+          } else {
+            author
+          }
+        ).join(", ").
       #let render(key, prefix: none, suffix: none) = {
         if pub.at(key, default: none) != none [, #prefix#pub.at(key)#suffix]
       }
@@ -32,4 +38,4 @@
       #render("field")
       #render("note", prefix: "(", suffix: ")")
     ]
-]
+  ]
