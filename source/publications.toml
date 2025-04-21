@@ -1,5 +1,28 @@
 [[publication]]
 category = "Domestic Conferences"
+title = "Invited Talks and Presentations"
+authors = ["Masaya Taniguchi"]
+venue = "The Japanese Society for Artificial Intelligence 2025"
+date = "May 2025"
+
+[[publication]]
+category = "Invited Talks and Presentations"
+title = "続・弱いランベック計算: 有限言語のための範疇文法"
+authors = ["Masaya Taniguchi"]
+venue = "名古屋大学ロジックセミナー"
+location = "Nagoya, Japan"
+date = "April 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "範疇文法と自由コンパクト2圏"
+authors = ["Masaya Taniguchi"]
+venue = "Computer Science and Category Theory (CSCAT)"
+location = "Kumamoto, Japan"
+date = "March 2025"
+
+[[publication]]
+category = "Domestic Conferences"
 title = "Finiteness and Cofiniteness of Languages Recognized by Constant-Precision Floating-Point Transformer Decoders"
 authors = ["Nao Negishi", "Masaya Taniguchi", "Keisuke Sakaguchi", "Kentaro Inui"]
 venue = "The 31st Annual Meeting of the Association for Natural Language Processing (NLP 2025)"
@@ -12,6 +35,13 @@ authors = ["Masaya Taniguchi"]
 venue = "AIP Retreat"
 date = "Mar 2025"
 location = "Tokyo"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "弱いランベック計算への招待: 論理と形式言語"
+authors = ["Masaya Taniguchi"]
+venue = "Logic Winter School III"
+date = "Feb 2025"
 
 [[publication]]
 category = "Preprints"
@@ -166,7 +196,7 @@ date = "Mar 2024"
 location = "Tokyo"
 
 [[publication]]
-category = "Domesic Conferences"
+category = "Domestic Conferences"
 title = "Mathematics in Context Sensitive Language"
 authors = ["Masaya Taniguchi"]
 venue = "AIP Math Retreat"
@@ -337,7 +367,15 @@ category = "Invited Talks and Presentations"
 title = "CG for Ungrammatical Sentences: Proving the Unprovability"
 authors = ["Masaya Taniguchi"]
 venue = "MiCS, Tohoku University"
+location = "Miyagi, Japan"
 date = "Oct 2022"
+
+[[publications]]
+category = "Domestic Conference"
+title = "Incremental Parsing: Categorial Grammars and Lambek-style Calculi"
+authors = ["Masaya Taniguchi"]
+venue = "Substructural Logic Workshop in Ishikawa"
+location = "Ishikawa, Japan"
 
 [[publication]]
 category = "International Conferences (Peer-reviewed)"
@@ -385,14 +423,6 @@ title = "Subjunctive Markers in Intensional Logic"
 authors = ["Masaya Taniguchi"]
 venue = "SLACS (Symbolic Logic and Computer Science) 2024"
 date = "Aug 2019"
-
-[[publication]]
-category = "International Conferences (Peer-reviewed)"
-title = "4-valued Logic for Agent Communication with Private / Public Information Passing"
-authors = ["Song Yang", "Masaya Taniguchi", "Satoshi Tojo"]
-venue = "ICAART (International Conference on Agents and Artificial Intelligence) 2019"
-date = "Feb 2019"
-location = "Prague"
 
 [[publication]]
 category = "International Conferences (Peer-reviewed)"
