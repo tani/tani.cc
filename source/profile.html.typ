@@ -1,5 +1,4 @@
 #import "./post.typ": post
-
 #show: post.with(title: [Masaya Taniguchi])
 
 Masaya Taniguchi is a researcher in the Natural Language Understanding (NLU) team at RIKEN Advanced Intelligence Project (AIP). Additionally, he is a member of TohokuNLP, led by Dr. Kentaro Inui, at Tohoku University. He earned his Bachelor of Science in Mathematics from Gakushuin University and his Master of Science and Ph.D. in Information Science from Japan Advanced Institute of Science and Technology (JAIST). His research primarily focuses on the formal semantics of natural language and programming languages.
@@ -108,7 +107,7 @@ Masaya Taniguchi is a researcher in the Natural Language Understanding (NLU) tea
 
 = Online Presence
 
-- Mastodon: #link("https://mastodon.acm.org/@taniguchi")[\@taniguchi]
+- Mastodon: #link("https://mastodon.acm.org/@taniguchi")[taniguchi]
 - GitHub: #link("https://github.com/tani")[tani]
 - Sourcehut: #link("https://sr.ht/~tani")[tani]
 - RubyGems: #link("https://rubygems.org/profiles/taniguchi")[taniguchi]

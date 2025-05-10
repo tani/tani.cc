@@ -5,6 +5,20 @@ authors = ["Masaya Taniguchi"]
 venue = "The Japanese Society for Artificial Intelligence 2025"
 date = "May 2025"
 
+[[publications]]
+category = "Domestic Conferences"
+title = "Continuations and Polymorphic Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "Logic, Language, Algebraic system and Related Areas in Computer Science, (RIMS Kokyuroku)"
+date = "July 2021"
+
+[[publication]]
+category = "Thesis"
+title = "Incremental Parsing in Combinatory Categorial Grammar"
+authors = ["Masaya Taniguchi"]
+venue = "Japan Advanced Institute of Science and Technology"
+date = "March 2023"
+  
 [[publication]]
 category = "Invited Talks and Presentations"
 title = "続・弱いランベック計算: 有限言語のための範疇文法"
@@ -21,6 +35,13 @@ venue = "Computer Science and Category Theory (CSCAT)"
 location = "Kumamoto, Japan"
 date = "March 2025"
 
+[[publication]]
+category = "Domestic Conferences"
+title = "Incremental Parsing: Categorial Grammars and Lambek-style Calculi"
+authors = ["Masaya Taniguchi"]
+venue = "Substructural Logic Workshop in Ishikawa"
+date = "May, 2022"
+  
 [[publication]]
 category = "Domestic Conferences"
 title = "Finiteness and Cofiniteness of Languages Recognized by Constant-Precision Floating-Point Transformer Decoders"
@@ -408,14 +429,6 @@ authors = ["Masaya Taniguchi", "Satoshi Tojo"]
 venue = "AROB (International Symposium on Artificial Life and Robotics) 2020"
 location = "Beppu"
 date = "Jan 2020"
-
-[[publication]]
-category = "International Conferences (Peer-reviewed)"
-title = "4-valued Logic for Agent Communication with Private / Public Information Passing"
-authors = ["Song Yang", "Masaya Taniguchi", "Satoshi Tojo"]
-venue = "ICAART (International Conference on Agents and Artificial Intelligence) 2019"
-location = "Prague"
-date = "Feb 2019"
 
 [[publication]]
 category = "Domestic Conferences"

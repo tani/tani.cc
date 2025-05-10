@@ -14,8 +14,8 @@
          }
      }
      header {
-         width: clamp(360px, 65%, 750px);
-         margin: 0 auto;
+         /* width: clamp(360px, 65%, 750px); */
+         /* margin: 0 auto; */
          border-bottom: 1px dotted #aaa;
          ul {
              list-style: none;
@@ -32,27 +32,27 @@
          }
      }
      footer {
-         width: clamp(360px, 65%, 750px);
-         margin: 0 auto;
+         /* width: clamp(360px, 65%, 750px); */
+         /* margin: 0 auto; */
      }
     </style>
 </head>
 <body>
-    <header>
+    <header class="container">
         <h1><a href="/>"><%= config.title %></a></h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/profile.html">Profile</a></li>
                 <li><a href="/archives">Archives</a></li>
-                <li><a href="/publications">Publications</a></li>
+                <li><a href="/publications.html">Publications</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="container">
         <%- body %>
     </main>
-    <footer>
+    <footer class="container">
         <p>&copy; <%= new Date().getFullYear() %> <%= config.author %></p>
     </footer>
 </body>

@@ -1,10 +1,28 @@
+#let target = dictionary(std).at("target", default: () => "paged")
+
+#let target-conditional(..targets) = context {
+  let target = targets.at(target(), default: targets.at("default", default: none))
+  if target != none {
+    target()
+  }
+}
+
 #let post(title: none, doc) = {
-  import "@preview/droplet:0.3.1": dropcap
-  let page-width = sys.inputs.at("x-page-width", default: 21cm)
-  set page(width: page-width, height: auto, margin: 0pt)
-  set text(18pt, font: "EB Garamond")
-  show regex("[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"): set text(font: "Zen Old Mincho")
-  set par(justify: true)
-  set document(title: title)
-  dropcap(justify: true, doc)
+    show math.equation.where(block: true): it => {
+        target-conditional(
+            paged: () => it,
+            html: () => html.elem("figure", attrs: (role: "math"), html.frame(it))
+        )
+    }
+    
+    show math.equation.where(block: false): it => {
+        target-conditional(
+            paged: () => it,
+            html: () => html.elem("span", attrs: (role: "math"), html.frame(it))
+        )
+    }
+    
+    set document(title: title)
+    
+    doc
 }

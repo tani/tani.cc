@@ -1,5 +1,4 @@
 #import "./post.typ": post
-
 #show: post.with(title: [Publications])
 
 #let pub-data = toml("publications.toml").publication
@@ -16,8 +15,8 @@
 #for (cat, pubs) in group-by(pub-data, "category") [
   == #cat
   #for pub in pubs [
-    - *#pub.title*.
-      #pub.authors.map(author => 
+    + *#pub.title*.
+      #pub.authors.map(author =>
           if author == "Masaya Taniguchi" {
             underline(author)
           } else {
