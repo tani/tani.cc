@@ -16,9 +16,10 @@ Masaya Taniguchi is a researcher in the Natural Language Understanding (NLU) tea
 
 = Academic Work
 
-- Screener (Engineering), RIKEN Summer School, 2023
+- Screener (Engineering), RIKEN Summer School, 2023, 2024
 - Reviewer, Journal of Logic, Language and Linguistics (JoLLI)
 - Secondary reviewer, The 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC)
+- Commented on 数学セミナー2021年2月号 "直観主義論理上の逆数学◎根元多佳子"
 
 = Non-academic Work
 
