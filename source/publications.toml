@@ -1,6 +1,41 @@
 [[publication]]
 category = "Domestic Conferences"
-title = "Invited Talks and Presentations"
+title = "The Internal Mechanisms of Incremental Combinatory Categorial Grammar and Language Models"
+authors = ["Masaya Taniguchi"]
+venue = "YANS 2025"
+date = "September 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Revisiting Classical Methods in Dialect Speech Recognition"
+authors = ["Kosuke Matsuzaki", "Masaya Taniguchi"]
+venue = "YANS 2025"
+date = "September 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Curriculum Learning Towards Hallucination"
+authors = ["Masaya Taniguchi"]
+venue = "the 29th Interdisciplinary Exchange Evening"
+date = "November 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Substructural Logics weaker than Commutative Lambek Calculus"
+authors = ["Masaya Taniguchi"]
+venue = "Seminar on Algebra, Logic and Geometry in Informatics, ALGI 2025"
+date = "November 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Left Recursion Elimination Theorem in Categorical Grammar (from Finite Languages to Weakly Context-Sensitive Grammars)"
+authors = ["Masaya Taniguchi"]
+venue = "Research Meeting on Computation, Language, and Logic"
+date = "August 2025"
+
+[[publication]]
+category = "Domestic Conferences"
+title = "Learnability of Regular Languages in Language Models"
 authors = ["Masaya Taniguchi"]
 venue = "The Japanese Society for Artificial Intelligence 2025"
 date = "May 2025"
