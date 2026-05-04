@@ -10,6 +10,7 @@ dist:
 
 bootstrap: dist
   cp node_modules/bootswatch/dist/sketchy/bootstrap.min.css dist/bootstrap.min.css
+  cp node_modules/bootstrap/dist/js/bootstrap.min.js dist/bootstrap.min.js
 
 index: dist
   node script/render.mjs website.toml template/index.mustache dist/index.html
