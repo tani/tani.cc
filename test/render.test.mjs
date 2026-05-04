@@ -35,7 +35,7 @@ role = "Researcher"
   fs.writeFileSync(templatePath, '<h1>{{profile.name}}</h1><p>{{profile.role}}</p>')
 
   await execFileAsync('node', [
-    path.join(__dirname, 'render.mjs'),
+    path.join(__dirname, '..', 'script', 'render.mjs'),
     tomlPath,
     templatePath,
     outputPath,
@@ -84,7 +84,7 @@ archive = "arXiv:0000.00000"
 {{/publications.groups}}`)
 
   await execFileAsync('node', [
-    path.join(__dirname, 'render.mjs'),
+    path.join(__dirname, '..', 'script', 'render.mjs'),
     tomlPath,
     templatePath,
     outputPath,
@@ -109,7 +109,7 @@ test('writes to the explicit output path', async () => {
   fs.writeFileSync(templatePath, '<title>{{title}}</title>')
 
   await execFileAsync('node', [
-    path.join(__dirname, 'render.mjs'),
+    path.join(__dirname, '..', 'script', 'render.mjs'),
     tomlPath,
     templatePath,
     outputPath,

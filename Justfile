@@ -1,9 +1,12 @@
 default: all
 
-all: index profile publications blog
+all: bootstrap index profile publications blog
 
 clean:
   rm -rf dist
+
+bootstrap:
+  cp node_modules/bootswatch/dist/sketchy/bootstrap.min.css dist/bootstrap.min.css
 
 index:
   node script/render.mjs website.toml template/index.mustache dist/index.html
@@ -20,4 +23,9 @@ blog-index:
   node script/blog.mjs website.toml content template/blog.mustache dist/blog.html
 
 blog-posts:
-  node script/blogpost.mjs website.toml content/example.md template/blogpost.mustache dist/blog/example.html
+  mkdir -p dist/blog
+  for post in content/*.md; do \
+    slug=${post##*/}; \
+    slug=${slug%.md}; \
+    node script/blogpost.mjs website.toml "$post" template/blogpost.mustache "dist/blog/$slug.html"; \
+  done

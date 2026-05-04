@@ -6,7 +6,7 @@
   "scripts": {
     "build": "just all",
     "clean": "just clean",
-    "test": "node --test script/*.test.mjs"
+    "test": "node --test test/*.test.mjs"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,6 @@
   },
   "type": "module",
   "dependencies": {
-    "bootstrap": "^5.3.8",
     "bootswatch": "^5.3.8",
     "markdown-it": "^14.1.1",
     "markdown-it-mathjax3": "^5.2.0",

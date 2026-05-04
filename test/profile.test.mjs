@@ -81,7 +81,7 @@ keywords = "linguistics, NLP"
 
   try {
     await execFileAsync('node', [
-      path.join(__dirname, 'render.mjs'),
+      path.join(__dirname, '..', 'script', 'render.mjs'),
       tomlPath,
       templatePath,
       path.join(distDir, 'profile.html'),
@@ -161,7 +161,7 @@ authors = [ "Test Author" ]
 
   try {
     await execFileAsync('node', [
-      path.join(__dirname, 'render.mjs'),
+      path.join(__dirname, '..', 'script', 'render.mjs'),
       tomlPath,
       templatePath,
       path.join(distDir, 'profile.html'),
@@ -209,7 +209,7 @@ keywords = ""
 
   try {
     await execFileAsync('node', [
-      path.join(__dirname, 'render.mjs'),
+      path.join(__dirname, '..', 'script', 'render.mjs'),
       tomlPath,
       templatePath,
       path.join(distDir, 'profile.html'),
