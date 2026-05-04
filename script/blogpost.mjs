@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import MarkdownIt from 'markdown-it'
+import mathjax3 from 'markdown-it-mathjax3'
 import { parseMarkdownPost, readSite, renderToFile } from './site-rendering.mjs'
 
 const [tomlPath, markdownPath, templatePath, outputPath] = process.argv.slice(2)
@@ -11,7 +12,7 @@ if (!tomlPath || !markdownPath || !templatePath || !outputPath) {
 
 const data = readSite(tomlPath)
 const post = parseMarkdownPost(fs.readFileSync(markdownPath, 'utf-8'))
-const content = new MarkdownIt().render(post.body)
+const content = new MarkdownIt().use(mathjax3).render(post.body)
 
 renderToFile(
   templatePath,
