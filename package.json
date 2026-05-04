@@ -11,13 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.0.3",
-      "onFail": "warn"
-    }
-  },
   "type": "module",
   "dependencies": {
     "bootswatch": "^5.3.8",
