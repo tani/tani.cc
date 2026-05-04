@@ -1,0 +1,27 @@
+{{> @preamble}}
+<header class="pb-3 mb-4 border-bottom">
+<h1 class="mb-1">Blog</h1>
+<p class="text-body-secondary mb-0">{{profile.name}}</p>
+</header>
+
+{{#posts.length}}
+<section>
+<ul class="mb-0">
+{{#posts}}
+<li class="mb-4">
+<h2 class="h4 mb-1"><a href="{{{url}}}">{{title}}</a></h2>
+{{#date}}<div class="text-body-secondary small mb-2">{{date}}</div>{{/date}}
+{{#description}}<p class="mb-0">{{description}}</p>{{/description}}
+</li>
+{{/posts}}
+</ul>
+</section>
+{{/posts.length}}
+
+{{^posts.length}}
+<p>No posts yet.</p>
+{{/posts.length}}
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

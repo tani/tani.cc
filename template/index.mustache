@@ -1,0 +1,60 @@
+{{> @preamble}}
+<header class="py-5 mb-5 border-bottom">
+<div class="row align-items-center g-5">
+<div class="col-lg-8">
+<h1 class="display-3 fw-bold mb-3">{{profile.name}}</h1>
+<p class="fs-3 mb-3">{{profile.headline}}</p>
+<p class="lead text-body-secondary mb-4">{{profile.role}}, {{profile.affiliationLong}}</p>
+<div class="d-flex flex-wrap gap-2">
+<a class="btn btn-primary btn-lg" href="profile.html">Profile</a>
+<a class="btn btn-outline-primary btn-lg" href="publications.html">Publications</a>
+</div>
+</div>
+<div class="col-lg-4 text-lg-end">
+<img src="{{profile.image}}" alt="{{profile.name}}" class="img-fluid rounded-circle border border-primary border-3" width="240" height="240">
+</div>
+</div>
+</header>
+
+<section class="mb-4">
+{{#profile.bio.en}}
+<p>{{{profile.bio.en}}}</p>
+{{/profile.bio.en}}
+</section>
+
+<section class="row g-4 mb-4">
+<div class="col-md-6">
+<h2 class="h4 border-bottom pb-2">Profile</h2>
+<p class="mb-3">{{profile.section}}</p>
+<a class="btn btn-outline-primary" href="profile.html">View profile</a>
+</div>
+<div class="col-md-6">
+<h2 class="h4 border-bottom pb-2">Publications</h2>
+<p class="mb-3">Research papers, talks, reports, and articles.</p>
+<a class="btn btn-outline-primary" href="publications.html">View publications</a>
+</div>
+</section>
+
+{{#research.interests.length}}
+<section class="mb-4">
+<h2 class="h4 border-bottom pb-2">Research Interests</h2>
+<ul class="list-inline mb-0">
+{{#research.interests}}
+<li class="list-inline-item btn btn-outline-primary btn-sm mb-2">{{.}}</li>
+{{/research.interests}}
+</ul>
+</section>
+{{/research.interests.length}}
+
+<section>
+<h2 class="h4 border-bottom pb-2">Links</h2>
+<div class="d-flex flex-wrap gap-2">
+{{#profile.links}}
+<a class="btn btn-outline-primary btn-sm" href="{{url}}">{{label}}</a>
+{{/profile.links}}
+</div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

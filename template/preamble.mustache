@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{pageTitle}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/sketchy/bootstrap.min.css">
+<style>
+:root { --bs-font-sans-serif: Neucha, "Zen Kurenaido", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, b, strong { font-family: "Cabin Sketch", "Zen Kurenaido", cursive; }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<div class="container">
+<a class="navbar-brand" href="{{{navRoot}}}profile.html">{{profile.name}}</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbar">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item">
+<a class="nav-link{{#isIndex}} active{{/isIndex}}" {{#isIndex}}aria-current="page"{{/isIndex}} href="{{{navRoot}}}index.html">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link{{#isProfile}} active{{/isProfile}}" {{#isProfile}}aria-current="page"{{/isProfile}} href="{{{navRoot}}}profile.html">Profile</a>
+</li>
+<li class="nav-item">
+<a class="nav-link{{#isPublications}} active{{/isPublications}}" {{#isPublications}}aria-current="page"{{/isPublications}} href="{{{navRoot}}}publications.html">Publications</a>
+</li>
+<li class="nav-item">
+<a class="nav-link{{#isBlog}} active{{/isBlog}}" {{#isBlog}}aria-current="page"{{/isBlog}} href="{{{navRoot}}}blog.html">Blog</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<main class="container py-4">

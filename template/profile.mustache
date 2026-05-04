@@ -1,0 +1,221 @@
+{{> @preamble}}
+<header class="pb-3 mb-4 border-bottom">
+<div class="d-flex flex-column flex-sm-row gap-4 align-items-start">
+<img src="{{profile.image}}" alt="{{profile.name}}" class="rounded-circle object-fit-cover flex-shrink-0" width="150" height="150">
+<div>
+<h1 class="mb-1">{{profile.name}}</h1>
+<p class="lead mb-1">{{profile.role}}</p>
+<p class="mb-0">{{profile.affiliationLong}}</p>
+<p class="text-body-secondary small mb-0">{{profile.section}}</p>
+</div>
+</div>
+</header>
+
+<div class="mb-4">
+{{#profile.bio.en}}
+<p>{{{profile.bio.en}}}</p>
+{{/profile.bio.en}}
+</div>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+{{#profile.links}}
+<a class="btn btn-outline-primary btn-sm" href="{{url}}">{{label}}</a>
+{{/profile.links}}
+</div>
+
+<div>
+{{#research}}
+{{#interests.length}}
+<h2 class="border-bottom pb-2 mt-4">Research Interests</h2>
+<ul class="list-inline">
+{{#interests}}
+<li class="list-inline-item btn btn-outline-primary btn-sm mb-2">{{.}}</li>
+{{/interests}}
+</ul>
+{{/interests.length}}
+{{#areas.length}}
+<h2 class="border-bottom pb-2 mt-4">Research Areas</h2>
+{{#areas}}
+<div class="mb-3">
+<dl class="row mb-0">
+<dt class="col-sm-3">Discipline</dt><dd class="col-sm-9">{{discipline}}</dd>
+<dt class="col-sm-3">Field</dt><dd class="col-sm-9">{{field}}</dd>
+<dt class="col-sm-3">Keywords</dt><dd class="col-sm-9">{{keywords}}</dd>
+</dl>
+</div>
+{{/areas}}
+{{/areas.length}}
+{{/research}}
+
+{{#cv}}
+<h2 class="border-bottom pb-2 mt-4">Curriculum Vitae</h2>
+
+{{#supervisors.length}}
+<section class="mb-4">
+<h3 class="h5">Supervisors</h3>
+<ul class="mb-0">
+{{#supervisors}}<li class="mb-2">{{.}}</li>{{/supervisors}}
+</ul>
+</section>
+{{/supervisors.length}}
+
+{{#education.length}}
+<section class="mb-4">
+<h3 class="h5">Education</h3>
+<ul class="mb-0">
+{{#education}}
+<li class="mb-2">
+<strong>{{degree}}</strong> — {{school}}
+<span class="text-body-secondary small">{{range}}</span>
+{{#department}}<br>{{department}}{{/department}}
+</li>
+{{/education}}
+</ul>
+</section>
+{{/education.length}}
+
+{{#experience.length}}
+<section class="mb-4">
+<h3 class="h5">Experience</h3>
+<ul class="mb-0">
+{{#experience}}
+<li class="mb-2">
+<strong>{{role}}</strong>
+{{#affiliation}} at {{affiliation}}{{/affiliation}}
+<span class="text-body-secondary small">{{range}}</span>
+{{#section}}<br>{{section}}{{/section}}
+</li>
+{{/experience}}
+</ul>
+</section>
+{{/experience.length}}
+
+{{#projects.length}}
+<section class="mb-4">
+<h3 class="h5">Projects & Grants</h3>
+<ul class="mb-0">
+{{#projects}}
+<li class="mb-2">
+<strong>{{title}}</strong>
+<span class="text-body-secondary small">{{organization}} ({{system}})</span>
+{{#amount}} — {{amount}}{{/amount}}
+{{#url}} <a href="{{url}}">link</a>{{/url}}
+<span class="text-body-secondary small">{{#category}}{{category}}{{/category}}{{#range}} — {{range}}{{/range}}</span>
+</li>
+{{/projects}}
+</ul>
+</section>
+{{/projects.length}}
+
+{{#teaching.length}}
+<section class="mb-4">
+<h3 class="h5">Teaching</h3>
+<ul class="mb-0">
+{{#teaching}}
+<li class="mb-2">
+<strong>{{role}}</strong> at {{institution}}
+{{#items.length}}
+<ul class="mt-2">
+{{#items}}<li>{{course}} <span class="text-body-secondary small">{{period}}</span></li>{{/items}}
+</ul>
+{{/items.length}}
+</li>
+{{/teaching}}
+</ul>
+</section>
+{{/teaching.length}}
+
+{{#awards.length}}
+<section class="mb-4">
+<h3 class="h5">Awards</h3>
+<ul class="mb-0">
+{{#awards}}
+<li class="mb-2">{{name}}{{#organization}} — {{organization}}{{/organization}} <span class="text-body-secondary small">{{year}}</span></li>
+{{/awards}}
+</ul>
+</section>
+{{/awards.length}}
+
+{{#certifications.length}}
+<section class="mb-4">
+<h3 class="h5">Certifications</h3>
+<ul class="mb-0">
+{{#certifications}}
+<li class="mb-2">{{title}}{{#organization}} — {{organization}}{{/organization}} <span class="text-body-secondary small">{{year}}</span></li>
+{{/certifications}}
+</ul>
+</section>
+{{/certifications.length}}
+
+{{#financialSupport.length}}
+<section class="mb-4">
+<h3 class="h5">Financial Support</h3>
+<ul class="mb-0">
+{{#financialSupport}}
+<li class="mb-2">{{title}}{{#organization}} — {{organization}}{{/organization}}{{#detail}} — {{detail}}{{/detail}} <span class="text-body-secondary small">{{range}}</span></li>
+{{/financialSupport}}
+</ul>
+</section>
+{{/financialSupport.length}}
+
+{{#physicalSkills.length}}
+<section class="mb-4">
+<h3 class="h5">Physical Skills</h3>
+<ul class="mb-0">
+{{#physicalSkills}}
+<li class="mb-2">{{title}} — {{field}}</li>
+{{#organization}}<li class="mb-2">Issued by: {{organization}} <span class="text-body-secondary small">{{year}}</span></li>{{/organization}}
+{{/physicalSkills}}
+</ul>
+</section>
+{{/physicalSkills.length}}
+
+{{#socialContributions.length}}
+<section class="mb-4">
+<h3 class="h5">Social Contributions</h3>
+<ul class="mb-0">
+{{#socialContributions}}
+<li class="mb-2">{{title}}{{#organization}} — {{organization}}{{/organization}} <span class="text-body-secondary small">{{range}}</span></li>
+{{/socialContributions}}
+</ul>
+</section>
+{{/socialContributions.length}}
+
+{{#acknowledgements.length}}
+<section class="mb-4">
+<h3 class="h5">Acknowledgements</h3>
+<ul class="mb-0">
+{{#acknowledgements}}
+<li class="mb-2">{{title}}{{#detail}} — {{detail}}{{/detail}}</li>
+{{/acknowledgements}}
+</ul>
+</section>
+{{/acknowledgements.length}}
+
+{{#academicWork.length}}
+<section class="mb-4">
+<h3 class="h5">Academic Work</h3>
+<ul class="mb-0">
+{{#academicWork}}
+<li class="mb-2">{{title}}<span class="text-body-secondary small">{{#year}} — {{year}}{{/year}}</span></li>
+{{/academicWork}}
+</ul>
+</section>
+{{/academicWork.length}}
+
+{{#nonAcademicWork.length}}
+<section class="mb-4">
+<h3 class="h5">Non-Academic Work</h3>
+<ul class="mb-0">
+{{#nonAcademicWork}}
+<li class="mb-2">{{title}} <span class="text-body-secondary small">{{date}}</span></li>
+{{/nonAcademicWork}}
+</ul>
+</section>
+{{/nonAcademicWork.length}}
+{{/cv}}
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "tani",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "just all",
+    "clean": "just clean",
+    "test": "node --test script/*.test.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.0.3",
+      "onFail": "warn"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootswatch": "^5.3.8",
+    "markdown-it": "^14.1.1",
+    "markdown-it-mathjax3": "^5.2.0",
+    "mustache": "^4.2.0",
+    "rust-just": "^1.50.0",
+    "smol-toml": "^1.6.1"
+  }
+}
