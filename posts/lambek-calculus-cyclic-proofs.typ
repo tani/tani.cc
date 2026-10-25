@@ -17,7 +17,7 @@
 
 1958年に提唱されたこの体系は、交換則・弱化則・縮約則を持ちません。つまり、語の「順番」と「個数」を厳密に管理します。
 
-$ phi := phi / phi \\| phi ∖ phi \\| alpha $
+$ phi := phi / phi divides phi ∖ phi divides alpha $
 
 === 解析例：Alice runs
 
@@ -34,7 +34,7 @@ Aliceを $#"np"$、runsを $#"np ∖ s"$ とすると、以下の証明により
 
 提案体系 $L mu$ では、再帰的な定義を扱うための最小不動点 ($mu$) と、選択を行うための連言 ($and$) を追加しました。
 
-$ phi := phi / phi \\| phi ∖ phi \\| phi and phi \\| mu X. phi_X \\| alpha $
+$ phi := phi / phi divides phi ∖ phi divides phi and phi divides mu X. phi_X divides alpha $
 
 == 推論規則と大域的トレース条件 (GTC)
 

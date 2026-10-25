@@ -118,7 +118,12 @@ a.external::after {
   color: var(--wiki-text);
 }
 
-/* Mobile menu toggle (hidden on desktop; see the responsive section) */
+/* Mobile menu toggle (hidden on desktop; see the responsive section).
+   The checkbox is a sibling BEFORE the label (not nested) so it can drive
+   :checked ~ sibling selectors and be clipped out of layout entirely —
+   clip + clip-path + forced-colors-safe hiding (opacity alone is
+   overridden in Windows High Contrast mode, which made the raw checkbox
+   visible). */
 .mw-menu-toggle {
   display: none;
   align-items: center;
@@ -130,10 +135,15 @@ a.external::after {
 
 .mw-menu-toggle input {
   position: absolute;
-  opacity: 0;
   width: 1px;
   height: 1px;
-  margin: 0;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .mw-menu-icon {
@@ -166,16 +176,16 @@ a.external::after {
   top: 6px;
 }
 
-.mw-menu-toggle input:checked + .mw-menu-icon {
+.mw-menu-toggle input:checked ~ .mw-menu-icon {
   background: transparent;
 }
 
-.mw-menu-toggle input:checked + .mw-menu-icon::before {
+.mw-menu-toggle input:checked ~ .mw-menu-icon::before {
   top: 0;
   transform: rotate(45deg);
 }
 
-.mw-menu-toggle input:checked + .mw-menu-icon::after {
+.mw-menu-toggle input:checked ~ .mw-menu-icon::after {
   top: 0;
   transform: rotate(-45deg);
 }
@@ -658,9 +668,10 @@ a.site-wordmark:hover {
 
 /* --------------------------------------------------------------------------
  * Responsive: Wikipedia-style collapsible mobile navigation.
- * Under 1000px the hamburger appears and the sidebar becomes a drawer
- * toggled by the header checkbox; sections fold via <details>. On wide
- * screens the checkbox is hidden and the sidebar is always visible.
+ * Under 1000px the hamburger appears. The drawer defaults to OPEN — the
+ * checkbox (clipped, keyboard-accessible) CLOSES it — so browsers without
+ * :has() support still show the navigation (graceful degradation) instead
+ * of an unreachable menu. Sections fold via <details> natively everywhere.
  * ------------------------------------------------------------------------ */
 
 @media (max-width: 1000px) {
@@ -678,7 +689,6 @@ a.site-wordmark:hover {
   }
 
   .mw-sidebar {
-    display: none;
     position: static;
     margin: 0 0 0.75rem;
     background: #fff;
@@ -686,11 +696,13 @@ a.site-wordmark:hover {
     padding: 0.25rem 0.75rem 0.5rem;
   }
 
-  /* The checkbox lives in the header; the sidebar is its later sibling
-     scope — selected via :has on the page container. */
+  /* Checking the (hidden) checkbox folds the whole drawer away.
+     Unsupported :has() simply leaves the drawer open — the menu stays
+     reachable on every browser. */
   .mw-page-container:has(#mw-menu-checkbox:checked) .mw-sidebar {
-    display: block;
+    display: none;
   }
+
 
   .sidebar-section summary {
     list-style: none;
