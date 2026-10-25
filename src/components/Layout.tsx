@@ -18,7 +18,7 @@ const repoFileForPath = (path: string): string => {
   if (path === '/profile') return 'pages/profile.tsx'
   if (path === '/publications') return 'pages/publications.tsx'
   if (path === '/blog') return 'pages/blog.tsx'
-  if (path.startsWith('/blog/')) return `content/${path.slice('/blog/'.length)}.md`
+  if (path.startsWith('/blog/')) return `posts${path.slice('/blog'.length)}.typ`
   return ''
 }
 

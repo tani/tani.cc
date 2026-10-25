@@ -1,6 +1,6 @@
 import type { InferProps } from 'void'
 import { defineHandler, defineHead } from 'void'
-import { postSummaries } from '../src/lib/posts'
+import { postSummaries } from '../src/lib/typst'
 import { site } from '../src/lib/site'
 
 export const loader = defineHandler(async () => {

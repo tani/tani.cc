@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import { voidPlugin } from 'void'
 import { voidReact } from '@void/react/plugin'
+import { typstPrecompile } from './src/build/typst-precompile'
 
 export default defineConfig({
-  plugins: [voidPlugin(), voidReact()],
+  plugins: [typstPrecompile(), voidPlugin(), voidReact()],
 })

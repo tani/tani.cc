@@ -7,15 +7,14 @@
     "dev": "vite dev",
     "build": "vite build",
     "clean": "rm -rf dist",
-    "deploy": "vite build && void deploy --platform cloudflare --skip-build",
+    "deploy": "void deploy --platform cloudflare",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
+    "@myriaddreamin/typst-ts-node-compiler": "^0.8.0-rc3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@void/react": "^1.2.1",
-    "markdown-it": "^14.1.1",
-    "markdown-it-mathjax3": "^5.2.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "smol-toml": "^1.6.1"

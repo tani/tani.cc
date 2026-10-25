@@ -1,6 +1,13 @@
-import type { TocEntry } from '../lib/toc'
+export interface TocEntry {
+  /** Cleaned display text for the TOC box. */
+  text: string
+  /** Raw heading text as it appears in the markdown source. */
+  rawText?: string
+  id: string
+  level: number
+}
 
-export function Toc({ entries }: { entries: TocEntry[] }) {
+export function Toc({ entries }: { entries: readonly TocEntry[] }) {
   if (entries.length === 0) return null
 
   const counters = [0, 0, 0]

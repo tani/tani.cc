@@ -1,11 +1,17 @@
 {
   "version": 1,
   "source": {
-    "name": "tani"
+    "name": "tani",
+    "workers_dev": true,
+    "preview_urls": true,
+    "routes": []
   },
   "resolved": {
     "name": "tani",
-    "compatibility_date": "2026-02-24"
+    "compatibility_date": "2026-02-24",
+    "workers_dev": true,
+    "preview_urls": true,
+    "routes": []
   },
-  "text": "{\n  \"name\": \"tani\",\n  \"compatibility_date\": \"2026-02-24\"\n}\n"
+  "text": "{\n  \"name\": \"tani\",\n  \"compatibility_date\": \"2026-02-24\",\n  \"workers_dev\": true,\n  \"preview_urls\": true,\n  \"routes\": []\n}\n"
 }

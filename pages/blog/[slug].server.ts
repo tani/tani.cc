@@ -1,8 +1,6 @@
 import type { InferProps } from 'void'
 import { defineHandler, defineHead } from 'void'
-import { allPosts, postSlugs } from '../../src/lib/posts'
-import { extractToc } from '../../src/lib/toc.ts'
-import { renderArticle } from '../../src/lib/markdown.ts'
+import { allPosts } from '../../src/lib/typst'
 import { site } from '../../src/lib/site'
 
 export const loader = defineHandler(async (c) => {
@@ -21,8 +19,8 @@ export const loader = defineHandler(async (c) => {
       date: post.date,
       description: post.description,
     },
-    content: renderArticle(post.body),
-    toc: extractToc(post.body),
+    content: post.content,
+    toc: post.toc,
   }
 })
 
@@ -33,5 +31,5 @@ export const head = defineHead<Props>((_c, props) => ({
 }))
 
 export async function getPrerenderPaths() {
-  return postSlugs().map((slug) => ({ slug }))
+  return allPosts().map((post) => ({ slug: post.slug }))
 }

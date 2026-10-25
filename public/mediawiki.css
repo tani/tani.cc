@@ -533,13 +533,46 @@ a.site-wordmark:hover {
   border-left: 4px solid var(--wiki-border-soft);
 }
 
-/* MathJax display blocks: centered; inline math stays inline */
-.mw-body-content mjx-container[display="true"],
-.void-article mjx-container[display="true"] {
+/* Typst MathML: block equations centered; inline math stays inline */
+.mw-body-content math[display="block"],
+.void-article math[display="block"] {
   display: block;
   margin: 0.75rem auto;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.mw-body-content math,
+.void-article math {
+  font-style: normal;
+}
+
+/* Proof trees: borderless centered tables; the conclusion row carries the
+ * inference line as its top border; the label row (when present) is small
+ * and muted. */
+.void-article .typst-prooftree {
+  margin: 0.75rem auto;
+}
+
+.void-article .typst-prooftree table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.void-article .typst-prooftree td {
+  border: none;
+  padding: 0.15em 0.6em;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.void-article .typst-prooftree tr:nth-child(2) td {
+  border-top: 1px solid var(--wiki-text);
+}
+
+.void-article .typst-prooftree tr:last-child:not(:nth-child(2)) td {
+  font-size: 0.85em;
+  color: var(--wiki-muted);
 }
 
 /* --------------------------------------------------------------------------
