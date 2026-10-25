@@ -1,100 +1,39 @@
 /* ==========================================================================
- * mediawiki.css — MediaWiki Vector 2022 (Wikipedia) skin theme for tani.cc
+ * mediawiki.css — MediaWiki Vector (Wikipedia) inspired theme for tani.cc
  *
- * Hand-written stylesheet replicating the real Vector 2022 skin: no CSS
- * framework, no external fonts, no imports. Values are taken from
- * Wikipedia's live Vector 2022 stylesheets (skins.vector.styles +
- * skins.vector.icons + mediawiki.core screen styles):
- *
- *   body          background #f8f9fa (background-color-neutral-subtle)
- *   page          #fff, min-width 18.75em, max-width 99.75rem, pad 1.5rem
- *                 (2.75rem ≥1120px, 3.25rem ≥1680px)
- *   header        min-height 3.125rem, flex, pad 8px 0, gap 16px
- *   grid (≥1120)  12.25rem | minmax(0,1fr), column-gap 24px
- *   content       minmax(0,59.25rem) content column, justified center
- *   sidebar       sticky top 24px, max-height calc(100vh - 48px)
- *   text          sans-serif; content font-size 1rem, line-height 1.625
- *   links         #36c, hover #3056a9, active #233566, visited #6a60b0
- *
- * Class contract (wiki.liquid emits this DOM — see site/_includes/):
- *   vector-header-container / vector-header mw-header /
- *     vector-header-start (vector-main-menu-landmark,
- *       vector-dropdown.vector-main-menu-dropdown >
- *       vector-dropdown-checkbox + vector-dropdown-label >
- *       vector-dropdown-label-text + vector-dropdown-content) /
- *     vector-header-center (mw-logo > mw-logo-container >
- *       mw-logo-wordmark + mw-logo-tagline) / vector-header-end
- *   mw-page-container > mw-page-container-inner >
- *     vector-column-start (vector-main-menu-container > mw-panel >
- *       vector-pinned-container > vector-main-menu > vector-menu ×2:
- *       vector-menu-heading + vector-menu-content-list > mw-list-item > a)
- *     [vector-sticky-pinned-container > mw-panel-toc.vector-toc-landmark >
- *       vector-toc.vector-pinnable-element > vector-pinnable-header >
- *       vector-pinnable-header-label + vector-toc-contents >
- *       vector-toc-level-{1,2,3} > vector-toc-link > vector-toc-text]
- *     mw-content-container > content.mw-body >
- *       mw-body-header.vector-page-titlebar >
- *       firstHeading#firstHeading.mw-first-heading > mw-page-title-main
- *       vector-page-toolbar > vector-page-toolbar-container >
- *       left-navigation / right-navigation > nav > vector-menu.vector-menu-tabs
- *       > vector-menu-content-list > li(.selected) > a > span
- *       #bodyContent.vector-body > #siteSub.noprint +
- *       #mw-content-text.mw-body-content + #catlinks.catlinks +
- *       .printfooter
- *     mw-footer-container > footer.mw-footer > vector-footer-list ×2
- *   content includes: infobox / infobox-image / infobox-title / infobox-table
- *     wikitable / void-article / typst-prooftree / mw-headline /
- *     mw-editsection / active (navActive) / external
+ * Hand-written stylesheet: no CSS framework, no external fonts, no imports.
+ * Implements the site-wide class contract:
+ *   site-header / site-wordmark / site-tagline
+ *   mw-page-container / mw-body-grid / mw-sidebar / sidebar-section
+ *   mw-body / vector-tabs / firstHeading / contentSub / mw-body-content
+ *   infobox / infobox-image / infobox-title / infobox-table
+ *   toc / toctitle / toclevel-1..3 / tocnumber / toctext
+ *   mw-editsection / mw-headline / catlinks / printfooter / mw-footer
+ *   references / wikitable / void-article / external
  * ========================================================================== */
 
 :root {
-  /* Codex/Wikimedia design tokens (Vector 2022 defaults, grep-verified) */
-  --color-base: #202122;
-  --color-base--hover: #404244;
-  --color-emphasized: #101418;
-  --color-subtle: #54595d;
-  --color-placeholder: #72777d;
-  --color-inverted: #fff;
-  --color-inverted-fixed: #fff;
-  --color-progressive: #36c;
-  --color-progressive--hover: #3056a9;
-  --color-progressive--active: #233566;
-  --color-progressive--focus: #36c;
-  --color-destructive: #bf3c2c;
-  --color-visited: #6a60b0;
-  --color-visited--hover: #534fa3;
-  --color-visited--active: #353262;
-  --background-color-base: #fff;
-  --background-color-neutral: #eaecf0;
-  --background-color-neutral-subtle: #f8f9fa;
-  --background-color-interactive: #eaecf0;
-  --background-color-interactive-subtle--hover: #eaecf0;
-  --background-color-interactive-subtle--active: #dadde3;
-  --background-color-transparent: transparent;
-  --border-color-base: #a2a9b1;
-  --border-color-subtle: #c8ccd1;
-  --border-color-muted: #dadde3;
-  --outline-color-progressive--focus: #36c;
-  --opacity-icon-base: 0.87;
-
-  /* Vector skin metrics */
-  --font-size-small: 0.875rem;
-  --font-size-medium: 1rem;
-  --line-height-content: 1.625;
-  --font-size-x-small: 0.75rem;
-
-  /* Local aliases used by older parts of this file */
+  --wiki-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --wiki-serif: "Linux Libertine", Georgia, "Times New Roman", serif;
   --wiki-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
     "Liberation Mono", monospace;
-  --wiki-link: var(--color-progressive);
-  --wiki-text: var(--color-base);
-  --wiki-muted: var(--color-subtle);
-  --wiki-border: var(--border-color-base);
-  --wiki-fill: var(--background-color-neutral-subtle);
+  --wiki-link: #0645ad;
+  --wiki-link-visited: #0b0080;
+  --wiki-link-active: #faa700;
+  --wiki-accent: #36c;
+  --wiki-text: #202122;
+  --wiki-muted: #54595d;
+  --wiki-border: #a2a9b1;
+  --wiki-border-soft: #c8ccd1;
+  --wiki-body-border: #a7d7f9;
+  --wiki-fill: #f8f9fa;
+  --wiki-code-fill: #f8f9fa;
+  --wiki-code-border: #eaecf0;
 }
 
 /* --------------------------------------------------------------------------
- * Base (Vector 2022: html/body sans-serif, body #f8f9fa)
+ * Base
  * ------------------------------------------------------------------------ */
 
 * {
@@ -103,63 +42,42 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  font-size: 100%;
 }
 
 body {
   margin: 0;
-  font-family: sans-serif;
-  font-size: var(--font-size-medium);
-  line-height: var(--line-height-content);
-  color: var(--color-base);
-  background-color: var(--background-color-neutral-subtle, #f8f9fa);
+  font-family: var(--wiki-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--wiki-text);
+  background: var(--wiki-fill);
   overflow-wrap: break-word;
 }
 
-/* Skip link (visually hidden until focused, per Vector) */
-.mw-jump-link:not(:focus) {
-  display: block;
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  overflow: hidden;
-  user-select: none;
-}
-
-:focus {
-  outline-color: var(--outline-color-progressive--focus, #36c);
-}
-
 /* --------------------------------------------------------------------------
- * Links (Vector 2022 body-link palette)
+ * Links (Wikipedia blue links)
  * ------------------------------------------------------------------------ */
 
 a {
-  color: var(--color-progressive, #36c);
+  color: var(--wiki-link);
   text-decoration: none;
-  background: none;
 }
 
 a:visited {
-  color: var(--color-visited, #6a60b0);
+  color: var(--wiki-link-visited);
 }
 
 a:hover {
-  color: var(--color-progressive--hover, #3056a9);
   text-decoration: underline;
 }
 
 a:active {
-  color: var(--color-progressive--active, #233566);
-  text-decoration: underline;
+  color: var(--wiki-link-active);
 }
 
 a:focus-visible {
-  outline: solid 2px var(--outline-color-progressive--focus, #36c);
+  outline: 2px solid var(--wiki-accent);
+  outline-offset: 1px;
 }
 
 /* External link marker (small up-right arrow, like MediaWiki) */
@@ -170,691 +88,273 @@ a.external::after {
   height: 0.55em;
   margin-left: 0.15em;
   vertical-align: baseline;
-  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2012'%3E%3Cpath%20d='M2%2010L10%202M4%202h6v6'%20fill='none'%20stroke='%2336c'%20stroke-width='1.5'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2012'%3E%3Cpath%20d='M2%2010L10%202M4%202h6v6'%20fill='none'%20stroke='%230645ad'%20stroke-width='1.5'/%3E%3C/svg%3E")
     center / contain no-repeat;
 }
 
 /* --------------------------------------------------------------------------
- * Header (Vector 2022: full-width flex bar, centered inner, white bg)
- * ------------------------------------------------------------------------ */
-
-.vector-header-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.vector-header-container .mw-header {
-  width: 100%;
-  min-height: 3.125rem;
-  background-color: var(--background-color-base, #fff);
-  min-width: 18.75em;
-  max-width: 99.75rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.mw-header {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  gap: 16px;
-}
-
-.mw-header .vector-header-start {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.mw-header .vector-header-end {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-/* Site wordmark block (Vector logo cell; centered by the header center) */
-.vector-header-center {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.mw-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.mw-logo-container {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.mw-logo-wordmark {
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-emphasized, #101418);
-}
-
-.mw-logo-wordmark:visited {
-  color: var(--color-emphasized, #101418);
-}
-
-.mw-logo-tagline {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.6875rem;
-  color: var(--color-subtle, #54595d);
-}
-
-/* --------------------------------------------------------------------------
- * Dropdowns (checkbox hack, per Vector: input:checked ~ content)
- * ------------------------------------------------------------------------ */
-
-.vector-dropdown {
-  position: relative;
-}
-
-.vector-dropdown .vector-dropdown-checkbox {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.vector-dropdown .vector-dropdown-label {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 4px;
-  padding: 0 12px;
-  min-height: 44px;
-  user-select: none;
-  cursor: pointer;
-  border-radius: 2px;
-  font-size: var(--font-size-small, 0.875rem);
-  color: var(--color-base, #202122);
-}
-
-.vector-dropdown .vector-dropdown-label::after {
-  content: "";
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-left: 6px;
-  display: inline-block;
-  vertical-align: text-bottom;
-  background-color: var(--color-base, #202122);
-  opacity: var(--opacity-icon-base, 0.87);
-  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='%23000'><path d='m16.7 8-6 6H9.3l-6-6 1.4-1.4 5.3 5.3 5.3-5.3z'/></svg>");
-  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='%23000'><path d='m16.7 8-6 6H9.3l-6-6 1.4-1.4 5.3 5.3 5.3-5.3z'/></svg>");
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-}
-
-.vector-dropdown .vector-dropdown-checkbox:hover + .vector-dropdown-label {
-  background-color: var(
-    --background-color-interactive-subtle--hover,
-    #eaecf0
-  );
-}
-
-.vector-dropdown .vector-dropdown-checkbox:active + .vector-dropdown-label {
-  background-color: var(
-    --background-color-interactive-subtle--active,
-    #dadde3
-  );
-  color: var(--color-emphasized, #101418);
-}
-
-.vector-dropdown
-  .vector-dropdown-checkbox:focus:not(:active)
-  + .vector-dropdown-label {
-  outline: solid 2px var(--outline-color-progressive--focus, #36c);
-}
-
-.vector-dropdown .vector-dropdown-checkbox:checked ~ .vector-dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  height: auto;
-}
-
-.vector-dropdown .vector-dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: -1px;
-  opacity: 0;
-  height: 0;
-  visibility: hidden;
-  overflow: hidden auto;
-  z-index: 50;
-  background-color: var(--background-color-base, #fff);
-  padding: 16px 16px;
-  font-size: var(--font-size-small, 0.875rem);
-  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.2);
-  transition-property: opacity;
-  transition-duration: 100ms;
-  width: max-content;
-  max-width: 200px;
-  max-height: 75vh;
-}
-
-/* The main menu dropdown spans the full menu (Vector lifts the 200px cap
-   for wide dropdowns, cf. its TOC dropdown overrides). */
-.vector-main-menu-dropdown .vector-dropdown-content {
-  max-width: none;
-}
-
-/* --------------------------------------------------------------------------
- * Page grid (Vector 2022: 12.25rem sidebar + fluid content)
+ * Page container and site header
  * ------------------------------------------------------------------------ */
 
 .mw-page-container {
-  min-width: 18.75em;
-  max-width: 99.75rem;
-  position: relative;
-  z-index: 0;
+  max-width: 75rem;
   margin: 0 auto;
-  padding-top: 0.05px;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  background-color: var(--background-color-base, #fff);
+  padding: 0 1.25rem;
 }
 
-/* Below 1120px the grid is a single column: content, then column, footer */
-.mw-page-container-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas:
-    "pageContent"
-    "columnStart"
-    "footer";
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1.25rem;
+  padding: 1rem 0 0.75rem;
 }
 
-.mw-content-container {
-  min-width: 0;
+.site-wordmark {
+  font-family: var(--wiki-serif);
+  font-size: 1.75rem;
+  font-weight: normal;
+  line-height: 1.2;
+  color: var(--wiki-text);
 }
 
-.vector-column-start {
-  margin-left: -12px;
+a.site-wordmark:hover {
+  text-decoration: none;
+  color: var(--wiki-text);
 }
 
-.vector-column-start .vector-main-menu-container {
-  margin-left: 12px;
-}
-
-/* Desktop grid: sidebar pinned left, content limited and centered */
-@media screen and (min-width: 1120px) {
-  .mw-page-container-inner {
-    column-gap: 24px;
-    grid-template-columns: 12.25rem minmax(0, 1fr);
-    grid-template-areas:
-      "columnStart pageContent"
-      "footer footer";
-  }
-
-  .vector-column-start {
-    grid-area: columnStart;
-    overflow-anchor: none;
-    margin-top: 2.8rem;
-  }
-
-  .mw-content-container {
-    grid-area: pageContent;
-  }
-
-  .mw-footer-container {
-    grid-area: footer;
-  }
-}
-
-@media screen and (min-width: 1680px) {
-  .mw-page-container-inner {
-    grid-template-columns: 15.5rem minmax(0, 1fr);
-  }
-}
-
-/* Responsive page padding (grep-verified Vector values) */
-@media screen and (min-width: 1120px) {
-  .mw-page-container,
-  .vector-header-container .mw-header {
-    padding-left: 2.75rem;
-    padding-right: 2.75rem;
-  }
-}
-
-@media screen and (min-width: 1680px) {
-  .mw-page-container,
-  .vector-header-container .mw-header {
-    padding-left: 3.25rem;
-    padding-right: 3.25rem;
-  }
-}
-
-/* Content column: Vector centers the body in the 59.25rem content grid */
-@media screen and (min-width: 1120px) {
-  .mw-body {
-    display: grid;
-    grid-template-columns: minmax(0, 59.25rem) min-content;
-    grid-template-areas:
-      "titlebar ."
-      "toolbar ."
-      "content .";
-    justify-content: center;
-    column-gap: 24px;
-  }
-
-  .mw-body .vector-page-titlebar {
-    grid-area: titlebar;
-  }
-
-  .mw-body .vector-page-toolbar {
-    grid-area: toolbar;
-  }
-
-  .mw-body #bodyContent {
-    grid-area: content;
-  }
+.site-tagline {
+  font-style: italic;
+  color: var(--wiki-muted);
+  font-size: 0.8125rem;
 }
 
 /* --------------------------------------------------------------------------
- * Sidebar: pinned main menu + sticky TOC (Vector 2022)
+ * Body grid: sidebar + content column
  * ------------------------------------------------------------------------ */
 
-.vector-pinned-container {
-  background-color: var(--background-color-base, #fff);
-  padding: 0 16px;
-  margin-bottom: 2rem;
+.mw-body-grid {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  column-gap: 1.75rem;
+  align-items: start;
+  padding-bottom: 1.5rem;
 }
 
-.vector-pinnable-element {
-  font-size: var(--font-size-small, 0.875rem);
+.mw-sidebar {
+  position: sticky;
+  top: 1rem;
+  font-size: 0.8125rem;
+  min-width: 0;
 }
 
-.vector-menu-heading {
-  color: var(--color-subtle, #54595d);
+.sidebar-section h3 {
+  margin: 0 0 0.25rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  font-size: 0.75rem;
   font-weight: normal;
-  font-size: var(--font-size-x-small, 0.75rem);
-  cursor: default;
-  padding: 6px 0;
-  margin: 6px 0;
-  border-bottom: 1px solid var(--background-color-interactive, #eaecf0);
+  letter-spacing: 0.04em;
+  color: var(--wiki-muted);
 }
 
-.vector-menu .vector-menu-content-list {
+.sidebar-section ul {
   list-style: none;
-  margin: 0;
+  margin: 0.25rem 0 1.25rem;
   padding: 0;
 }
 
-.vector-pinnable-element .mw-list-item,
-.vector-dropdown-content .mw-list-item {
-  padding: 0;
-  margin: 0;
+.sidebar-section li {
+  margin: 0.15rem 0;
 }
 
-.vector-pinnable-element .mw-list-item a,
-.vector-dropdown-content .mw-list-item a {
-  display: flex;
-  align-items: center;
-  padding: 6px 0;
-}
-
-.vector-pinnable-element .mw-list-item a:not(.mw-selflink):visited,
-.vector-dropdown-content .mw-list-item a:not(.mw-selflink):visited {
-  color: var(--color-progressive, #36c);
-}
-
-.vector-pinnable-element .mw-list-item a:not(.mw-selflink):visited:hover,
-.vector-dropdown-content .mw-list-item a:not(.mw-selflink):visited:hover {
-  color: var(--color-progressive--hover, #3056a9);
-}
-
-/* Current page in the sidebar nav (navActive emits class "active") */
-.vector-pinnable-element .mw-list-item a.active,
-.vector-dropdown-content .mw-list-item a.active {
-  color: var(--color-base, #202122) !important;
-  font-weight: bold;
-}
-
-.vector-pinnable-element .mw-list-item a.active:visited,
-.vector-dropdown-content .mw-list-item a.active:visited {
-  color: var(--color-base, #202122);
-}
-
-.vector-pinnable-element .mw-list-item a.active:hover,
-.vector-dropdown-content .mw-list-item a.active:hover {
-  color: var(--color-base--hover, #404244);
-}
-
-/* Sticky TOC column (grep-verified: top 24px, 48px total breathing room) */
-.vector-sticky-pinned-container {
-  overflow: hidden auto;
-  position: sticky;
-  top: 24px;
-  box-sizing: border-box;
-  max-height: calc(100vh - (24px * 2));
-}
-
-.vector-sticky-pinned-container::after {
-  content: "";
-  display: block;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 16px;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0),
-    var(--background-color-base, #fff)
-  );
-  background-repeat: no-repeat;
-  pointer-events: none;
-}
-
-/* TOC (Vector 2022: max-content width, 12px level indents, blue links) */
-.vector-toc {
-  width: max-content;
-  min-width: 200px;
-  max-width: min(0.85 * 59.25rem, 75vw);
-}
-
-.vector-toc .vector-pinnable-header {
-  padding-bottom: 6px;
-  margin-bottom: 6px;
-  margin-left: 12px;
-  border-bottom: 1px solid var(--background-color-interactive, #eaecf0);
-  line-height: 1.6;
-}
-
-.vector-toc .vector-pinnable-header-label {
+.sidebar-section a {
   display: inline-block;
-  vertical-align: middle;
-  font-size: 100%;
-  margin: 0 0.5rem 0 0;
-  padding: 0;
-  border: 0;
-  font-weight: bold;
+  padding: 0.1rem 0;
 }
 
-.vector-toc .vector-toc-contents {
-  margin: 0;
-  padding: 0;
+.sidebar-section a.active {
+  color: var(--wiki-text);
+  font-weight: 700;
+}
+
+.sidebar-section a.active:hover {
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+ * Content body (the iconic white column with light-blue border)
+ * ------------------------------------------------------------------------ */
+
+.mw-body {
+  background: #fff;
+  border: 1px solid var(--wiki-body-border);
+  padding: 0.75rem 1.5rem 1.25rem;
+  min-width: 0;
+}
+
+.mw-body-content {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.mw-body-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+ * Vector tabs (Read / Edit / View history)
+ * ------------------------------------------------------------------------ */
+
+.vector-tabs {
+  margin: 0 0 0.75rem;
+}
+
+.vector-tabs ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-}
-
-.vector-toc .vector-toc-contents li {
-  position: relative;
-  list-style-type: none;
-  padding-left: 12px;
   margin: 0;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  font-size: 0.8125rem;
 }
 
-.vector-toc .vector-toc-contents li.vector-toc-level-2 {
-  padding-left: 24px;
+.vector-tabs li {
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
 }
 
-.vector-toc .vector-toc-contents li.vector-toc-level-3 {
-  padding-left: 36px;
+.vector-tabs li.selected {
+  border-bottom-color: var(--wiki-accent);
 }
 
-.vector-toc .vector-toc-link {
+.vector-tabs a,
+.vector-tabs span {
   display: block;
-  word-break: break-word;
+  padding: 0.4rem 0.75rem;
 }
 
-.vector-toc .vector-toc-text {
-  padding: 6px 0;
-}
-
-/* Active TOC entry (marked by template; Vector: #202122 bold) */
-.vector-toc .vector-toc-list-item-active > .vector-toc-link,
-.vector-toc .vector-toc-contents li.active > .vector-toc-link {
-  color: var(--color-base, #202122) !important;
-  font-weight: bold;
-}
-
-.vector-toc .vector-toc-list-item-active > .vector-toc-link:visited,
-.vector-toc .vector-toc-contents li.active > .vector-toc-link:visited {
-  color: var(--color-base, #202122);
+.vector-tabs li.selected span {
+  color: var(--wiki-text);
 }
 
 /* --------------------------------------------------------------------------
  * Page title and tagline
  * ------------------------------------------------------------------------ */
 
-.vector-page-titlebar {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.vector-page-titlebar::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: var(--border-color-base, #a2a9b1);
-}
-
-.vector-page-titlebar .firstHeading {
-  flex-grow: 1;
-  flex-basis: 70%;
-  padding: 0;
-  border: 0;
-  margin: 0 0 0.6em;
-}
-
 .firstHeading {
-  word-wrap: break-word;
-  color: var(--color-emphasized, #101418);
-  /* Vector 2022 title: sans, normal weight, 1.8em (28.8px at 16px base) */
-  font-size: 1.8em;
+  font-family: var(--wiki-serif);
+  font-size: 1.625rem;
   font-weight: normal;
   line-height: 1.3;
+  margin: 0.25rem 0 0.15rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--wiki-border);
 }
 
-.mw-page-title-main {
-  /* The title text itself; inherits firstHeading metrics */
-}
-
-#siteSub {
-  margin-top: 8px;
-  font-size: var(--font-size-small, 0.875rem);
-  color: var(--color-subtle, #54595d);
-}
-
-#mw-content-text {
-  margin-top: 16px;
-}
-
-.vector-body {
-  position: relative;
-  z-index: 0;
-  font-size: var(--font-size-medium);
-  line-height: var(--line-height-content);
+.contentSub {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--wiki-muted);
 }
 
 /* --------------------------------------------------------------------------
- * Page toolbar tabs (Read / Edit / View history)
- * ------------------------------------------------------------------------ */
-
-.vector-page-toolbar-container {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  font-size: var(--font-size-small, 0.875rem);
-  box-shadow: 0 1px var(--border-color-subtle, #c8ccd1);
-  margin-bottom: 1px;
-}
-
-#left-navigation,
-#right-navigation {
-  display: flex;
-  align-items: center;
-  margin: 0 -8px;
-}
-
-#left-navigation > nav,
-#right-navigation > nav {
-  display: flex;
-}
-
-#right-navigation {
-  justify-content: flex-end;
-}
-
-#right-navigation > nav:first-child {
-  width: 100%;
-}
-
-.vector-menu-tabs .vector-menu-content-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.vector-menu-tabs li {
-  white-space: nowrap;
-  margin: 0 8px;
-  padding: 0;
-  list-style: none;
-}
-
-.vector-menu-tabs li a {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-  min-height: 32px;
-}
-
-.vector-menu-tabs li a::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--background-color-transparent, transparent);
-  content: "";
-}
-
-.vector-menu-tabs li a:focus,
-.vector-menu-tabs li a:hover {
-  text-decoration: none;
-}
-
-.vector-menu-tabs li a:focus::after,
-.vector-menu-tabs li a:hover::after {
-  background-color: var(--color-progressive--hover, #3056a9);
-}
-
-.vector-menu-tabs li a:visited {
-  color: var(--color-progressive, #36c);
-}
-
-.vector-menu-tabs li a:visited:hover {
-  color: var(--color-progressive--hover, #3056a9);
-}
-
-.vector-menu-tabs li.selected a {
-  color: var(--color-base, #202122) !important;
-}
-
-.vector-menu-tabs li.selected a::after {
-  background-color: var(--color-base, #202122);
-}
-
-/* --------------------------------------------------------------------------
- * Section headings (content h2–h6, per Vector screen styles)
+ * Section headings (serif with bottom rules, like Wikipedia sections)
  * ------------------------------------------------------------------------ */
 
 .mw-body-content h2,
 .void-article h2 {
-  color: var(--color-emphasized, #101418);
+  font-family: var(--wiki-serif);
+  font-size: 1.375rem;
   font-weight: normal;
-  font-size: 1.5em;
   line-height: 1.3;
-  margin: 0.25em 0;
-  margin-bottom: 0.6em;
-  padding: 0.5em 0 0.17em;
-  border-bottom: 1px solid var(--border-color-base, #a2a9b1);
-  display: flow-root;
-  word-break: break-word;
+  margin: 1.4em 0 0.5em;
+  padding-bottom: 0.15em;
+  border-bottom: 1px solid var(--wiki-border);
 }
 
 .mw-body-content h3,
 .void-article h3 {
-  color: var(--color-emphasized, #101418);
-  font-weight: bold;
-  font-size: 1.2em;
-  line-height: 1.6;
-  margin: 0.25em 0 0.3em;
-  padding: 0.5em 0 0.17em;
-  display: flow-root;
-  word-break: break-word;
+  font-family: var(--wiki-serif);
+  font-size: 1.125rem;
+  font-weight: normal;
+  line-height: 1.3;
+  margin: 1.2em 0 0.4em;
 }
 
 .mw-body-content h4,
 .void-article h4 {
-  color: var(--color-emphasized, #101418);
-  font-weight: bold;
-  font-size: 100%;
-  line-height: 1.6;
-  margin: 0.25em 0 0.3em;
-  padding: 0.5em 0 0.17em;
-  display: flow-root;
-  word-break: break-word;
-}
-
-.mw-body-content h5,
-.mw-body-content h6,
-.void-article h5,
-.void-article h6 {
-  color: var(--color-emphasized, #101418);
-  font-weight: bold;
-  font-size: 100%;
-  line-height: 1.6;
-  margin: 0.25em 0 0.3em;
-  padding: 0.5em 0 0.17em;
-  display: flow-root;
-  word-break: break-word;
-}
-
-/* [edit] link inside a section heading (Vector editsection styles) */
-.mw-editsection {
-  font-family: sans-serif;
-  font-size: small;
+  font-family: var(--wiki-serif);
+  font-size: 1rem;
   font-weight: normal;
-  margin-left: 1em;
-  vertical-align: baseline;
-  line-height: 0;
+  line-height: 1.3;
+  margin: 1em 0 0.3em;
+}
+
+/* [edit] link floated right inside a section heading */
+.mw-editsection {
   float: right;
+  font-family: var(--wiki-sans);
+  font-size: 0.6875rem;
+  font-weight: normal;
+  line-height: 1.4;
+  color: var(--wiki-muted);
+  margin-left: 1rem;
   user-select: none;
 }
 
-.mw-editsection a {
-  white-space: nowrap;
+/* --------------------------------------------------------------------------
+ * Table of contents box
+ * ------------------------------------------------------------------------ */
+
+.toc {
+  display: table;
+  max-width: 100%;
+  margin: 0.5rem 0 1rem;
+  padding: 0.6rem 1.25rem 0.75rem;
+  background: var(--wiki-fill);
+  border: 1px solid var(--wiki-border);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.toctitle {
+  text-align: center;
+}
+
+.toctitle h2 {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: var(--wiki-serif);
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  text-align: left;
+}
+
+.toc li {
+  margin: 0.15rem 0;
+}
+
+.toc li.toclevel-2 {
+  padding-left: 1.5rem;
+}
+
+.toc li.toclevel-3 {
+  padding-left: 3rem;
+}
+
+.toc .tocnumber {
+  color: var(--wiki-text);
 }
 
 /* --------------------------------------------------------------------------
@@ -867,8 +367,8 @@ a.external::after {
   width: 22em;
   max-width: 100%;
   margin: 0.25rem 0 1rem 1.75rem;
-  background: var(--background-color-neutral-subtle, #f8f9fa);
-  border: 1px solid var(--border-color-base, #a2a9b1);
+  background: var(--wiki-fill);
+  border: 1px solid var(--wiki-border);
   font-size: 0.8125rem;
   line-height: 1.5;
 }
@@ -884,8 +384,8 @@ a.external::after {
   padding: 0.4rem 0.6rem;
   text-align: center;
   font-weight: 700;
-  background: var(--background-color-interactive, #eaecf0);
-  border-bottom: 1px solid var(--border-color-base, #a2a9b1);
+  background: var(--wiki-code-border);
+  border-bottom: 1px solid var(--wiki-border);
 }
 
 .infobox-table {
@@ -896,7 +396,7 @@ a.external::after {
 .infobox-table th,
 .infobox-table td {
   padding: 0.3rem 0.6rem;
-  border-top: 1px solid var(--border-color-subtle, #c8ccd1);
+  border-top: 1px solid var(--wiki-border-soft);
   vertical-align: top;
   text-align: left;
 }
@@ -911,73 +411,15 @@ a.external::after {
 }
 
 /* --------------------------------------------------------------------------
- * Wikitables (Vector: #f8f9fa body, #eaecf0 header, #a2a9b1 borders)
- * ------------------------------------------------------------------------ */
-
-.wikitable {
-  background-color: var(--background-color-neutral-subtle, #f8f9fa);
-  color: var(--color-base, #202122);
-  margin: 1em 0;
-  border: 1px solid var(--border-color-base, #a2a9b1);
-  border-collapse: collapse;
-  font-size: 0.875rem;
-}
-
-.wikitable > caption {
-  font-weight: bold;
-  padding: 0.25rem;
-}
-
-.wikitable > * > tr > td {
-  border: 1px solid var(--border-color-base, #a2a9b1);
-  padding: 0.2em 0.4em;
-}
-
-.wikitable > * > tr > th {
-  background-color: var(--background-color-neutral, #eaecf0);
-  color: var(--color-base, #202122);
-  text-align: center;
-  border: 1px solid var(--border-color-base, #a2a9b1);
-  padding: 0.2em 0.4em;
-}
-
-/* --------------------------------------------------------------------------
- * Categories bar (grep-verified catlinks rules)
+ * Categories bar and print footer
  * ------------------------------------------------------------------------ */
 
 .catlinks {
-  background-color: var(--background-color-neutral-subtle, #f8f9fa);
-  margin-top: 1em;
-  border: 1px solid var(--border-color-base, #a2a9b1);
-  padding: 5px;
-  clear: both;
-  font-size: 0.875rem;
-}
-
-.catlinks ul {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.catlinks li {
-  display: inline-block;
-  line-height: 1.25em;
-  margin: 0.125em 0;
-  border-left: 1px solid var(--border-color-base, #a2a9b1);
-  padding: 0 0.5em;
-}
-
-.catlinks li:first-child {
-  border-left: 0;
-  padding-left: 0.25em;
-}
-
-/* The "Categories:" label + list sit inline, per Vector's #mw-normal-catlinks */
-.catlinks .mw-normal-catlinks {
-  text-align: left;
-  word-wrap: break-word;
+  margin-top: 1.25rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--wiki-fill);
+  border: 1px solid var(--wiki-border);
+  font-size: 0.8125rem;
 }
 
 .printfooter {
@@ -999,6 +441,34 @@ a.external::after {
 }
 
 /* --------------------------------------------------------------------------
+ * Wikitables
+ * ------------------------------------------------------------------------ */
+
+.wikitable {
+  margin: 0.75rem 0;
+  border-collapse: collapse;
+  background: var(--wiki-fill);
+  border: 1px solid var(--wiki-border);
+  font-size: 0.875rem;
+}
+
+.wikitable caption {
+  padding: 0.25rem;
+  font-weight: 700;
+}
+
+.wikitable th,
+.wikitable td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--wiki-border);
+}
+
+.wikitable th {
+  background: var(--wiki-code-border);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
  * Article prose (blog post body and general page content)
  * ------------------------------------------------------------------------ */
 
@@ -1015,45 +485,36 @@ a.external::after {
 .mw-body-content ol,
 .void-article ul,
 .void-article ol {
-  margin: 0.3em 0 0.5em;
-  padding: 0 0 0 1.6em;
-}
-
-.mw-body-content ol,
-.void-article ol {
-  padding-left: 3.2em;
+  margin: 0.5em 0 1em;
+  padding-inline-start: 1.75em;
 }
 
 .mw-body-content li,
 .void-article li {
-  margin-bottom: 0.1em;
+  margin: 0.2em 0;
 }
 
 .mw-body-content code,
 .void-article code {
   font-family: var(--wiki-mono);
   font-size: 0.875em;
-  background-color: var(--background-color-neutral-subtle, #f8f9fa);
-  color: var(--color-emphasized, #101418);
-  border: 1px solid var(--border-color-muted, #dadde3);
+  background: var(--wiki-code-fill);
+  border: 1px solid var(--wiki-code-border);
   border-radius: 2px;
-  padding: 1px 4px;
+  padding: 0.08em 0.25em;
 }
 
 .mw-body-content pre,
 .void-article pre {
   font-family: var(--wiki-mono);
   font-size: 0.8125rem;
-  line-height: 1.3;
-  background-color: var(--background-color-neutral-subtle, #f8f9fa);
-  color: var(--color-emphasized, #101418);
-  border: 1px solid var(--border-color-muted, #dadde3);
+  line-height: 1.5;
+  background: var(--wiki-code-fill);
+  border: 1px solid var(--wiki-code-border);
   border-radius: 2px;
-  padding: 1em;
+  padding: 0.75rem;
   margin: 1em 0;
-  white-space: pre-wrap;
   overflow-x: auto;
-  overflow-wrap: break-word;
 }
 
 .mw-body-content pre code,
@@ -1068,25 +529,8 @@ a.external::after {
 .mw-body-content blockquote,
 .void-article blockquote {
   margin: 1em 0;
-  border-left: 4px solid var(--border-color-muted, #dadde3);
-  padding: 8px 32px;
-}
-
-.mw-body-content blockquote > :first-child,
-.void-article blockquote > :first-child {
-  margin-top: 0;
-}
-
-.mw-body-content blockquote > :last-child,
-.void-article blockquote > :last-child {
-  margin-bottom: 0;
-}
-
-.mw-body-content hr {
-  height: 1px;
-  background-color: var(--border-color-base, #a2a9b1);
-  border: 0;
-  margin: 0.2em 0;
+  padding: 0.25em 1.25em;
+  border-left: 4px solid var(--wiki-border-soft);
 }
 
 /* Typst MathML: block equations centered; inline math stays inline */
@@ -1123,112 +567,30 @@ a.external::after {
 }
 
 .void-article .typst-prooftree tr:nth-child(2) td {
-  border-top: 1px solid var(--color-base, #202122);
+  border-top: 1px solid var(--wiki-text);
 }
 
 .void-article .typst-prooftree tr:last-child:not(:nth-child(2)) td {
   font-size: 0.85em;
-  color: var(--color-subtle, #54595d);
+  color: var(--wiki-muted);
 }
 
 /* --------------------------------------------------------------------------
- * Site footer (grep-verified Vector footer rules)
+ * Site footer
  * ------------------------------------------------------------------------ */
-
-.mw-footer-container {
-  padding-top: 50px;
-  padding-bottom: 82px;
-}
 
 .mw-footer {
-  direction: ltr;
-  border-top: 1px solid var(--border-color-base, #a2a9b1);
-  padding: 0.75em 0;
+  padding: 0.75rem 0 2rem;
+  font-size: 0.75rem;
+  color: var(--wiki-muted);
 }
 
-.mw-footer .vector-footer-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mw-footer li {
-  color: var(--color-base, #202122);
-  margin: 0;
-  padding: 0.5em 0;
-  font-size: 0.75em;
-}
-
-/* Footer info line (per Vector #footer-info li): single block line */
-.mw-footer .footer-info {
-  display: block;
-  line-height: 1.4;
-}
-
-/* Place-links style row: items side by side with 1em gutters */
-.mw-footer .vector-footer-list-plain li {
-  display: inline-block;
-  margin-right: 1em;
-  line-height: 2;
-  padding: 0.25em 0;
-}
-
-.mw-footer li a {
-  word-wrap: break-word;
-}
-
-/* --------------------------------------------------------------------------
- * Responsive collapse (Vector 2022 breakpoints: 1120px, 640px)
- *
- * < 1120px: the pinned sidebar + sticky TOC hide; the header main-menu
- * dropdown becomes the menu entry point (checkbox dropdown panel).
- * ≥ 1120px: the header dropdown hides (menu lives in the sidebar) and
- * the sidebar is a grid column. The TOC has no in-titlebar mobile
- * dropdown on this site (deliberate simplification); on narrow screens
- * the TOC simply is not available.
- * ------------------------------------------------------------------------ */
-
-@media screen and (max-width: calc(1120px - 1px)) {
-  /* Hide pinned containers (Vector: .client-js .vector-pinned-container) */
-  .vector-column-start {
-    display: none;
-  }
-
-  /* The main menu dropdown gets a comfortable touch target */
-  .vector-dropdown .vector-dropdown-label {
-    padding: 0 12px;
-  }
-}
-
-@media screen and (min-width: 1120px) {
-  /* Desktop: the menu is pinned in the sidebar; hide the header dropdown */
-  .vector-main-menu-landmark {
-    display: none;
-  }
-}
-
-@media screen and (max-width: calc(640px - 1px)) {
-  .mw-page-container,
-  .vector-header-container .mw-header {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .infobox {
-    float: none;
-    width: auto;
-    margin: 0.75rem 0;
-  }
-
-  .void-article .typst-prooftree {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
+.mw-footer p {
+  margin: 0 0 0.3rem;
 }
 
 /* --------------------------------------------------------------------------
  * Print: keep only the article, show the "Retrieved from" line
- * (mirrors Vector's print block)
  * ------------------------------------------------------------------------ */
 
 @media print {
@@ -1236,116 +598,39 @@ a.external::after {
     background: #fff;
   }
 
-  /* Hide all interactive chrome */
-  .vector-header-container,
-  .vector-column-start,
-  .vector-page-toolbar,
-  .mw-jump-link,
+  .site-header,
+  .mw-sidebar,
+  .vector-tabs,
   .mw-editsection,
   .catlinks,
-  .mw-footer-container {
-    display: none !important;
+  .mw-footer {
+    display: none;
   }
 
-  .mw-page-container {
-    padding: 0;
-    min-width: auto;
-    max-width: none;
-  }
-
-  .mw-page-container-inner,
-  .mw-body {
+  .mw-body-grid {
     display: block;
   }
 
-  /* Print headings per Vector: serif title, smaller section heads */
-  .firstHeading {
-    font-size: 25pt;
-    line-height: 28pt;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    font-family: "Linux Libertine", "Georgia", "Times", "Source Serif 4",
-      serif;
-  }
-
-  .mw-body-content h2,
-  .void-article h2 {
-    font-size: 18pt;
-    line-height: 24pt;
-    margin-bottom: 0.25em;
-    border-bottom: 2px solid var(--color-emphasized, #101418);
+  .mw-body {
+    border: none;
     padding: 0;
-    position: relative;
-    font-family: sans-serif;
-  }
-
-  .mw-body-content h3,
-  .void-article h3 {
-    font-size: 14pt;
-    line-height: 20pt;
-    margin: 30px 0 0;
-    padding: 0;
-    position: relative;
-    font-family: sans-serif;
-  }
-
-  .mw-body-content h4,
-  .void-article h4 {
-    font-size: 12pt;
-    line-height: 16pt;
-    margin: 30px 0 0;
-    padding: 0;
-    position: relative;
-    font-family: sans-serif;
-  }
-
-  p {
-    font-size: 12pt;
-    line-height: 16pt;
-    margin-top: 5px;
-    orphans: 3;
-    widows: 3;
   }
 
   .printfooter {
     display: block;
-    margin-top: 10px;
-    border-top: 3px solid var(--color-emphasized, #101418);
-    padding-top: 10px;
-    font-size: 10pt;
-    clear: both;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid var(--wiki-border-soft);
+    font-size: 0.75rem;
+    color: #000;
   }
 
-  a,
-  a:visited {
-    color: inherit !important;
-    text-decoration: inherit !important;
-    background: none !important;
-    padding: 0 !important;
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   a.external::after {
     display: none;
-  }
-
-  .wikitable {
-    background: #fff;
-    margin: 1em 0;
-    border: 1pt solid #aaa;
-    border-collapse: collapse;
-    font-size: 10pt;
-    page-break-inside: avoid;
-  }
-
-  .wikitable > * > tr > th,
-  .wikitable > * > tr > td {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1pt solid #aaa;
-    padding: 0.4em 0.6em;
-  }
-
-  .infobox {
-    border: 1pt solid #aaa;
   }
 }

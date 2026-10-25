@@ -11,6 +11,9 @@ eleventyComputed:
 catlinks:
   - Blog
 ---
+{% if post.toc.size > 0 %}
+{% render 'toc.liquid', entries: post.tocNumbered %}
+{% endif %}
 <div class="void-article">{{ post.content }}</div>
 <p>
   <a href="/blog.html">← Blog</a>

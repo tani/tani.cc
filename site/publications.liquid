@@ -8,6 +8,8 @@ catlinks:
   - Publications
 ---
 {% if site.preparedPublications.groups.size > 0 %}
+{% assign publicationsTocNumbered = publicationsTocEntries | tocNumbering %}
+{% render 'toc.liquid', entries: publicationsTocNumbered %}
 {% for group in site.preparedPublications.groups %}
 {% capture groupContent %}
 <ol>

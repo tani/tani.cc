@@ -1,13 +1,11 @@
 {% comment %}
-  wiki.liquid — MediaWiki Vector 2022 page chrome.
+  wiki.liquid — MediaWiki Vector page chrome.
   Template contract (front matter of the page using this layout):
     layout: wiki.liquid
-    title: string (h1#firstHeading)
-    subtitle: optional string (#siteSub line under the titlebar)
-    catlinks: optional array of strings (category bar)
-    toc: optional flat array of { level, text, id, number } —
-      rendered as the pinned Vector sidebar TOC (levels 1-3).
-  Edit links are resolved from page.url by the editHref universal
+    title: string (h1.firstHeading)
+    subtitle: optional string (contentSub)
+    catlinks: optional array of strings (catlinks bar)
+  Edit links are resolved from page.url by the editFileForPage universal
   filter (defined in .eleventy.js) so every route keeps its meaningful
   GitHub source target.
 {% endcomment %}
@@ -20,176 +18,70 @@
     <link rel="stylesheet" href="/mediawiki.css" />
   </head>
   <body>
-    <a class="mw-jump-link" href="#bodyContent">Jump to content</a>
-
-    <div class="vector-header-container">
-      <header class="vector-header mw-header">
-        <div class="vector-header-start">
-          <nav class="vector-main-menu-landmark" aria-label="Site">
-            <div
-              id="vector-main-menu-dropdown"
-              class="vector-dropdown vector-main-menu-dropdown"
-              title="Main menu"
-            >
-              <input
-                type="checkbox"
-                id="vector-main-menu-dropdown-checkbox"
-                role="button"
-                aria-haspopup="true"
-                class="vector-dropdown-checkbox"
-                aria-label="Main menu"
-              />
-              <label
-                for="vector-main-menu-dropdown-checkbox"
-                class="vector-dropdown-label"
-                aria-hidden="true"
-              >
-                <span class="vector-dropdown-label-text">Main menu</span>
-              </label>
-              <div class="vector-dropdown-content">
-                <div id="vector-main-menu-unpinned-container">
-                  {% render 'main-menu.liquid', navigation: navigation, repoUrl: repoUrl, page: page, profileLinks: site.profile.links %}
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-
-        <div class="vector-header-center">
-          <a class="mw-logo" href="/index.html">
-            <span class="mw-logo-container">
-              <span class="mw-logo-wordmark">tani.cc</span>
-              <span class="mw-logo-tagline">The Free Encyclopedia</span>
-            </span>
-          </a>
-        </div>
-
-        <div class="vector-header-end"></div>
-      </header>
-    </div>
-
     <div class="mw-page-container">
-      <div class="mw-page-container-inner">
-        <div class="vector-column-start">
-          <div class="vector-main-menu-container">
-            <nav id="mw-panel" aria-label="Site">
-              <div
-                id="vector-main-menu-pinned-container"
-                class="vector-pinned-container"
-              >
-                {% render 'main-menu.liquid', navigation: navigation, repoUrl: repoUrl, page: page, profileLinks: site.profile.links %}
-              </div>
-            </nav>
-          </div>
+      <header class="site-header">
+        <a class="site-wordmark" href="/index.html">tani.cc</a>
+        <span class="site-tagline">The Free Encyclopedia</span>
+      </header>
 
-          {% if toc and toc.size > 0 %}
-          <div class="vector-sticky-pinned-container">
-            <nav
-              id="mw-panel-toc"
-              aria-label="Contents"
-              class="vector-toc-landmark"
-            >
-              <div id="vector-toc" class="vector-toc vector-pinnable-element">
-                <div class="vector-pinnable-header">
-                  <div class="vector-pinnable-header-label">Contents</div>
-                </div>
-                <ul class="vector-toc-contents">
-                  {% for entry in toc %}
-                  <li class="vector-toc-level-{{ entry.level | minus: 1 }}">
-                    <a class="vector-toc-link" href="#{{ entry.id }}">
-                      <span class="vector-toc-text">
-                        {%- if entry.number -%}{{ entry.number }} {% endif -%}{{ entry.text }}
-                      </span>
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </nav>
-          </div>
-          {% endif %}
-        </div>
-
-        <div class="mw-content-container">
-          <main id="content" class="mw-body">
-            <header class="mw-body-header vector-page-titlebar">
-              <h1 id="firstHeading" class="firstHeading mw-first-heading">
-                <span class="mw-page-title-main">{{ title }}</span>
-              </h1>
-            </header>
-
-            <div class="vector-page-toolbar">
-              <div class="vector-page-toolbar-container">
-                <div id="left-navigation">
-                  <nav aria-label="Namespaces">
-                    <div id="p-associated-pages" class="vector-menu vector-menu-tabs">
-                      <ul class="vector-menu-content-list">
-                        <li class="selected">
-                          <a href="{{ page.url }}"><span>Read</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
-                </div>
-                <div id="right-navigation">
-                  <nav aria-label="Views">
-                    <div id="p-views" class="vector-menu vector-menu-tabs">
-                      <ul class="vector-menu-content-list">
-                        <li>
-                          <a href="{{ page.url | editHref }}"><span>Edit</span></a>
-                        </li>
-                        <li>
-                          <a href="{{ repoUrl }}/commits/main"><span>View history</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
-                </div>
-              </div>
-            </div>
-
-            <div id="bodyContent" class="vector-body" aria-labelledby="firstHeading">
-              {% if subtitle %}<div id="siteSub" class="noprint">{{ subtitle }}</div>{% endif %}
-              <div id="mw-content-text" class="mw-body-content">{{ content }}</div>
-
-              {% if catlinks %}
-              <div id="catlinks" class="catlinks">
-                <div id="mw-normal-catlinks" class="mw-normal-catlinks">
-                  Categories:
-                  <ul>
-                    {% for cat in catlinks %}
-                    <li>{{ cat }}</li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-              {% endif %}
-
-              <div class="printfooter">
-                Retrieved from &quot;https://tani.cc{{ page.url }}&quot;
-              </div>
-            </div>
-          </main>
-        </div>
-
-        <div class="mw-footer-container">
-          <footer id="footer" class="mw-footer">
-            <ul class="vector-footer-list">
-              <li class="footer-info">
-                This site uses Cloudflare Web Analytics. These services may
-                collect data including IP addresses. Your use of this site
-                constitutes consent.
-              </li>
-            </ul>
-            <ul class="vector-footer-list vector-footer-list-plain">
+      <div class="mw-body-grid">
+        <nav class="mw-sidebar">
+          <div class="sidebar-section">
+            <h3>Navigation</h3>
+            <ul>
+              {% for item in navigation %}
               <li>
-                <a href="{{ repoUrl }}">Source</a>
+                <a class="{{ item.href | navActive: page.url }}" href="{{ item.href }}">
+                  {{ item.label }}
+                </a>
               </li>
-              <li>Powered by <a class="external" href="https://www.11ty.dev/">Eleventy</a></li>
+              {% endfor %}
             </ul>
-          </footer>
-        </div>
+          </div>
+          <div class="sidebar-section">
+            <h3>Tools</h3>
+            <ul>
+              <li><a class="external" href="{{ page.url | editHref }}">Edit</a></li>
+              <li><a class="external" href="{{ repoUrl }}/commits/main">View history</a></li>
+              <li><a class="external" href="{{ repoUrl }}/issues">Discussion</a></li>
+              {% for link in site.profile.links %}
+              <li><a class="external" href="{{ link.url }}">{{ link.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </nav>
+
+        <main class="mw-body">
+          <div class="vector-tabs">
+            <ul>
+              <li class="selected"><span>Read</span></li>
+              <li><a href="{{ page.url | editHref }}">Edit</a></li>
+              <li><a href="{{ repoUrl }}/commits/main">View history</a></li>
+            </ul>
+          </div>
+
+          <h1 class="firstHeading">{{ title }}</h1>
+          {% if subtitle %}<div class="contentSub">{{ subtitle }}</div>{% endif %}
+          <div class="mw-body-content">{{ content }}</div>
+
+          {% if catlinks %}
+          <div class="catlinks"><b>Categories:</b> {{ catlinks | join: ' | ' }}</div>
+          {% endif %}
+
+          <div class="printfooter">Retrieved from &quot;https://tani.cc{{ page.url }}&quot;</div>
+        </main>
       </div>
+
+      <footer class="mw-footer">
+        <p>
+          This site uses Cloudflare Web Analytics. These services may collect data
+          including IP addresses. Your use of this site constitutes consent.
+        </p>
+        <p>
+          <a href="{{ repoUrl }}">Source</a> · Powered by
+          <a class="external" href="https://www.11ty.dev/">Eleventy</a>
+        </p>
+      </footer>
     </div>
   </body>
 </html>
