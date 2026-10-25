@@ -69,9 +69,14 @@ Create → GitHub → `tani/tani.cc`) and set:
 - Build command: `npm run build`
 - Deploy command: `npx void deploy --platform cloudflare --skip-build`
 - Production branch: `main`
-- Build variable: `CLOUDFLARE_ACCOUNT_ID` (the deploy reads it from the
-  environment; do not pin it in `void.config.ts` — that makes the generated
-  config change between runs and the deploy refuses to upload)
+- Build variables:
+  - `CLOUDFLARE_ACCOUNT_ID` (the deploy reads it from the environment; do not
+    pin it in `void.config.ts` — that makes the generated config change
+    between runs and the deploy refuses to upload)
+  - `CLOUDFLARE_WORKERS_SUBDOMAIN` — your account's `workers.dev` subdomain
+    (the `my-team` in `my-team.workers.dev`; find it on any worker's
+    workers.dev URL). Void needs it to probe the uploaded version's
+    readiness when the version has no preview URL.
 
 Workers Builds injects `CLOUDFLARE_API_TOKEN` automatically. Every push to
 `main` builds and deploys on Cloudflare's infrastructure.
