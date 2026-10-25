@@ -13,5 +13,11 @@ export default {
         rawText: group.category,
         id: group.id,
       })),
+    toc: (data) =>
+      (data.site.preparedPublications.groups ?? []).map((group) => ({
+        level: 2,
+        text: group.category,
+        id: group.id,
+      })),
   },
 }
