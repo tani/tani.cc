@@ -8,7 +8,7 @@ import {
   extractMeta,
   headingSlug,
   injectHeadingIds,
-} from '../src/lib/typst-pure.ts'
+} from '../src/lib/typst-pure.mjs'
 
 test('extractMeta reads the #let meta dictionary', () => {
   const meta = extractMeta(`#let meta = (

@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert'
-import { preparePublications, slugify } from '../src/lib/pure.ts'
+import { preparePublications, slugify } from '../src/lib/pure.mjs'
 
 test('slugify lowercases and hyphenates text', () => {
   assert.strictEqual(slugify('Peer-reviewed International Conference'), 'peer-reviewed-international-conference')

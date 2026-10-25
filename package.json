@@ -4,22 +4,16 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "clean": "rm -rf dist",
-    "deploy": "void deploy --platform cloudflare",
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf dist-pages",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "@myriaddreamin/typst-ts-node-compiler": "^0.8.0-rc3",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@void/react": "^1.2.1",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
     "smol-toml": "^1.6.1"
   },
   "devDependencies": {
-    "void": "^1.2.1"
+    "@11ty/eleventy": "^3.1.7"
   }
 }

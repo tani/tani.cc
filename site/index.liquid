@@ -1,0 +1,26 @@
+---
+layout: wiki.liquid
+permalink: /index.html
+title: Masaya Taniguchi
+headTitle: Masaya Taniguchi
+catlinks:
+  - People
+  - Researchers
+  - RIKEN
+---
+{% render 'infobox.liquid'
+  , image: site.profile.image, caption: site.profile.name, rows: profileInfoboxRows %}
+{% assign paragraphs = site.profile.bio.en | split: '\n\n' %}
+{% if paragraphs.size > 0 %}
+{% render 'section.liquid', id: 'bio', title: 'Biography', content: bioContent %}
+{% endif %}
+{% if site.research.interests.size > 0 %}
+{% capture researchContent %}
+<ul>
+  {% for interest in site.research.interests %}
+  <li>{{ interest }}</li>
+  {% endfor %}
+</ul>
+{% endcapture %}
+{% render 'section.liquid', id: 'research', title: 'Research interests', content: researchContent %}
+{% endif %}

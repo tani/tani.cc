@@ -1,0 +1,97 @@
+---
+layout: wiki.liquid
+permalink: /profile.html
+eleventyComputed:
+  title: "{{ site.profile.name }}"
+  headTitle: "{{ site.profile.name }} - {{ site.profile.affiliation }}"
+  subtitle: >-
+    {%- if site.profile.role.size > 0 and site.profile.affiliationLong.size > 0 -%}
+    {{ site.profile.role }}, {{ site.profile.affiliationLong }}
+    {%- elsif site.profile.role.size > 0 -%}
+    {{ site.profile.role }}
+    {%- else -%}
+    {{ site.profile.affiliationLong }}
+    {%- endif -%}
+catlinks:
+  - People
+  - Researchers
+  - CV
+---
+{% render 'infobox.liquid'
+  , image: site.profile.image, caption: site.profile.name, rows: profileInfoboxRows %}
+
+{% if site.research.interests.size > 0 %}
+{% render 'section.liquid', id: 'research-interests', title: 'Research interests', editHref: editPage, content: researchInterestsContent %}
+{% endif %}
+
+{% if site.research.areas.size > 0 %}
+{% capture researchAreasContent %}
+<table class="wikitable">
+  <thead>
+    <tr>
+      <th>Discipline</th>
+      <th>Field</th>
+      <th>Keywords</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for area in site.research.areas %}
+    <tr>
+      <td>{{ area.discipline }}</td>
+      <td>{{ area.field }}</td>
+      <td>{{ area.keywords }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endcapture %}
+{% render 'section.liquid', id: 'research-areas', title: 'Research areas', editHref: editPage, content: researchAreasContent %}
+{% endif %}
+
+{% if site.cv.education.size > 0 %}
+{% render 'section.liquid', id: 'education', title: 'Education', editHref: editPage, content: educationContent %}
+{% endif %}
+
+{% if site.cv.experience.size > 0 %}
+{% render 'section.liquid', id: 'experience', title: 'Experience', editHref: editPage, content: experienceContent %}
+{% endif %}
+
+{% if site.cv.projects.size > 0 %}
+{% render 'section.liquid', id: 'projects-grants', title: 'Projects & grants', editHref: editPage, content: projectsContent %}
+{% endif %}
+
+{% if site.cv.teaching.size > 0 %}
+{% render 'section.liquid', id: 'teaching', title: 'Teaching', editHref: editPage, content: teachingContent %}
+{% endif %}
+
+{% if site.cv.awards.size > 0 %}
+{% render 'section.liquid', id: 'awards', title: 'Awards', editHref: editPage, content: awardsContent %}
+{% endif %}
+
+{% if site.cv.certifications.size > 0 %}
+{% render 'section.liquid', id: 'certifications', title: 'Certifications', editHref: editPage, content: certificationsContent %}
+{% endif %}
+
+{% if site.cv.financialSupport.size > 0 %}
+{% render 'section.liquid', id: 'financial-support', title: 'Financial support', editHref: editPage, content: financialSupportContent %}
+{% endif %}
+
+{% if site.cv.physicalSkills.size > 0 %}
+{% render 'section.liquid', id: 'physical-skills', title: 'Physical skills', editHref: editPage, content: physicalSkillsContent %}
+{% endif %}
+
+{% if site.cv.socialContributions.size > 0 %}
+{% render 'section.liquid', id: 'social-contributions', title: 'Social contributions', editHref: editPage, content: socialContributionsContent %}
+{% endif %}
+
+{% if site.cv.academicWork.size > 0 %}
+{% render 'section.liquid', id: 'academic-work', title: 'Academic work', editHref: editPage, content: academicWorkContent %}
+{% endif %}
+
+{% if site.cv.nonAcademicWork.size > 0 %}
+{% render 'section.liquid', id: 'non-academic-work', title: 'Non-academic work', editHref: editPage, content: nonAcademicWorkContent %}
+{% endif %}
+
+{% if site.cv.acknowledgements.size > 0 %}
+{% render 'section.liquid', id: 'acknowledgements', title: 'Acknowledgements', editHref: editPage, content: acknowledgementsContent %}
+{% endif %}

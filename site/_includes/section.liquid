@@ -1,0 +1,9 @@
+<section>
+  <h2 id="{{ id }}">
+    <span class="mw-headline">{{ title }}</span>
+    {% if editHref %}
+    <span class="mw-editsection">[<a href="{{ editHref }}">edit</a>]</span>
+    {% endif %}
+  </h2>
+  {{ content }}
+</section>

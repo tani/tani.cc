@@ -1,0 +1,88 @@
+{% comment %}
+  wiki.liquid — MediaWiki Vector page chrome.
+  Template contract (front matter of the page using this layout):
+    layout: wiki.liquid
+    title: string (h1.firstHeading)
+    subtitle: optional string (contentSub)
+    catlinks: optional array of strings (catlinks bar)
+  Edit links are resolved from page.url by the editFileForPage universal
+  filter (defined in .eleventy.js) so every route keeps its meaningful
+  GitHub source target.
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ headTitle | default: title }}{% unless headTitle %}{% if site.profile.name %} - {{ site.profile.name }}{% endif %}{% endunless %}</title>
+    <link rel="stylesheet" href="/mediawiki.css" />
+  </head>
+  <body>
+    <div class="mw-page-container">
+      <header class="site-header">
+        <a class="site-wordmark" href="/index.html">tani.cc</a>
+        <span class="site-tagline">The Free Encyclopedia</span>
+      </header>
+
+      <div class="mw-body-grid">
+        <nav class="mw-sidebar">
+          <div class="sidebar-section">
+            <h3>Navigation</h3>
+            <ul>
+              {% for item in navigation %}
+              <li>
+                <a class="{{ item.href | navActive: page.url }}" href="{{ item.href }}">
+                  {{ item.label }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="sidebar-section">
+            <h3>Tools</h3>
+            <ul>
+              <li><a class="external" href="{{ page.url | editHref }}">Edit</a></li>
+              <li><a class="external" href="{{ repoUrl }}/commits/main">View history</a></li>
+              <li><a class="external" href="{{ repoUrl }}/issues">Discussion</a></li>
+              {% for link in site.profile.links %}
+              <li><a class="external" href="{{ link.url }}">{{ link.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </nav>
+
+        <main class="mw-body">
+          <div class="vector-tabs">
+            <ul>
+              <li class="selected"><span>Read</span></li>
+              <li><a href="{{ page.url | editHref }}">Edit</a></li>
+              <li><a href="{{ repoUrl }}/commits/main">View history</a></li>
+            </ul>
+          </div>
+
+          <h1 class="firstHeading">{{ title }}</h1>
+          {% if subtitle %}<div class="contentSub">{{ subtitle }}</div>{% endif %}
+          <div class="mw-body-content">{{ content }}</div>
+
+          {% if catlinks %}
+          <div class="catlinks"><b>Categories:</b> {{ catlinks | join: ' | ' }}</div>
+          {% endif %}
+
+          <div class="printfooter">Retrieved from &quot;https://tani.cc{{ page.url }}&quot;</div>
+        </main>
+      </div>
+
+      <footer class="mw-footer">
+        <p>
+          This site uses Cloudflare Web Analytics. These services may collect data
+          including IP addresses. Your use of this site constitutes consent.
+        </p>
+        <p>
+          <a href="{{ repoUrl }}">Source</a> · Powered by
+          <a class="external" href="https://www.11ty.dev/">Eleventy</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+---
+layout: wiki.liquid
+permalink: /publications.html
+title: Publications
+eleventyComputed:
+  subtitle: "{{ site.profile.name }}"
+catlinks:
+  - Publications
+---
+{% if site.preparedPublications.groups.size > 0 %}
+{% assign publicationsTocNumbered = publicationsTocEntries | tocNumbering %}
+{% render 'toc.liquid', entries: publicationsTocNumbered %}
+{% for group in site.preparedPublications.groups %}
+{% capture groupContent %}
+<ol>
+  {% for item in group.items %}
+  <li>
+    <div>
+      <b>{{ item.title }}</b>
+    </div>
+    {% if item.authorsText.size > 0 %}
+    <div>{{ item.authorsText }}</div>
+    {% endif %}
+    {% if item.metaText.size > 0 %}
+    <div>
+      <small>{{ item.metaText }}</small>
+    </div>
+    {% endif %}
+    {% if item.hasLinks %}
+    <div>
+      {% if item.url %}
+      <a class="external" href="{{ item.url }}">URL</a>
+      {% endif %}
+      {% if item.archive %}
+      <span>{{ item.archive }}</span>
+      {% endif %}
+      {% if item.field %}
+      <span>{{ item.field }}</span>
+      {% endif %}
+    </div>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>
+{% endcapture %}
+{% render 'section.liquid'
+  , id: group.id, title: group.category, editHref: editPage, content: groupContent %}
+{% endfor %}
+{% else %}
+<p>No publications listed.</p>
+{% endif %}

@@ -1,12 +1,6 @@
-// Pure typst-source helpers shared by the build-time precompiler
-// (src/build/typst-precompile.ts) and the plain-node tests. No Vite-only
-// syntax, no native imports — importable from anywhere.
-
-export interface TypstPostMeta {
-  title: string
-  date: string
-  description: string
-}
+// Pure typst-source helpers shared by the Eleventy typst collection loader
+// (.eleventy.js) and the plain-node tests. No bundler-only syntax, no native
+// imports — importable from anywhere.
 
 // Extract the `#let meta = (...)` dictionary from a post source.
 //
@@ -14,9 +8,9 @@ export interface TypstPostMeta {
 // ("..." with backslash escapes, or '...') are skipped whole, so values may
 // contain commas, parens, and colons. Only string fields are supported
 // (title/date/description); anything else is ignored.
-export const extractMeta = (source: string): TypstPostMeta => {
+export const extractMeta = (source) => {
   const open = /#let\s+meta\s*=\s*\(/.exec(source)
-  const meta: TypstPostMeta = { title: '', date: '', description: '' }
+  const meta = { title: '', date: '', description: '' }
   if (!open) return meta
 
   // Slice off the dictionary body: everything up to the first unquoted ')'.
@@ -46,7 +40,7 @@ export const extractMeta = (source: string): TypstPostMeta => {
   const META_STRING =
     /(?:"((?:[^"\\]|\\.)*)"|'([^']*)'|([^,)]*[^,)\s])[^,)]*)/g
   const fields = /\b(title|date|description)\s*:\s*/g
-  let fieldMatch: RegExpExecArray | null
+  let fieldMatch
 
   while ((fieldMatch = fields.exec(header))) {
     META_STRING.lastIndex = fields.lastIndex
@@ -55,7 +49,7 @@ export const extractMeta = (source: string): TypstPostMeta => {
     const double = value[1]
     const single = value[2]
     const bare = value[3]
-    meta[fieldMatch[1] as keyof TypstPostMeta] =
+    meta[fieldMatch[1]] =
       double !== undefined
         ? double.replace(/\\([\s\S])/g, '$1')
         : single !== undefined
@@ -70,7 +64,7 @@ export const extractMeta = (source: string): TypstPostMeta => {
 // Wikipedia-style heading slug (the site's legacy anchor algorithm):
 // lowercase, spaces become underscores, any run outside [a-z0-9_], CJK
 // ranges, or '-' collapses to '_', then trim '_'.
-export const headingSlug = (text: string): string =>
+export const headingSlug = (text) =>
   text
     .toLowerCase()
     .replace(/ /g, '_')
@@ -79,18 +73,16 @@ export const headingSlug = (text: string): string =>
 
 // Display text for the TOC box: strip typst math `$...$` delimiters, keep
 // the inner source as plain text ("$L mu$" reads as "L mu").
-const displayText = (text: string): string =>
+const displayText = (text) =>
   text.replace(/\$([^$]+)\$/g, (_, inner) => ` ${inner.trim()} `).replace(/\s+/g, ' ').trim()
 
 // Extract `=`, `==`, ... headings from typst source. Levels are the typst
 // level + 1 (typst's `=` is h2 in the HTML export, `==` is h3). Ids are
 // deterministic and unique within a document: the second occurrence of a
 // slug gets a `_2` suffix, the third `_3`, and so on.
-export const extractHeadings = (
-  source: string,
-): { level: number; text: string; id: string }[] => {
-  const entries: { level: number; text: string; id: string }[] = []
-  const seen = new Map<string, number>()
+export const extractHeadings = (source) => {
+  const entries = []
+  const seen = new Map()
 
   for (const line of source.split(/\r?\n/)) {
     const match = /^(={1,4})\s+(.+?)\s*$/.exec(line)
@@ -113,11 +105,8 @@ export const extractHeadings = (
 // Inject heading ids into compiled HTML: typst's HTML export emits bare
 // `<h2>`/`<h3>`/... tags without anchors, so the nth heading tag of each
 // level gets the id of the nth extracted heading of that level.
-export const injectHeadingIds = (
-  html: string,
-  headings: { level: number; id: string }[],
-): string => {
-  const byLevel = new Map<number, string[]>()
+export const injectHeadingIds = (html, headings) => {
+  const byLevel = new Map()
   for (const heading of headings) {
     const list = byLevel.get(heading.level) ?? []
     list.push(heading.id)
