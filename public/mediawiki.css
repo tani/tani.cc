@@ -133,7 +133,9 @@ a.external::after {
   -webkit-user-select: none;
 }
 
-.mw-menu-toggle input {
+/* The checkbox is a sibling BEFORE the .mw-menu-toggle label (not inside
+   it), so hide it by its id; the clip pattern survives forced-colors. */
+.mw-page-container > .site-header > #mw-menu-checkbox {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -144,6 +146,13 @@ a.external::after {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Fallback for older engines: clip-path unsupported → keep it clipped */
+@supports not (clip-path: inset(50%)) {
+  .mw-page-container > .site-header > #mw-menu-checkbox {
+    clip: rect(0 0 0 0);
+  }
 }
 
 .mw-menu-icon {
@@ -176,16 +185,16 @@ a.external::after {
   top: 6px;
 }
 
-.mw-menu-toggle input:checked ~ .mw-menu-icon {
+#mw-menu-checkbox:checked ~ .mw-menu-toggle .mw-menu-icon {
   background: transparent;
 }
 
-.mw-menu-toggle input:checked ~ .mw-menu-icon::before {
+#mw-menu-checkbox:checked ~ .mw-menu-toggle .mw-menu-icon::before {
   top: 0;
   transform: rotate(45deg);
 }
 
-.mw-menu-toggle input:checked ~ .mw-menu-icon::after {
+#mw-menu-checkbox:checked ~ .mw-menu-toggle .mw-menu-icon::after {
   top: 0;
   transform: rotate(-45deg);
 }
