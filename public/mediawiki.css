@@ -118,6 +118,73 @@ a.external::after {
   color: var(--wiki-text);
 }
 
+/* Mobile menu toggle (hidden on desktop; see the responsive section) */
+.mw-menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mw-menu-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.mw-menu-icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--wiki-text);
+  position: relative;
+  transition: background 0.15s ease-in-out;
+}
+
+.mw-menu-icon::before,
+.mw-menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--wiki-text);
+  transition: transform 0.15s ease-in-out, top 0.15s ease-in-out;
+}
+
+.mw-menu-icon::before {
+  top: -6px;
+}
+
+.mw-menu-icon::after {
+  top: 6px;
+}
+
+.mw-menu-toggle input:checked + .mw-menu-icon {
+  background: transparent;
+}
+
+.mw-menu-toggle input:checked + .mw-menu-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.mw-menu-toggle input:checked + .mw-menu-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.mw-menu-label {
+  font-size: 0.8125rem;
+  color: var(--wiki-link);
+}
+
 a.site-wordmark:hover {
   text-decoration: none;
   color: var(--wiki-text);
@@ -590,17 +657,82 @@ a.site-wordmark:hover {
 }
 
 /* --------------------------------------------------------------------------
- * Responsive: stack the sidebar above the content on narrow screens
+ * Responsive: Wikipedia-style collapsible mobile navigation.
+ * Under 1000px the hamburger appears and the sidebar becomes a drawer
+ * toggled by the header checkbox; sections fold via <details>. On wide
+ * screens the checkbox is hidden and the sidebar is always visible.
  * ------------------------------------------------------------------------ */
 
 @media (max-width: 1000px) {
+  .mw-menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header {
+    align-items: center;
+    gap: 0 0.75rem;
+  }
+
   .mw-body-grid {
     display: block;
   }
 
   .mw-sidebar {
+    display: none;
     position: static;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.75rem;
+    background: #fff;
+    border: 1px solid var(--wiki-body-border);
+    padding: 0.25rem 0.75rem 0.5rem;
+  }
+
+  /* The checkbox lives in the header; the sidebar is its later sibling
+     scope — selected via :has on the page container. */
+  .mw-page-container:has(#mw-menu-checkbox:checked) .mw-sidebar {
+    display: block;
+  }
+
+  .sidebar-section summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .sidebar-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Vector-style caret */
+  .sidebar-section summary h3 {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .sidebar-section summary::after {
+    content: "";
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-left: 0.35rem;
+    border-right: 1.5px solid var(--wiki-muted);
+    border-bottom: 1.5px solid var(--wiki-muted);
+    transform: rotate(45deg);
+    transition: transform 0.15s ease-in-out;
+  }
+
+  .sidebar-section[open] summary::after {
+    transform: rotate(-135deg);
+  }
+}
+
+/* Desktop: sections always open, no carets, hamburger hidden */
+@media (min-width: 1001px) {
+  .sidebar-section summary {
+    list-style: none;
+    cursor: default;
+  }
+
+  .sidebar-section summary::-webkit-details-marker {
+    display: none;
   }
 }
 

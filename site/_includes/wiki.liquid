@@ -20,14 +20,19 @@
   <body>
     <div class="mw-page-container">
       <header class="site-header">
+        <label class="mw-menu-toggle" for="mw-menu-checkbox">
+          <input type="checkbox" id="mw-menu-checkbox" aria-label="Toggle navigation menu" />
+          <span class="mw-menu-icon" aria-hidden="true"></span>
+          <span class="mw-menu-label">Menu</span>
+        </label>
         <a class="site-wordmark" href="/index.html">tani.cc</a>
         <span class="site-tagline">The Free Encyclopedia</span>
       </header>
 
       <div class="mw-body-grid">
-        <nav class="mw-sidebar">
-          <div class="sidebar-section">
-            <h3>Navigation</h3>
+        <nav class="mw-sidebar" id="mw-sidebar">
+          <details class="sidebar-section" open>
+            <summary><h3>Navigation</h3></summary>
             <ul>
               {% for item in navigation %}
               <li>
@@ -37,19 +42,18 @@
               </li>
               {% endfor %}
             </ul>
-          </div>
-
-          <div class="sidebar-section">
-            <h3>Tools</h3>
+          </details>
+          <details class="sidebar-section">
+            <summary><h3>Tools</h3></summary>
             <ul>
               <li><a class="external" href="{{ page.url | editHref }}">Edit</a></li>
               <li><a class="external" href="{{ repoUrl }}/commits/main">View history</a></li>
               <li><a class="external" href="{{ repoUrl }}/issues">Discussion</a></li>
               {% for link in site.profile.links %}
-              <li><a class="external" href="{{ link.url }}">{{ link.label }}</a></li>
+              <li><a class="external" href="{{ link.url }}">{{ link.label }}</li>
               {% endfor %}
             </ul>
-          </div>
+          </details>
         </nav>
 
         <main class="mw-body">
