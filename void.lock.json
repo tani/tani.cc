@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "source": {
+    "name": "tani"
+  },
+  "resolved": {
+    "name": "tani",
+    "compatibility_date": "2026-02-24"
+  },
+  "text": "{\n  \"name\": \"tani\",\n  \"compatibility_date\": \"2026-02-24\"\n}\n"
+}

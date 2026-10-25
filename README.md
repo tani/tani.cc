@@ -1,79 +1,93 @@
-# tani.cc-v6
+# tani.cc
 
-Static site generator for `website.toml`, Mustache templates, and Markdown blog posts.
+Personal site of Masaya Taniguchi, built as a [Void](https://void.cloud) pages app with React
+and static prerendering. Pages are rendered from `website.toml`; blog posts come from
+Markdown files rendered with markdown-it + MathJax (static SVG output, no client-side
+math JavaScript).
 
 ## Structure
 
 - `website.toml`: profile, research, CV, and publications data
-- `content/*.md`: blog posts
-- `template/*.mustache`: page templates and shared partials
-- `script/render.mjs`: generic TOML + Mustache page renderer
-- `script/blog.mjs`: blog index generator
-- `script/blogpost.mjs`: Markdown blog post generator
-- `script/site-rendering.mjs`: shared rendering and metadata helpers
+- `content/*.md`: blog posts (front matter + Markdown, LaTeX and `prooftree` environments supported)
+- `pages/`: Void page components and their `.server.ts` loaders
+- `src/lib/site.ts`: TOML parsing (`smol-toml`) and publication grouping helpers
+- `src/lib/posts.ts`: Markdown post parsing and MathJax rendering
+- `src/components/`: shared page chrome — `Layout.tsx` (Vector-style header,
+  sidebar, content column, footer), plus `Infobox`, `Toc`, and `Section`
+- `public/mediawiki.css`: hand-written MediaWiki Vector-inspired theme (no
+  CSS framework, no webfonts)
+- `vite.config.ts`: Vite config with the Void and React plugins
+- `void.config.ts`: Void config (static output, head defaults, redirects)
 - `test/*.test.mjs`: Node test runner tests
-- `dist/`: generated HTML output
+- `dist/`: build output (`dist/client/` for the prerendered site)
+
+## URLs
+
+Pages live at clean URLs: `/`, `/profile`, `/publications`, `/blog`, and `/blog/<slug>`
+(the slug is the Markdown file name). The build also emits `dist/client/profile.html`
+etc., so legacy `/foo.html` links to the four fixed pages keep resolving. Blog post
+URLs changed from `/blog/<slug>.html` to `/blog/<slug>`.
+
+## Design
+
+The site is styled to resemble Wikipedia's MediaWiki Vector skin. All styling
+lives in `public/mediawiki.css`; Bootstrap, Bootswatch, and Google Fonts were
+removed entirely, and the page chrome (sidebar, tabs, infobox, table of
+contents, category bar) is built by `src/components/`. The "Edit" and
+"View history" links (sidebar, tabs, and per-section `[edit]` markers) point at
+the GitHub repository: Edit opens the source file that renders the current
+route, and View history opens the commit history.
 
 ## Build
 
 ```sh
-pnpm build
+npm run build
 ```
 
-This runs `just all` and generates:
+Prerenders every page to `dist/client/` via `vite build` (`output: "static"` in
+`void.config.ts`).
 
-- `dist/index.html`
-- `dist/profile.html`
-- `dist/publications.html`
-- `dist/blog.html`
-- `dist/blog/*.html`
-
-Individual targets are available through `just`:
+## Develop
 
 ```sh
-just index
-just profile
-just publications
-just blog
-just blog-index
-just blog-posts
-```
-
-## Blog Posts
-
-Add Markdown files to `content/`. Each file may start with front matter:
-
-```md
----
-title: Post Title
-date: 2026-05-04
-description: Short summary
----
-
-Post body.
-```
-
-`just blog-posts` renders every `content/*.md` file to `dist/blog/<slug>.html` using shell expansion in the Justfile.
-
-## Templates
-
-All page templates use shared partials:
-
-- `template/preamble.mustache`: document head, Bootstrap/Bootswatch, fonts, navbar, opening `<main>`
-- `template/postamble.mustache`: closing `<main>`, Bootstrap bundle, closing document tags
-
-## Generated Files
-
-`dist/` is generated output and is ignored by Git. Rebuild it with `pnpm build`.
-
-To remove generated output:
-
-```sh
-pnpm clean
+npm run dev
 ```
 
 ## Test
 
 ```sh
-pnpm test
+npm test
+```
+
+## Deploy
+
+Deployments are fully managed by Cloudflare — no local builds, no CI.
+
+Connect the repository once in the Cloudflare dashboard (Workers & Pages →
+Create → GitHub → `tani/tani.cc`) and set:
+
+- Build command: `npm run build`
+- Deploy command: `npx void deploy --platform cloudflare --skip-build`
+- Production branch: `main`
+- Build variable: `CLOUDFLARE_ACCOUNT_ID` (or rely on the pinned
+  `cloudflare.account_id` in `void.config.ts`, which reads it from the env)
+
+Workers Builds injects `CLOUDFLARE_API_TOKEN` automatically. Every push to
+`main` builds and deploys on Cloudflare's infrastructure.
+
+The Worker name is pinned to `tani` via `cloudflare.name` in `void.config.ts` —
+name the dashboard-created Worker exactly `tani` so the Git-connected project
+and the deploy target match.
+
+The site is fully static (all pages prerendered), so Void deploys it as a pure
+static site: a thin edge worker for redirects/headers plus static assets. After
+the first deploy, attach the domain (`tani.cc`) to the Worker in
+Settings → Domains, then remove the old Pages project.
+
+## Generated Files
+
+`dist/` is generated output and is ignored by Git. To remove it:
+
+```sh
+npm run clean
 ```
