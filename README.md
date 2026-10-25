@@ -86,47 +86,53 @@ npm test
 
 ## Deploy
 
-Deployments run on GitHub Actions on every push to `main` — see
-[`.github/workflows/void-deploy.yml`](.github/workflows/void-deploy.yml).
-(Cloudflare dashboard "Workers Builds" is no longer used; if the repository was
-previously connected there, disconnect it or simply stop using it — the
-Actions workflow deploys to the same-named Worker.)
+Two ways to deploy; both produce the same pure-static Worker deployment
+(thin edge worker + prerendered assets).
 
-Set these in the GitHub repository:
+### Automatic: GitHub Actions (recommended)
 
-- Secret `CLOUDFLARE_API_TOKEN` (Settings → Secrets and variables → Actions):
-  a token scoped to the account, with Workers Scripts: Edit plus read access
-  to bound resources.
-- Variable `CLOUDFLARE_ACCOUNT_ID`: the account holding the Worker — export it
-  into the workflow environment (e.g. add an `env:` entry in the Deploy step
-  reading `${{ vars.CLOUDFLARE_ACCOUNT_ID }}`), since the deploy reads it from
-  the environment. Do not pin it in `void.config.ts` — that makes the
-  generated config change between runs and the deploy refuses to upload.
-- Variable `CLOUDFLARE_WORKERS_SUBDOMAIN`: your account's `workers.dev`
-  subdomain (the `my-team` in `my-team.workers.dev`; find it on any worker's
-  workers.dev URL). Void needs it to probe the uploaded version's readiness
-  when the version has no preview URL.
+Every push to `main` runs
+[`.github/workflows/void-deploy.yml`](.github/workflows/void-deploy.yml):
+`npm ci` → `npx void deploy --platform cloudflare`. Watch progress in the
+repo's Actions tab.
 
-The Worker name is pinned to `tani` via `cloudflare.name` in `void.config.ts`.
-The deploy uploads Worker **versions**, so a Worker must already exist under
-exactly that name (`tani`) in the same account — if one was previously created
-for Workers Builds, that same Worker works; the Actions workflow deploys to
-it. If no Worker exists, create one named `tani` in the dashboard.
-`CLOUDFLARE_ACCOUNT_ID` must point at the account holding that Worker, or the
-upload fails with "was not found in your account".
+One-time setup:
 
-The site is fully static (all pages prerendered), so Void deploys it as a pure
-static site: a thin edge worker for redirects/headers plus static assets. After
-the first deploy, attach the domain (`tani.cc`) to the Worker in
-Settings → Domains, then remove the old Pages project.
+1. **GitHub secret** `CLOUDFLARE_API_TOKEN`
+   (Settings → Secrets and variables → Actions): an API token with
+   **Workers Scripts: Edit** plus read access to bound resources.
+2. **GitHub variable** `CLOUDFLARE_WORKERS_SUBDOMAIN`: your account's
+   `workers.dev` subdomain (the `my-team` in `my-team.workers.dev`; visible
+   on any worker's workers.dev URL, or dash → account → Subdomain). Void
+   uses it to probe the uploaded version's readiness when the version has
+   no preview URL.
+3. **GitHub variable** `CLOUDFLARE_ACCOUNT_ID`: export it into the Deploy
+   step's `env:` (add
+   `CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}` alongside the
+   subdomain). Do **not** pin it in `void.config.ts` — that would make the
+   generated config change between runs and the deploy refuses to upload.
+4. **Worker `tani` must already exist** in that account: the deploy uploads
+   Worker *versions* (it never creates a Worker). If you previously
+   connected this repo to Cloudflare "Workers Builds", that same Worker
+   works — disconnect Workers Builds from its dashboard and rely on Actions
+   instead. If none exists: Workers & Pages → Create → name it exactly
+   `tani` (the name is pinned via `cloudflare.name` in `void.config.ts`).
 
-Manual fallback (needs `npx void cloudflare login` or `CLOUDFLARE_API_TOKEN`):
+After the first successful deploy: attach the domain (`tani.cc`) to the
+Worker in Settings → Domains & Routes, then delete the old Pages project.
+
+### Manual: local deploy
+
+Needs `npx void cloudflare login` (browser OAuth) or `CLOUDFLARE_API_TOKEN`
+in the environment:
 
 ```sh
 npm run deploy
 ```
 
-`void deploy` builds the site itself, so no separate build is needed.
+`void deploy` runs the build itself (typst compilation included), so no
+separate `npm run build` is needed. The workflow and this script deploy
+identically.
 
 ## Generated Files
 
