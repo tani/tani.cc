@@ -8,6 +8,13 @@ export default defineConfig({
     // (set it as a Workers Builds build variable); pinning it here from
     // the env would make the generated config change between runs.
     name: 'tani',
+    // Void republishes only the triggers declared in config. The
+    // dashboard-created Worker ships with these on; declaring them lets
+    // the deploy republish the Worker without refusing over
+    // "dashboard-managed routes or visibility".
+    workers_dev: true,
+    preview_urls: true,
+    routes: [],
   },
   head: {
     htmlAttrs: { lang: 'ja' },
