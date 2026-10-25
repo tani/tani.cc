@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "clean": "rm -rf dist",
-    "deploy": "vite build && void deploy --platform cloudflare",
+    "deploy": "vite build && void deploy --platform cloudflare --skip-build",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {

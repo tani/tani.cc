@@ -4,10 +4,10 @@ export default defineConfig({
   output: 'static',
   cloudflare: {
     // Deterministic Worker name — must match the dashboard-created Worker.
+    // The account is resolved from CLOUDFLARE_ACCOUNT_ID at deploy time
+    // (set it as a Workers Builds build variable); pinning it here from
+    // the env would make the generated config change between runs.
     name: 'tani',
-    // Unblocks non-interactive deploys in Workers Builds (setting
-    // CLOUDFLARE_ACCOUNT_ID as a build variable works too; this pins it).
-    account_id: process.env.CLOUDFLARE_ACCOUNT_ID,
   },
   head: {
     htmlAttrs: { lang: 'ja' },

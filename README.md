@@ -84,6 +84,9 @@ static site: a thin edge worker for redirects/headers plus static assets. After
 the first deploy, attach the domain (`tani.cc`) to the Worker in
 Settings → Domains, then remove the old Pages project.
 
+Manual fallback (needs `npx void cloudflare login` or `CLOUDFLARE_API_TOKEN`):
+`npm run deploy` builds locally and deploys with `--skip-build`.
+
 ## Generated Files
 
 `dist/` is generated output and is ignored by Git. To remove it:
