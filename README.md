@@ -69,15 +69,20 @@ Create → GitHub → `tani/tani.cc`) and set:
 - Build command: `npm run build`
 - Deploy command: `npx void deploy --platform cloudflare --skip-build`
 - Production branch: `main`
-- Build variable: `CLOUDFLARE_ACCOUNT_ID` (or rely on the pinned
-  `cloudflare.account_id` in `void.config.ts`, which reads it from the env)
+- Build variable: `CLOUDFLARE_ACCOUNT_ID` (the deploy reads it from the
+  environment; do not pin it in `void.config.ts` — that makes the generated
+  config change between runs and the deploy refuses to upload)
 
 Workers Builds injects `CLOUDFLARE_API_TOKEN` automatically. Every push to
 `main` builds and deploys on Cloudflare's infrastructure.
 
-The Worker name is pinned to `tani` via `cloudflare.name` in `void.config.ts` —
-name the dashboard-created Worker exactly `tani` so the Git-connected project
-and the deploy target match.
+The Worker name is pinned to `tani` via `cloudflare.name` in `void.config.ts`.
+The deploy uploads Worker **versions**, so the Git-connected Worker must
+already exist under exactly that name (`tani`) in the same account —
+"Create application" in the dashboard pre-creates it when you connect the
+repo; if you named it differently, either rename it or change
+`cloudflare.name` to match. `CLOUDFLARE_ACCOUNT_ID` must point at the account
+holding that Worker, or the upload fails with "was not found in your account".
 
 The site is fully static (all pages prerendered), so Void deploys it as a pure
 static site: a thin edge worker for redirects/headers plus static assets. After
