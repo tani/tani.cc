@@ -141,12 +141,33 @@ a.site-wordmark:hover {
   padding-bottom: 1.5rem;
 }
 
+/* Narrow viewports: keep every element visible (no hamburger, no
+   collapsing) but let the article come first. DOM order is sidebar
+   before body, so the sidebar needs grid order:2 to stack below. */
+@media (max-width: 50rem) {
+  .mw-body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mw-sidebar {
+    order: 2;
+    position: static;
+    border-top: 1px solid var(--wiki-border-soft);
+    padding-top: 0.75rem;
+  }
+
+  .sidebar-section ul {
+    margin-bottom: 0.75rem;
+  }
+}
+
 .mw-sidebar {
   position: sticky;
   top: 1rem;
   font-size: 0.8125rem;
   min-width: 0;
 }
+
 
 .sidebar-section h3 {
   margin: 0 0 0.25rem;
@@ -552,6 +573,8 @@ a.site-wordmark:hover {
  * and muted. */
 .void-article .typst-prooftree {
   margin: 0.75rem auto;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .void-article .typst-prooftree table {
