@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700"
+     role="img" tabindex="0" style="outline:none;cursor:pointer" aria-labelledby="title description">
+  <title id="title">TANIGUCHI MASAYA — dense circular serif typography</title>
+  <desc id="description">Click or press Enter to recompute all letter positions, sizes and rotations with shape-aware collision detection.</desc>
+  <defs><clipPath id="disk"><circle cx="350" cy="350" r="292"/></clipPath></defs>
+  <rect width="700" height="700" fill="white"/>
+  <g clip-path="url(#disk)">
+    <g id="cloud" transform="translate(350 340) scale(1 1.10) translate(-350 -350)"
+       fill="#000" font-family="'Noto Serif Display', Georgia, 'Times New Roman', serif"
+       font-weight="900" text-anchor="middle" dominant-baseline="central" style="user-select:none">
+      <text class="letter" data-i="0" x="0" y="0" font-size="240" transform="translate(375.0 397.5) rotate(0)">T</text>
+      <text class="letter" data-i="1" x="0" y="0" font-size="225" transform="translate(247.5 312.5) rotate(30)">A</text>
+      <text class="letter" data-i="2" x="0" y="0" font-size="210" transform="translate(462.5 257.5) rotate(30)">N</text>
+      <text class="letter" data-i="3" x="0" y="0" font-size="204" transform="translate(267.5 462.5) rotate(60)">I</text>
+      <text class="letter" data-i="4" x="0" y="0" font-size="196" transform="translate(337.5 195.0) rotate(-75)">G</text>
+      <text class="letter" data-i="5" x="0" y="0" font-size="186" transform="translate(495.0 420.0) rotate(-45)">U</text>
+      <text class="letter" data-i="6" x="0" y="0" font-size="179" transform="translate(145.0 367.5) rotate(-75)">C</text>
+      <text class="letter" data-i="7" x="0" y="0" font-size="173" transform="translate(177.5 232.5) rotate(-45)">H</text>
+      <text class="letter" data-i="8" x="0" y="0" font-size="169" transform="translate(380.0 505.0) rotate(90)">I</text>
+      <text class="letter" data-i="9" x="0" y="0" font-size="165" transform="translate(557.5 355.0) rotate(-75)">M</text>
+      <text class="letter" data-i="10" x="0" y="0" font-size="159" transform="translate(522.5 537.5) rotate(75)">A</text>
+      <text class="letter" data-i="11" x="0" y="0" font-size="154" transform="translate(242.5 557.5) rotate(60)">S</text>
+      <text class="letter" data-i="12" x="0" y="0" font-size="148" transform="translate(522.5 170.0) rotate(-20)">A</text>
+      <text class="letter" data-i="13" x="0" y="0" font-size="141" transform="translate(405.0 582.5) rotate(-75)">Y</text>
+      <text class="letter" data-i="14" x="0" y="0" font-size="135" transform="translate(142.5 460.0) rotate(-75)">A</text>
+    </g>
+  </g>
+  <script type="application/ecmascript"><![CDATA[
+
+(() => {
+  'use strict';
+  const svg = document.documentElement;
+  const letters = [...svg.querySelectorAll('#cloud .letter')];
+  const word = 'TANIGUCHIMASAYA';
+  const N = 192, MID = 96, R = 81;
+  const scale = N / 700;
+  const angles = [-90,-75,-60,-45,-30,-15,0,15,30,45,60,75,90];
+  const original = [240,225,210,204,196,186,179,173,169,165,159,154,148,141,135];
+  const scratch = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+  scratch.width = scratch.height = 126;
+  const ctx = scratch.getContext('2d', {willReadFrequently:true});
+  const maskCache = new Map();
+  const disk = new Uint8Array(N*N);
+  for (let y=0;y<N;y++) for(let x=0;x<N;x++) {
+    disk[y*N+x] = ((x-MID)**2+(y-MID)**2 <= R*R) ? 1 : 0;
+  }
+  const rand = (min,max) => min+(max-min)*Math.random();
+  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+  function mask(char, size, angle) {
+    const sizePx = Math.round(size*scale);
+    const key = `${char}|${sizePx}|${angle}`;
+    if (maskCache.has(key)) return maskCache.get(key);
+    ctx.clearRect(0,0,126,126);
+    ctx.save();
+    ctx.translate(63,63);
+    ctx.rotate(angle*Math.PI/180);
+    ctx.fillStyle='#000';
+    ctx.font = `900 ${sizePx}px "Noto Serif Display", Georgia, "Times New Roman", serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(char,0,sizePx*0.108);
+    ctx.restore();
+    const p = ctx.getImageData(0,0,126,126).data;
+    let dx=[],dy=[], left=500,right=-500,top=500,bottom=-500;
+    for(let y=0;y<126;y++) for(let x=0;x<126;x++) {
+      if(p[(y*126+x)*4+3]<75) continue;
+      const a=x-63,b=y-63;
+      dx.push(a);dy.push(b);
+      if(a<left) left=a;if(a>right) right=a;
+      if(b<top) top=b;if(b>bottom) bottom=b;
+    }
+    const glyph = {dx:Int16Array.from(dx),dy:Int16Array.from(dy),length:dx.length,
+      left,right,top,bottom, sizePx, angle};
+    if (maskCache.size>1100) maskCache.clear();
+    maskCache.set(key,glyph);
+    return glyph;
+  }
+  function positionOK(g, cx,cy,occ) {
+    if(cx+g.left<1 || cx+g.right>=N-1 || cy+g.top<1 ||cy+g.bottom>=N-1) return false;
+    const len=g.length, xs=g.dx,ys=g.dy;
+    // Every other pixel early-rejection first, exact test second.
+    for (let j=0;j<len;j+=3){
+      const idx=(cy+ys[j])*N+cx+xs[j];
+      if(!disk[idx] || occ[idx]) return false;
+    }
+    for (let j=0;j<len;j++) {
+      const idx=(cy+ys[j])*N+cx+xs[j];
+      if(!disk[idx] || occ[idx]) return false;
+    }
+    return true;
+  }
+  function contactScore(g,cx,cy,occ,i) {
+    const xs=g.dx, ys=g.dy, len=g.length;
+    let contact=0, rim=0;
+    for (let j=0;j<len;j+=7) {
+      const x=cx+xs[j],y=cy+ys[j],idx=y*N+x;
+      if(occ[idx-2] || occ[idx+2] || occ[idx-2*N] || occ[idx+2*N]) contact++;
+      if((x-MID)**2+(y-MID)**2 > (R-9)**2) rim++;
+    }
+    return contact*0.7 + rim*3.5 + rand(0,13);
+  }
+  function generate(attempt=0) {
+    const occ = new Uint8Array(N*N);
+    const result = [];
+    const overall = [0.94,0.87,0.80,0.74][Math.min(attempt,3)];
+    // Reorder *actual letter identities*, not just their rotations.
+    const order = [...word].map((char,i)=>({char,i,
+      size:Math.round(original[i]*overall*rand(0.90,1.07))}));
+    order.sort((a,b)=>b.size-a.size);
+    for(let rank=0;rank<order.length;rank++) {
+      const item=order[rank];
+      let choice=null;
+      const localScales = [1,0.94,0.88,0.82];
+      for(let shrink=0;shrink<localScales.length && !choice;shrink++) {
+        const size=Math.round(item.size*localScales[shrink]);
+        let best=null;
+        const rounds = rank<8 ? 600 : (rank<12?1100:1750);
+        for(let j=0;j<rounds;j++) {
+          const angle=pick(angles);
+          const g=mask(item.char,size,angle);
+          if(!g.length) continue;
+          let x,y;
+          // Uniform-area sampling, with an increased center preference initially.
+          const theta=rand(0,Math.PI*2), radius=R*Math.sqrt(Math.random());
+          const spread = rank===0 ? .27 : rank===1 ? .55 : 1.02;
+          x=Math.round(MID+Math.cos(theta)*radius*spread);
+          y=Math.round(MID+Math.sin(theta)*radius*spread);
+          if(!positionOK(g,x,y,occ)) continue;
+          const score=contactScore(g,x,y,occ,rank);
+          if(!best||score>best.score) best={score,x,y,angle,size,g};
+        }
+        if(best) choice=best;
+      }
+      if(!choice) return null;
+      const {x,y,g}=choice;
+      for(let j=0;j<g.length;j++) {
+        const idx=(y+g.dy[j])*N+x+g.dx[j];
+        occ[idx]=1;
+        occ[idx-1]=1; occ[idx+1]=1; occ[idx-N]=1; occ[idx+N]=1;
+      }
+      result.push({...choice,index:item.i});
+    }
+    return result;
+  }
+  let running=false;
+  function shuffle() {
+    if(running) return;
+    running=true;
+    svg.style.cursor='progress';
+    // Defer until next frame so the cursor state can be rendered.
+    requestAnimationFrame(()=>setTimeout(()=>{
+      try {
+        let layout=null;
+        for(let attempt=0;attempt<4 && !layout;attempt++) layout=generate(attempt);
+        if(layout) {
+          // No rotation or translation of the cloud as a whole.
+          // Every glyph receives a newly sampled position and angle.
+          document.getElementById('cloud').removeAttribute('transform');
+          for (const glyph of layout) {
+            const el=letters[glyph.index];
+            el.setAttribute('font-size',String(glyph.size));
+            el.setAttribute('transform',`translate(${(glyph.x/scale).toFixed(1)} ${(glyph.y/scale).toFixed(1)}) rotate(${glyph.angle})`);
+          }
+          svg.dataset.shuffleCount=String(+(svg.dataset.shuffleCount||0)+1);
+        }
+      } catch (err) { console.error('Shuffle failed:',err); }
+      svg.style.cursor='pointer';
+      running=false;
+    },0));
+  }
+  svg.style.cursor='pointer';
+  svg.addEventListener('click', shuffle);
+  svg.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' ') {event.preventDefault(); shuffle();}
+  });
+  // Named function also callable from a browser's developer console.
+  svg.shuffleLetters=shuffle;
+})();
+
+  ]]></script>
+</svg>

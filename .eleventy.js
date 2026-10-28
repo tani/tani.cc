@@ -143,8 +143,11 @@ export default function (eleventyConfig) {
   // Hierarchical TOC numbering filter for templates using toc.liquid.
   eleventyConfig.addFilter('tocNumbering', tocNumbering)
 
-  // Theme asset: served at /mediawiki.css.
-  eleventyConfig.addPassthroughCopy({ 'public/mediawiki.css': 'mediawiki.css' })
+  // Theme assets: served at /mediawiki.css and /logo.svg.
+  eleventyConfig.addPassthroughCopy({
+    'public/mediawiki.css': 'mediawiki.css',
+    'public/logo.svg': 'logo.svg',
+  })
 
   return {
     dir: {

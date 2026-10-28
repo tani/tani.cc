@@ -3,7 +3,7 @@
  *
  * Hand-written stylesheet: no CSS framework, no external fonts, no imports.
  * Implements the site-wide class contract:
- *   site-header / site-wordmark / site-tagline
+ *   site-header / site-wordmark / site-logo / site-tagline
  *   mw-page-container / mw-body-grid / mw-sidebar / sidebar-section
  *   mw-body / vector-tabs / firstHeading / contentSub / mw-body-content
  *   infobox / infobox-image / infobox-title / infobox-table
@@ -105,17 +105,24 @@ a.external::after {
 .site-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 0 1.25rem;
   padding: 1rem 0 0.75rem;
 }
 
 .site-wordmark {
-  font-family: var(--wiki-serif);
-  font-size: 1.75rem;
-  font-weight: normal;
-  line-height: 1.2;
+  display: inline-flex;
+  line-height: 0;
   color: var(--wiki-text);
+}
+
+.site-logo {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  /* The artwork ships with a white square canvas; multiply lets it melt
+     into the page background, leaving only the lettering. */
+  mix-blend-mode: multiply;
 }
 
 a.site-wordmark:hover {
