@@ -120,9 +120,6 @@ a.external::after {
   display: block;
   width: 4rem;
   height: 4rem;
-  /* The artwork ships with a white square canvas; multiply lets it melt
-     into the page background, leaving only the lettering. */
-  mix-blend-mode: multiply;
 }
 
 a.site-wordmark:hover {

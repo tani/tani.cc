@@ -4,7 +4,6 @@
   <title id="title">TANIGUCHI MASAYA — dense circular serif typography</title>
   <desc id="description">Click or press Enter to recompute all letter positions, sizes and rotations with shape-aware collision detection.</desc>
   <defs><clipPath id="disk"><circle cx="350" cy="350" r="292"/></clipPath></defs>
-  <rect width="700" height="700" fill="white"/>
   <g clip-path="url(#disk)">
     <g id="cloud" transform="translate(350 340) scale(1 1.10) translate(-350 -350)"
        fill="#000" font-family="'Noto Serif Display', Georgia, 'Times New Roman', serif"
