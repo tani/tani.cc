@@ -5,8 +5,8 @@ contact = "masaya.taniguchi@riken.jp"
 affiliation = "RIKEN"
 section = "Explainable AI Team, Center for Advanced Intelligence Project"
 role = "JSPS Postdoctoral Research Fellow"
-headline = "mathematical structure of natural languages"
-affiliationLong = "RIKEN Advanced Intelligence Project (AIP)"
+headline = "learning dynamics, mathematical linguistics, and verifiable AI"
+affiliationLong = "RIKEN Center for Advanced Intelligence Project (AIP)"
 
   [[profile.links]]
   label = "researchmap"
@@ -18,7 +18,11 @@ affiliationLong = "RIKEN Advanced Intelligence Project (AIP)"
 
   [[profile.links]]
   label = "Website"
-  url = "https://tani.github.io"
+  url = "https://tani.cc/"
+
+  [[profile.links]]
+  label = "ORCID"
+  url = "https://orcid.org/0000-0003-4237-9998"
 
   [[profile.links]]
   label = "Google Scholar"
@@ -59,31 +63,41 @@ affiliationLong = "RIKEN Advanced Intelligence Project (AIP)"
   [profile.bio]
   en = """
 Masaya Taniguchi is a JSPS Postdoctoral Research Fellow in the Explainable AI Team
-at RIKEN Advanced Intelligence Project (AIP). He earned his Bachelor of Science
-in Mathematics from Gakushuin University and his Master of Science and Ph.D. in
-Information Science from JAIST. His research focuses on formal semantics, categorial grammar,
-substructural logic, theorem proving, and the computational analysis of language.
+at the RIKEN Center for Advanced Intelligence Project (AIP). He studies how the
+order and history of learning shape the structures and capabilities acquired by
+computational systems. His research combines mathematical analysis and controlled
+experiments on learning dynamics, curriculum learning, and data-order control,
+building on categorial grammar, substructural logic, and formal-language theory.
+He also works on verifiable AI and AI for Mathematics, connecting language models
+with theorem proving, formal verification, and countermodel generation. He earned
+his B.S. in Mathematics from Gakushuin University and his M.S. and Ph.D. in
+Information Science from JAIST.
 """
 
 [research]
 interests = [
+  "Learning Dynamics and Training-History Dependence",
+  "Curriculum Learning and Data-Order Control",
+  "Learnability and Expressivity of Language Models",
+  "Neuro-Symbolic AI and AI for Mathematics",
+  "Automated Theorem Proving and Formal Verification",
   "Natural Language Processing",
   "Formal Semantics and Grammar of Natural Language",
   "Combinatory Categorial Grammar",
   "Substructural Logic and Proof Theory",
-  "Theorem Proving",
-  "Learnability and Expressibility of Language Models"
+  "Cyclic Proof Systems and Lean Formalization",
+  "Programming Languages and Proof Assistants"
 ]
 
   [[research.areas]]
   discipline = "Informatics"
-  field = "Information theory"
-  keywords = "Theorem Proving"
+  field = "Theoretical informatics"
+  keywords = "Learning dynamics, formal languages, theorem proving, formal verification"
 
   [[research.areas]]
   discipline = "Natural sciences"
   field = "Basic mathematics"
-  keywords = "Proof Theory"
+  keywords = "Proof theory, substructural logic"
 
   [[research.areas]]
   discipline = "Humanities & social sciences"
@@ -95,6 +109,12 @@ supervisors = [
   "Shinobu Hosono (Mathematics, Gakushuin University)",
   "Satoshi Tojo (Information Science, JAIST)"
 ]
+
+  [[cv.financialSupport]]
+  title = "ACM SIGPLAN Professional Activities Committee (PAC) Grant"
+  detail = "ICFP 2026 travel support, USD 1,500 (professional-activities support)"
+  organization = "ACM SIGPLAN"
+  range = "2026"
 
   [[cv.financialSupport]]
   title = "JAIST Scholarship M Program"
@@ -148,13 +168,40 @@ supervisors = [
   year = "2023, 2024"
 
   [[cv.academicWork]]
-  title = "Reviewer, Journal of Logic, Language and Linguistics (JoLLI)"
+  title = "Reviewer, Journal of Logic, Language and Information (JoLLI)"
 
   [[cv.academicWork]]
   title = """
 Secondary reviewer, The 2024 Joint International Conference on Computational
-Linguistics, Language Resources and Evaluation (LREC)
+Linguistics, Language Resources and Evaluation (LREC-COLING 2024)
 """
+
+  [[cv.academicWork]]
+  title = "Lead Organizer, KSE 2026 Special Session: AI4Math — Neuro-Symbolic Integration for Mathematical Discovery and Reasoning"
+  year = "2026"
+
+  [[cv.academicWork]]
+  title = "Organizer, TPP 2026 (22nd Theorem Proving and Provers Meeting; Nov 16–17, forthcoming)"
+  year = "2026"
+
+  [[cv.academicWork]]
+  title = "Organizer, SLACS 2027 (forthcoming)"
+  year = "2027"
+
+  [[cv.academicWork]]
+  title = "Organizer, Logic Winter School III"
+  year = "2025"
+
+  [[cv.academicWork]]
+  title = "Mentor, Google Summer of Code, Haskell.org"
+  year = "2026"
+
+  [[cv.academicWork]]
+  title = "Reviewer, ICML"
+
+  [[cv.academicWork]]
+  title = "Reviewer, NeurIPS 2026 AI4Math Workshop"
+  year = "2026"
 
   [[cv.academicWork]]
   title = 'Commented on 数学セミナー2021年2月号 "直観主義論理上の逆数学◎根元多佳子"'
@@ -164,11 +211,35 @@ Linguistics, Language Resources and Evaluation (LREC)
   date = "Jul 2022"
 
   [[cv.teaching]]
+  role = "Research mentor"
+  institution = "RIKEN AIP"
+
+    [[cv.teaching.items]]
+    course = "Undergraduate research on data-order effects and optimizer dynamics (Kyoto University)"
+    period = "Apr 2026 - Jul 2026"
+
+    [[cv.teaching.items]]
+    course = "RIKEN student-trainee research mentoring"
+    period = "2024 - 2026"
+
+    [[cv.teaching.items]]
+    course = "University of Illinois Springfield internship: research supervision and academic-credit assessment"
+    period = "Fall 2024; Spring 2025"
+
+    [[cv.teaching.items]]
+    course = "JAIST minor research project"
+    period = "May 2025 - Present"
+
+    [[cv.teaching.items]]
+    course = "Hierarchical generalization in language models: research mentoring from project development through EMNLP 2026 submission"
+    period = "Oct 2025 - Present"
+
+  [[cv.teaching]]
   role = "Teaching Assistant"
   institution = "JAIST"
 
     [[cv.teaching.items]]
-    course = "Algebra for Computer Scientist"
+    course = "Algebra for Computer Scientists"
     period = "Jun 2021 - Aug 2021"
 
     [[cv.teaching.items]]
@@ -180,7 +251,7 @@ Linguistics, Language Resources and Evaluation (LREC)
     period = "Apr 2019 - Jun 2019; Apr 2020 - Jun 2020; Apr 2021 - Jun 2021; Apr 2022 - Jun 2022"
 
     [[cv.teaching.items]]
-    course = "Mathematics for Information Scientist"
+    course = "Mathematics for Information Scientists"
     period = "Jun 2019 - Aug 2019; Jun 2020 - Aug 2020"
 
   [[cv.education]]
@@ -210,19 +281,19 @@ Linguistics, Language Resources and Evaluation (LREC)
   [[cv.experience]]
   affiliation = "MBZUAI"
   section = "Department of NLP"
-  role = "Visiting Reseacher"
-  range = "Jan 2026 - Jan 2026"
+  role = "Visiting Researcher"
+  range = "Jan 2026"
 
   [[cv.experience]]
   affiliation = "Tohoku University"
   section = "Language AI Center"
-  role = "Visiting Reseacher"
+  role = "Visiting Researcher"
   range = "Oct 2025 - Mar 2026"
 
   [[cv.experience]]
   affiliation = "RIKEN"
-  section = "Natural Langauge Understanding Team, AIP"
-  role = "Special Post-Doctoral Researcher"
+  section = "Natural Language Understanding Team, AIP"
+  role = "Special Postdoctoral Researcher"
   range = "Apr 2023 - Mar 2026"
 
   [[cv.experience]]
@@ -250,67 +321,181 @@ Linguistics, Language Resources and Evaluation (LREC)
   affiliation = "Japan Society for the Promotion of Science"
   range = "Apr 2023"
 
+  # Checked against the author's October 2026 CV and updated project records.
+  # Funding amounts cover the full project period, not annual allocations.
+  # PI awards, collaboration support, institutional budgets, and participation
+  # are identified explicitly; unpriced research support has no cash amount.
+  [[cv.projects]]
+  title = "Theoretical Research on Constrained Categorial Grammar Based on Incremental Parsing"
+  organization = "JSPS"
+  system = "KAKENHI 26KJ0414"
+  category = "Grant-in-Aid for JSPS Fellows (PD); Principal Investigator"
+  range = "Apr 2026 - Mar 2029"
+  amount = "3,510,000 JPY total (2,700,000 direct; 810,000 indirect)"
+  url = "https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-26KJ0414/"
+
+  [[cv.projects]]
+  title = "AI for Science Collaboration in Japan and APAC: Counterexample Generation and Exploration of Formal Systems"
+  organization = "Google DeepMind"
+  system = "AI for Science Collaboration"
+  category = "RIKEN-side Principal Investigator; collaboration and research support"
+  range = "Jul 2026 - Dec 2026"
+
+  [[cv.projects]]
+  title = "記号処理とニューラルな直感の融合による数学的発見: AI4Mathグランドチャレンジの策定"
+  organization = "National Institute of Informatics (NII)"
+  system = "Open Collaborative Research, Research Planning Meeting"
+  category = "Principal Investigator"
+  range = "Jul 2026 - Mar 2027"
+
+  [[cv.projects]]
+  title = "HUMAI Program Encouragement Grant A"
+  organization = "The Nippon Foundation"
+  system = "HUMAI Program"
+  category = "Principal Investigator; encouragement grant"
+  range = "Jun 2026 - Mar 2027"
+  amount = "350,000 JPY"
+
+  # The participation is current; an exact personal start/end date is not asserted.
+  [[cv.projects]]
+  title = "数理物理統合AIの創成 (AI4MP; AI for Mathematics and Physics)"
+  organization = "JST"
+  system = "ARiSE"
+  category = "Research participant (Masashi Sugiyama group)"
+  range = "Current (confirmed Oct 2026)"
+
+  [[cv.projects]]
+  title = "SUZUKI Mathematical AI Informatics"
+  organization = "JST"
+  system = "ERATO JPMJER2601"
+  category = "Research collaboration (Automated Mathematics Group / Sho Sonoda group)"
+  range = "Ongoing (2026)"
+  url = "https://www.jst.go.jp/erato/en/research_area/ongoing/jpmjer2601_en.html"
+
   [[cv.projects]]
   title = "量子計算と機械学習の双方向発展を実現するシステム構築"
   organization = "JST"
   system = "CREST"
-  category = "研究参加者 (園田班)"
+  category = "Research participant (Sho Sonoda group; project PI: Mio Murao)"
   range = "2025 – 2030"
+  url = "https://www.jst.go.jp/kisoken/crest/project/1111119/1111119_2025.html"
 
   [[cv.projects]]
   title = "形式言語に対する一意な文法の学習に関する研究"
   organization = "Tohoku University"
   system = "TCPAI Grant"
-  category = "研究協力者"
+  category = "Research collaborator with Ryo Yoshinaka"
   range = "Sep 2025 - Mar 2026"
 
   [[cv.projects]]
   title = "Computational Analysis of Human Language Faculty: Bridging Grammaticality Judgments and Categorial Grammar"
   organization = "JSPS"
-  system = "KAKENHI"
-  category = "Grant-in-Aid for Early-Career Scientists "
+  system = "KAKENHI 24K16077"
+  category = "Grant-in-Aid for Early-Career Scientists; Principal Investigator"
   range = "Apr 2024 - Mar 2029"
-  amount = "4,810,000 JPY"
+  amount = "4,810,000 JPY total (including indirect costs)"
   url = "https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-24K16077"
 
   [[cv.projects]]
   title = "CCG/SMT: Higher Order Algorithm for Tree Structure"
   organization = "RIKEN"
   system = "Incentive Research"
-  category = "Engineering"
+  category = "Engineering; Principal Investigator; institutional research budget"
   range = "Apr 2024 - Mar 2026"
   amount = "3,000,000 JPY"
 
   [[cv.projects]]
   title = "Incremental Parsing and Theorem Proving"
   organization = "RIKEN"
-  system = "Special Post-Doctoral Research Research Budget"
-  category = "Engineering"
+  system = "Special Postdoctoral Researcher Research Budget"
+  category = "Engineering; independent institutional research budget"
   range = "Apr 2023 - Mar 2026"
   amount = "3,500,000 JPY"
 
   [[cv.projects]]
   title = "Polymorphic Combinatory Categorial Grammar for Incremental Parsing"
   organization = "JSPS"
-  system = "Grants-in-Aid for Scientific Research Grant-in-Aid for JSPS Fellows"
-  category = "Grant-in-Aid for JSPS Fellows"
+  system = "KAKENHI 21J15207"
+  category = "Grant-in-Aid for JSPS Fellows (DC2); Principal Investigator"
   range = "Apr 2021 - Mar 2023"
-  amount = "900,000 JPY"
+  amount = "900,000 JPY (direct costs)"
   url = "https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-21J15207"
 
+  # Team membership and coauthorship do not imply personal receipt of an award.
   [[cv.awards]]
-  name = "東京都 産業教育奨励賞"
+  name = "JSAI 2026 Annual Conference Excellence Award (team award; team member)"
+  organization = "The Japanese Society for Artificial Intelligence"
+  year = "2026"
+
+  [[cv.awards]]
+  name = "NLP 2026 Special Committee Award for 多段算術推論タスクにおける思考の連鎖の忠実性 (coauthor)"
+  organization = "The Association for Natural Language Processing"
+  year = "2026"
+
+  [[cv.awards]]
+  name = "FT-LLM 2026 Mathematics Task: 1st in the Open Division and 2nd Overall (TohokuNLP team member)"
+  organization = "FT-LLM 2026"
+  year = "2026"
+
+  [[cv.awards]]
+  name = "YANS 2025 Encouragement Award for 方言音声認識における古典的手法の再考 (coauthor; recipient: Kosuke Matsuzaki)"
+  organization = "YANS"
+  year = "2025"
+
+  [[cv.awards]]
+  name = "NLP 2024 Young Researcher Encouragement Award for 言語モデルの思考連鎖的推論における探索戦略の動的変化 (coauthor; recipient: Yoichi Aoki)"
+  organization = "The Association for Natural Language Processing"
   year = "2024"
+
+  [[cv.awards]]
+  name = "NLP 2024 Young Researcher Encouragement Award for 算術推論問題における自己回帰型言語モデルの内部機序 (coauthor; recipient: Keito Kudo)"
+  organization = "The Association for Natural Language Processing"
+  year = "2024"
+
+  [[cv.awards]]
+  name = "YANS 2023 Helpfeel Sponsorship Award for 日本語学習のための形態意味中心の動詞活用 (coauthor; recipient: Kosuke Matsuzaki)"
+  organization = "YANS / Helpfeel"
+  year = "2023"
 
   [[cv.awards]]
   name = "Outstanding Performance Award (Doctoral Course)"
   organization = "JAIST"
   year = "2023"
 
+  # The year follows the author's corrected application record.
   [[cv.awards]]
   name = "Tokyo Industrial Education Encouragement Award"
   organization = "TITECH HST, Tokyo"
   year = "2014"
+
+[[publications.items]]
+category = "Peer-reviewed International Conference"
+title = "Once a Tree, Always a Tree? Cross-lingual Transfer of Hierarchical Generalization in Language Models"
+authors = [
+  "Shin Yamaguchi",
+  "Masaya Taniguchi",
+  "Tatsuki Kuribayashi",
+  "Taro Watanabe",
+  "Yoshinobu Kano"
+]
+venue = "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing"
+location = "Budapest, Hungary"
+date = "Oct 2026"
+year = 2_026
+pages = "60982–60998"
+url = "https://aclanthology.org/2026.emnlp-main.2682/"
+archive = "arXiv:2610.30960"
+
+[[publications.items]]
+category = "Peer-reviewed International Conference"
+title = "Semantic Distance for Presburger Formula Generation"
+authors = [ "Masaya Taniguchi", "Hitomi Yanaka" ]
+venue = "Proceedings of the 6th Workshop on Natural Language Meets Logic and Machine Learning (NALOMA)"
+location = "Prague, Czechia"
+date = "Aug 2026"
+year = 2_026
+pages = "71–79"
+url = "https://aclanthology.org/2026.naloma-1.9/"
 
 [[publications.items]]
 category = "Peer-reviewed International Conference"
@@ -327,15 +512,95 @@ authors = [
 ]
 venue = "Findings of the Association for Computational Linguistics: EACL 2026"
 pages = "1114-1153"
+location = "Rabat, Morocco"
+date = "Mar 2026"
 year = 2_026
+url = "https://aclanthology.org/2026.findings-eacl.59/"
+archive = "arXiv:2412.01113"
+
+[[publications.items]]
+category = "Preprint"
+title = "Lean-Quantum: Toward AI-Assisted Formalization of Quantum Information"
+authors = [
+  "Kazumi Kasaura",
+  "Kei Tsukamoto",
+  "Kento Mori",
+  "Risa Mizuno",
+  "Takahiro Namatame",
+  "Yuta Oriike",
+  "Masaya Taniguchi",
+  "Sho Sonoda",
+  "Hayata Yamasaki"
+]
+venue = "arXiv preprint arXiv:2607.05492"
+date = "Jul 2026"
+year = 2_026
+url = "https://arxiv.org/abs/2607.05492"
+archive = "arXiv:2607.05492"
+
+[[publications.items]]
+category = "International Conference Presentation"
+title = "Neural-Guided Kripke Countermodel Synthesis with Symbolic Verification"
+authors = [ "Masaya Taniguchi", "Sho Sonoda" ]
+venue = "11th Conference on Artificial Intelligence and Theorem Proving (AITP 2026), contributed talk"
+location = "Aussois, France"
+date = "Sep 2026"
+year = 2_026
+url = "https://aitp-conference.org/2026/"
+
+[[publications.items]]
+category = "System Demonstration"
+title = "Xeus-Haskell: Interactive Haskell Computing in the Browser"
+authors = [ "Masaya Taniguchi" ]
+venue = "Haskell Symposium 2026, system demonstration"
+location = "Indianapolis, USA"
+date = "Aug 2026"
+year = 2_026
+url = "https://icfp26.sigplan.org/details/haskellsymp-2026-papers-talks/6/Xeus-Haskell-Interactive-Haskell-Computing-in-the-Browser"
+
+# Supplied research materials are listed separately from published papers.
+# No conference venue or peer-review status is inferred from a filename.
+[[publications.items]]
+category = "Research Poster"
+title = "学習順序攻撃：２値分類タスクのカリキュラム学習"
+authors = [ "谷口雅弥", "塩谷航大" ]
+year = 2_026
+url = "https://github.com/tani/bad-curriculum"
+
+[[publications.items]]
+category = "Research Slides"
+title = "有限循環 Lambek 文法の表現力：カット除去の不成立と文脈自由言語の厳密な拡張"
+authors = [ "Masaya Taniguchi" ]
+date = "Oct 24, 2026"
+year = 2_026
+
+[[publications.items]]
+category = "Domestic Conference"
+title = "多段算術推論タスクにおける思考の連鎖の忠実性"
+authors = [
+  "工藤慧音", "青木洋一", "栗林樹生", "曾根周作", "谷口雅弥",
+  "Ana Brassard", "坂口慶祐", "乾健太郎"
+]
+venue = "言語処理学会第32回年次大会 (NLP 2026)"
+date = "Mar 2026"
+year = 2_026
+
+[[publications.items]]
+category = "Domestic Conference"
+title = "日本語方言の音声認識における学習データの規模と特性"
+authors = [ "松﨑孝介", "谷口雅弥", "坂口慶祐" ]
+venue = "言語処理学会第32回年次大会 (NLP 2026)"
+date = "Mar 2026"
+year = 2_026
+url = "https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/C1-7.pdf"
 
 [[publications.items]]
 category = "Preprint"
 title = "LeanConjecturer: Automatic Generation of Mathematical Conjectures for Theorem Proving"
 authors = [
-  "Naoya Onda",
-  "Kazuma Kasaura",
-  "Yuma Oriike",
+  "Naoto Onda",
+  "Kazumi Kasaura",
+  "Yuta Oriike",
   "Masaya Taniguchi",
   "Akiyoshi Sannai",
   "Sho Sonoda"
@@ -346,24 +611,28 @@ archive = "arXiv:2506.22005"
 venue = "arXiv preprint arXiv:2506.22005"
 
 [[publications.items]]
-category = "Preprint"
+category = "Peer-reviewed International Conference"
 title = "Discovering New Theorems via LLMs with In-Context Proof Learning in Lean"
 authors = [
-  "Kazuma Kasaura",
-  "Naoya Onda",
-  "Yuma Oriike",
+  "Kazumi Kasaura",
+  "Naoto Onda",
+  "Yuta Oriike",
   "Masaya Taniguchi",
   "Akiyoshi Sannai",
   "Sho Sonoda"
 ]
-year = 2_025
-url = "https://arxiv.org/abs/2509.14274"
+venue = "Proceedings of the 6th Workshop on Natural Language Meets Logic and Machine Learning (NALOMA)"
+location = "Prague, Czechia"
+date = "Aug 2026"
+year = 2_026
+pages = "40–49"
+url = "https://aclanthology.org/2026.naloma-1.5/"
 archive = "arXiv:2509.14274"
 
 [[publications.items]]
 category = "Preprint"
 title = "Non-commutative linear logic fragments with sub-context-free complexity"
-authors = [ "Yusuke Nishimiya", "Masaya Taniguchi" ]
+authors = [ "Yusaku Nishimiya", "Masaya Taniguchi" ]
 year = 2_025
 url = "https://arxiv.org/abs/2511.02348"
 archive = "arXiv:2511.02348"
@@ -399,19 +668,11 @@ venue = "arXiv preprint arXiv:2502.00344"
 [[publications.items]]
 category = "Domestic Conference"
 title = "定数精度浮動小数点Transformer Decoderが認識する言語の有限性・余有限性"
-authors = [
-  "根岸直生",
-  "谷口雅弥",
-  "坂口慶祐",
-  "坂口慶祐",
-  "乾健太郎",
-  "乾健太郎",
-  "乾健太郎"
-]
+authors = [ "根岸直生", "谷口雅弥", "坂口慶祐", "乾健太郎" ]
 venue = "言語処理学会年次大会発表論文集(Web)"
 year = 2_025
-date = "2025"
-url = "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202502224568294346"
+date = "Mar 2025"
+url = "https://keisuke-sakaguchi.github.io/assets/pdf/2025_nlp_transformer.pdf"
 volume = "31st"
 
 [[publications.items]]
@@ -458,7 +719,7 @@ title = "Learnability of Regular Languages in Language Models"
 authors = [
   "Masaya Taniguchi",
   "Nao Negishi",
-  "Yusuke Nishimiya",
+  "Yusaku Nishimiya",
   "Keisuke Sakaguchi",
   "Kentaro Inui"
 ]
@@ -480,18 +741,6 @@ title = "範疇文法と自由コンパクト2圏"
 authors = [ "Masaya Taniguchi" ]
 venue = "Computer Science and Category Theory (CSCAT)"
 location = "Kumamoto, Japan"
-date = "Mar 2025"
-
-[[publications.items]]
-category = "Domestic Conference"
-title = "Finiteness and Cofiniteness of Languages Recognized by Constant-Precision Floating-Point Transformer Decoders"
-authors = [
-  "Nao Negishi",
-  "Masaya Taniguchi",
-  "Keisuke Sakaguchi",
-  "Kentaro Inui"
-]
-venue = "The 31st Annual Meeting of the Association for Natural Language Processing (NLP 2025)"
 date = "Mar 2025"
 
 [[publications.items]]
@@ -525,6 +774,7 @@ venue = "Proceedings of the 2024 Conference on Empirical Methods in Natural Lang
 pages = "14255–14271"
 date = "Nov 2024"
 year = 2_024
+url = "https://aclanthology.org/2024.emnlp-main.789/"
 
 [[publications.items]]
 category = "Peer-reviewed International Conference"
@@ -549,64 +799,12 @@ venue = "Guest Lecture, Tohoku University"
 date = "Dec 2024"
 
 [[publications.items]]
-category = "Peer-reviewed International Conference"
-title = "First Heuristic Then Rational: Dynamic Use of Heuristics in Language Model Reasoning."
-authors = [
-  "Yoichi Aoki",
-  "Keito Kudo",
-  "Tatsuki Kuribayashi",
-  "Shusaku Sone",
-  "Masaya Taniguchi",
-  "Keisuke Sakaguchi",
-  "Kentaro Inui"
-]
-venue = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing(EMNLP)"
-year = 2_024
-date = "2024"
-url = "https://doi.org/10.18653/v1/2024.emnlp-main.789"
-pages = "1undefined 4255271"
-
-[[publications.items]]
 category = "Research Report"
 title = "Taniguchi (2022), Unprovability of Continuation-Passing Style Transformation in Lambek Calculus"
 authors = [ "Masaya Taniguchi" ]
 venue = "University of Amsterdam / Amsterdam University of Applied Sciences"
 year = 2_024
 date = "2024"
-
-[[publications.items]]
-category = "Preprint"
-title = "Think-to-Talk or Talk-to-Think? When LLMs Come Up with an Answer in Multi-Hop Arithmetic Reasoning"
-authors = [
-  "Keito Kudo",
-  "Yoichi Aoki",
-  "Tatsuki Kuribayashi",
-  "Shusaku Sone",
-  "Masaya Taniguchi",
-  "Ana Brassard",
-  "Keisuke Sakaguchi",
-  "Kentaro Inui"
-]
-venue = "arXiv preprint arXiv:2412.01113"
-year = 2_024
-archive = "arXiv:2412.01113"
-
-[[publications.items]]
-category = "Preprint"
-title = "Think-to-talk or talk-to-think? when llms come up with an answer in multi-step reasoning"
-authors = [
-  "Keito Kudo",
-  "Yoichi Aoki",
-  "Tatsuki Kuribayashi",
-  "Shusaku Sone",
-  "Masaya Taniguchi",
-  "Ana Brassard",
-  "Keisuke Sakaguchi",
-  "Kentaro Inui"
-]
-venue = "arXiv preprint arXiv:2412.01113"
-year = 2_024
-archive = "arXiv:2412.01113"
 
 [[publications.items]]
 category = "Domestic Conference"
@@ -643,14 +841,14 @@ category = "Domestic Conference"
 title = "Dynamic Search Strategy in Chain-of-Thought Reasoning by Language Models"
 authors = [
   "Yoichi Aoki",
-  "Keion Kudo",
+  "Keito Kudo",
   "Shusaku Sone",
-  "Itsuki Kuribayashi",
+  "Tatsuki Kuribayashi",
   "Masaya Taniguchi",
   "Keisuke Sakaguchi",
   "Kentaro Inui"
 ]
-venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+venue = "The 30th Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
 location = "Kobe"
 date = "Mar 2024"
 
@@ -663,7 +861,7 @@ authors = [
   "Keisuke Sakaguchi",
   "Kentaro Inui"
 ]
-venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+venue = "The 30th Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
 location = "Kobe"
 date = "Mar 2024"
 
@@ -676,7 +874,7 @@ authors = [
   "Kentaro Inui",
   "Keisuke Sakaguchi"
 ]
-venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+venue = "The 30th Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
 location = "Kobe"
 date = "Mar 2024"
 
@@ -685,14 +883,14 @@ category = "Domestic Conference"
 title = "Internal Mechanisms of Autoregressive Language Models in Arithmetic Reasoning"
 authors = [
   "Yoichi Aoki",
-  "Keion Kudo",
-  "Itsuki Kuribayashi",
+  "Keito Kudo",
+  "Tatsuki Kuribayashi",
   "Masaya Taniguchi",
   "Shusaku Sone",
   "Keisuke Sakaguchi",
   "Kentaro Inui"
 ]
-venue = "The 30st Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
+venue = "The 30th Annual Meeting of the Association for Natural Language Processing (NLP 2024)"
 location = "Kobe"
 date = "Mar 2024"
 
@@ -842,7 +1040,7 @@ date = "Mar 2023"
 
 [[publications.items]]
 category = "Peer-reviewed International Conference"
-title = "Unprovabiliy of Continuation-Passing Style Transformation in Lambek Calculus"
+title = "Unprovability of Continuation-Passing Style Transformation in Lambek Calculus"
 authors = [ "Masaya Taniguchi" ]
 venue = "European Summer School in Logic, Language and Information, Student Session"
 location = "Galway"
@@ -913,6 +1111,15 @@ venue = "Substructural Logic Workshop in Ishikawa"
 date = "May 2022"
 
 [[publications.items]]
+category = "Peer-reviewed Journal"
+title = "Interactive Grammar Extraction from a TreeBank"
+authors = [ "Masaya Taniguchi", "Satoshi Tojo" ]
+venue = "Journal of Intelligent Informatics and Smart Technology"
+volume = "8"
+year = 2_022
+url = "https://gyoseki.asia-u.ac.jp/aauhp/KgApp?resId=S000351"
+
+[[publications.items]]
 category = "Peer-reviewed International Conference"
 title = "Interactive grammar extraction from a treebank"
 authors = [ "Masaya Taniguchi", "Satoshi Tojo" ]
@@ -975,3 +1182,4 @@ date = "Nov 2018"
 category = "Research Report"
 title = "Polymorphic Lambek Calculus"
 authors = [ "Masaya Taniguchi" ]
+
