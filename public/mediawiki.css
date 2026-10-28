@@ -102,17 +102,19 @@ a.external::after {
   padding: 0 1.25rem;
 }
 
+/* Same columns as .mw-body-grid so the wordmark sits in the sidebar
+   column rather than centred on the whole page. */
 .site-header {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  column-gap: 1.75rem;
   align-items: center;
-  justify-content: center;
-  gap: 0 1.25rem;
   padding: 1rem 0 0.75rem;
 }
 
 .site-wordmark {
   display: inline-flex;
+  justify-self: center;
   line-height: 0;
   color: var(--wiki-text);
 }
@@ -151,6 +153,10 @@ a.site-wordmark:hover {
    before body, so the sidebar needs grid order:2 to stack below. */
 @media (max-width: 50rem) {
   .mw-body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header {
     grid-template-columns: 1fr;
   }
 
